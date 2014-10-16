@@ -1,0 +1,13 @@
+.body{
+    background-color: #7797fe;
+}
+#center {
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin: auto;
+    background: #f8f8f8;
+    height: 315px;
+    width: 461px;
+}
