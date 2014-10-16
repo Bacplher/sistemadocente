@@ -5,14 +5,24 @@ require_once('db_conn.class.php');
 //save connection object to variable.
 $db = dbConn::getConnection();
 
-	$sql = $db->prepare('SELECT * FROM alumno WHERE IdAlumno= :id');
+//query database using prepared statement
+//sql
+$sql = $db->prepare('SELECT * FROM docente WHERE Nombre = :id');
 
-	//save result of sql query to variable.
-	$result = $sql->execute( array(':id'=>'IdAlumno') );
-	
+//save result of sql query to variable.
+$result = $sql->execute( array(':id' => 'SARA MARTINA') );
+
+
+
 //echo result
 $row = $sql->fetch();
-echo $row[0], $row[1], $row[2], $row[3];
-/*	
-*/
+for ($i=0; $i < count($result) ; $i++) {
+    echo $row[$i].'-';
+}
+
 ?>
+<div>
+    <div>
+
+    </div>
+</div>
