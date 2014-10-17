@@ -37,7 +37,7 @@ h2{
 }
 #container{
 	margin:0 auto;
-	width:680px;
+	width:720px;
 	background:#fff;
 	padding-bottom:20px;
 }
