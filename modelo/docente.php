@@ -1,6 +1,7 @@
 <?php
+
 //import the class
-require_once('db_conn.class.php');
+require_once '../configuracion/db_conn.class.php';
 
 //save connection object to variable.
 $db = dbConn::getConnection();
@@ -15,32 +16,19 @@ $datos = $db->query('SELECT * FROM docente');
 
 
 //echo result
-<<<<<<< HEAD
+
 $datos->setFetchMode(PDO::FETCH_ASSOC);
  echo "<table border='1'>";
     while($result = $datos->fetch()){
-	echo "<tr>";
-    foreach ($result as $col_value) {
-        echo "<td>$col_value</td>";
+        echo "<tr>";
+        foreach ($result as $col_value) {
+            echo "<td>$col_value</td>";
+        }
+        echo "</tr>";
+
     }
-    echo "</tr>";
-    
-	}
 	echo "</table>";
 
 ?>
-=======
-$row = $sql->fetch();
-for ($i=0; $i < count($result) ; $i++) {
-    echo $row[$i].'-';
-}
-/*
-  foreach($datos as $row){
-  		echo $row['IdAlumno'];
-  		echo $row['Nombre'];
-  		echo $row['ApellidoPaterno'];
-   }
-*/
 
-?>
->>>>>>> origin/master
+
