@@ -11,3 +11,8 @@
     height: 315px;
     width: 461px;
 }
+.tabla{
+	  border:'1';
+	  width:'80%';
+	  bordercolor:'#428bca';
+	}
