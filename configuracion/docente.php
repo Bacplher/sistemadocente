@@ -1,7 +1,7 @@
 <?php
 
 //import the class
-require_once '../configuracion/db_conn.class.php';
+require_once ('db_conn.class.php');
 
 //save connection object to variable.
 $db = dbConn::getConnection();
@@ -16,7 +16,6 @@ $datos = $db->query('SELECT * FROM docente');
 
 
 //echo result
-
 $datos->setFetchMode(PDO::FETCH_ASSOC);
  echo "<table border='1'>";
     while($result = $datos->fetch()){
@@ -28,7 +27,4 @@ $datos->setFetchMode(PDO::FETCH_ASSOC);
 
     }
 	echo "</table>";
-
 ?>
-
-
