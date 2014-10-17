@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e6e3157-191f-4e92-b774-1694fc755b9e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/configuracion/docente.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modelo/modelo.php" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\sistemadocente\modelo\docente.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="C:\xampp\htdocs\sistemadocente\configuracion\docente.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modelo/modelo.php" afterPath="$PROJECT_DIR$/modelo/modelo.php" />
     </list>
     <ignored path="SISTEMA_DOCENTE.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,20 +51,10 @@
       <file leaf-file-name="modelo.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modelo/modelo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.042513862" vertical-offset="0" max-vertical-offset="541">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="docente.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configuracion/docente.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3125" vertical-offset="0" max-vertical-offset="805">
-              <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.06469501" vertical-offset="11" max-vertical-offset="759">
+              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
               <folding>
-                <marker date="1413511474005" expanded="true" signature="202:223" placeholder="SELECT * FRO..docente..." />
+                <marker date="1413512042562" expanded="true" signature="216:237" placeholder="SELECT * FRO..docente..." />
               </folding>
             </state>
           </provider>
@@ -161,34 +149,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SISTEMA_DOCENTE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sistemadocente" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modelo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SISTEMA_DOCENTE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sistemadocente" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="configuracion" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -239,7 +199,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -247,7 +207,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2659091" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2659091" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -388,16 +348,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configuracion/docente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3125" vertical-offset="0" max-vertical-offset="805">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding>
-            <marker date="1413511474005" expanded="true" signature="202:223" placeholder="SELECT * FRO..docente..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vista/vistaprueba.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.71875" vertical-offset="0" max-vertical-offset="161">
@@ -408,9 +358,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modelo/modelo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.042513862" vertical-offset="0" max-vertical-offset="541">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.06469501" vertical-offset="11" max-vertical-offset="759">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding>
+            <marker date="1413512042562" expanded="true" signature="216:237" placeholder="SELECT * FRO..docente..." />
+          </folding>
         </state>
       </provider>
     </entry>
