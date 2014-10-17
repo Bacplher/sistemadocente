@@ -19,12 +19,12 @@ $row = $sql->fetch();
 for ($i=0; $i < count($result) ; $i++) {
     echo $row[$i].'-';
 }
+/*
+  foreach($datos as $row){
+  		echo $row['IdAlumno'];
+  		echo $row['Nombre'];
+  		echo $row['ApellidoPaterno'];
+   }
+*/
 
 ?>
-<div>
-    <div>
-
-    </div>
-</div>
-
-//prueba
