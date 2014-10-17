@@ -7,22 +7,24 @@ $db = dbConn::getConnection();
 
 //query database using prepared statement
 //sql
-$sql = $db->prepare('SELECT * FROM docente WHERE Nombre = :id');
+$datos = $db->query('SELECT * FROM docente');
 
 //save result of sql query to variable.
-$result = $sql->execute( array(':id' => 'SARA MARTINA') );
+//$result = $sql->execute( array(':id' => 'SARA MARTINA') );
 
 
 
 //echo result
-$row = $sql->fetch();
-for ($i=0; $i < count($result) ; $i++) {
-    echo $row[$i].'-';
-}
+$datos->setFetchMode(PDO::FETCH_ASSOC);
+ echo "<table border='1'>";
+    while($result = $datos->fetch()){
+	echo "<tr>";
+    foreach ($result as $col_value) {
+        echo "<td>$col_value</td>";
+    }
+    echo "</tr>";
+    
+	}
+	echo "</table>";
 
 ?>
-<div>
-    <div>
-
-    </div>
-</div>
