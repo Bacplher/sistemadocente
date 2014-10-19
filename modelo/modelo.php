@@ -14,7 +14,7 @@ body{
 	margin:0;
 	padding:0;
 	background:#f1f1f1;
-	font:70% Arial, Helvetica, sans-serif; 
+	font:70% Arial, Helvetica, sans-serif;
 	color:#555;
 	line-height:150%;
 	text-align:left;
@@ -30,19 +30,19 @@ a:hover{
 h1{
 	font-size:140%;
 	margin:0 20px;
-	line-height:80px;	
+	line-height:80px;
 }
 h2{
 	font-size:120%;
 }
 #container{
 	margin:0 auto;
-	width:720px;
+	width:900px;
 	background:#fff;
 	padding-bottom:20px;
 }
-#content{margin:0 20px;}
-p.sig{	
+#content{margin:0 10px;}
+p.sig{
 	margin:0 auto;
 	width:680px;
 	padding:1em 0;
@@ -62,7 +62,7 @@ form{
 	<div id="content">
 <?php
 //import the class
-require_once '../configuracion/db_conn.class.php';
+require_once '/basedatos/db_conn.class.php';
 
 //save connection object to variable.
 $db = dbConn::getConnection();
