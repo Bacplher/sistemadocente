@@ -62,7 +62,7 @@ form{
 	<div id="content">
 <?php
 //import the class
-require_once '/basedatos/db_conn.class.php';
+require_once '../basedatos/db_conn.class.php';
 
 //save connection object to variable.
 $db = dbConn::getConnection();
@@ -99,8 +99,10 @@ $sql->setFetchMode(PDO::FETCH_ASSOC);
 
     }
 	echo "</table>";
+
 ?>
 </div>
 </div>
 </body>
+	<a href="../index.html">Cerrar Sesion</a>
 </html>
