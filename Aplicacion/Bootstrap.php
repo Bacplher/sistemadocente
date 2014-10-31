@@ -9,7 +9,6 @@ class Bootstrap{
         
         if(is_readable($rutaControlador)){
             require_once $rutaControlador;
-            
             $controlador = new $controlador;
             
             if(is_callable(array($controlador,$metodo))){
