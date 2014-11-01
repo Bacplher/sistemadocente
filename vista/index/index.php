@@ -2,8 +2,14 @@
 <h2>Vista Index</h2>
 <?php if(isset($this->alumnos) && count($this->alumnos)) : ?>
 
-<table border="1" align="center"> 
-    
+<center><table border="1" align="center" class="rwd-table">
+        <tr>
+           <td>Codigo</td>
+           <td>Nombre</td>
+           <td>Apellido Paterno</td>
+           <td>Apellido Materno</td>
+           <td>Email</td>
+        </tr>
     <?php for($i = 0; $i < count($this->alumnos); $i++): ?>
     
     <tr>
@@ -15,7 +21,7 @@
     </tr>
     
     <?php endfor;?>
-</table>
+</table></center>
 
 <?php else: ?>
 

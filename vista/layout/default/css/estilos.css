@@ -14,14 +14,14 @@ body{
 }
 
 #header {
-    padding: 10px;
+    padding: 46px;
     color: whitesmoke;
-    background: skyblue;
+    background: cadetblue;
     margin: 0;
 }
 
 #top_menu {
-    padding: 10px;
+    padding: 0px;
     color: red;
     background: #3BAEB4;
     margin: 0
@@ -63,7 +63,7 @@ body{
     font-weight: bold;
 }
 #footer {
-    background: skyblue;
+    background: cadetblue;
     color: white;
     padding: 10px;
 }

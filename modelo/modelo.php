@@ -4,8 +4,8 @@
 <title>Docente</title>
 
 <!-- paste this code into your webpage -->
-<link href="../web/css/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript" src="../web/js/tablecloth.js"></script>
+<link href="../vista/layout/default/css/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="../vista/layout/default/js/tablecloth.js"></script>
 <!-- end -->
 
 <style>
