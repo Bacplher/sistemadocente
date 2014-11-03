@@ -17,6 +17,7 @@
 
     <link href="<?php echo $_layoutParams['ruta_css']; ?>tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
     <script type="<?php echo $_layoutParams['ruta_js']; ?>tablecloth.js"></script>
+
 </head>
 <body>
 <link href="<?php echo $_layoutParams['ruta_css']; ?>cuerpo.css" rel="stylesheet" type="text/css" />
@@ -38,6 +39,7 @@
     </div>
 <script src="<?php echo $_layoutParams['ruta_js']; ?>primera.js"></script>
 <script src="<?php echo $_layoutParams['ruta_js']; ?>index.js"></script>
+
         
         
         

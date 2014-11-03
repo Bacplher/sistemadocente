@@ -39,11 +39,17 @@ class Vista{
             'menu' => $menu
         );
         $rutaVista = ROOT . 'vista' . DS .$this->_controlador . DS . $vista . '.php';
-        
+//        MODIFICACION
         if(is_readable($rutaVista)){
-            include_once ROOT . 'vista' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'header.php';
-            include_once $rutaVista;
-            include_once ROOT . 'vista' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'footer.php';
+            if($rutaVista==ROOT . 'vista' . DS . 'index' . DS . 'index.php')  {
+                include_once ROOT . 'vista' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'logo.php';
+                include_once $rutaVista;
+            }
+            else{
+                include_once ROOT . 'vista' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'header.php';
+                include_once $rutaVista;
+                include_once ROOT . 'vista' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'footer.php';
+            }
         }
         else {
             throw new Exception ('Error de vista');

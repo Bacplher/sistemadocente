@@ -1,30 +1,14 @@
 
-<h2>Vista Index</h2>
-<?php if(isset($this->alumnos) && count($this->alumnos)) : ?>
-
-<center><table border="1" align="center" class="rwd-table">
-        <tr>
-           <td>Codigo</td>
-           <td>Nombre</td>
-           <td>Apellido Paterno</td>
-           <td>Apellido Materno</td>
-           <td>Email</td>
-        </tr>
-    <?php for($i = 0; $i < count($this->alumnos); $i++): ?>
-    
-    <tr>
-        <td><?php echo $this->alumnos[$i]['IdAlumno']; ?></td>
-        <td><?php echo $this->alumnos[$i]['Nombre']; ?></td>
-        <td><?php echo $this->alumnos[$i]['ApellidoPaterno']; ?></td>
-        <td><?php echo $this->alumnos[$i]['ApellidoMaterno']; ?></td>
-        <td><?php echo $this->alumnos[$i]['Email']; ?></td>
-    </tr>
-    
-    <?php endfor;?>
-</table></center>
-
-<?php else: ?>
-
-<p><strong>No hay posts!</strong></p>
-
-<?php endif; ?>
+<div class='form animated flipInX'>
+    <h2>SISTEMA DOCENTE</h2>
+    <form name="login" method="post" action="login.php">
+        <input name="nombre" placeholder='Usuario' type='text'>
+        <input name="dni" placeholder='Contraseña' type='password'>
+        <input type="submit" value="Login" />
+        <!--<button class='animated infinite pulse'>Ingrese</button>-->
+    </form>
+    <!-- <form name="formulario" method="post" action="modelo/modelo.php">
+         Nombre: <input type="text" name="nombre" value="">
+         <input type="submit" />
+     </form>-->
+</div>
