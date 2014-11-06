@@ -30,4 +30,17 @@ protected function getLibrary($libreria){
         throw new Exception('Error de libreria');
     }
 }
+
+    protected function redireccionar($ruta = false) {
+        if ($ruta) {
+            die("<script> window.location='".BASE_URL."$ruta'; </script>");
+//            header('location:' . BASE_URL . $ruta);
+            exit;
+        } else {
+            die("<script> window.location='".BASE_URL."index'; </script>");
+//            header('location:' . BASE_URL);
+            exit;
+        }
+    }
+
 }
