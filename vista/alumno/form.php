@@ -1,10 +1,10 @@
-<form method="post" action="<?php if (isset ($this->_alumno)) echo $this->_alumno ?>" id="frm"
-      >
-    <h3><?php echo $this->titulo ?></h3>
-    <input type="hidden" name="guardar" id="guardar" value="1"/>
-    <input type="hidden" name="codigo" id="codigo"
+<form method="post" action="<?php if (isset ($this->action)) echo $this->action ?>" id="frm"
+      onsubmit="return validarAlumno()";>
+          <h3><?php echo $this->titulo ?></h3>
+          <input type="hidden" name="guardar" id="guardar" value="1"/>
+<input type="hidden" name="IdALumno" id="IdALumno"
            value="<?php if (isset ($this->datos[0]['IdALumno'])) echo $this->datos[0]['IdALumno'] ?>"/>
-    <CENTER>
+<!--    <CENTER>-->
         <table align="center" class="tabFormComplejo">
             <tr valign="top">
                 <td><label>Nombre:</label></td>
@@ -38,10 +38,10 @@
             <tr>
                 <td colspan="2" align="center">
                     <p>
-                        <button type="submit" class="k-button" id="saveform">Guardar</button>
+                        <button type="submit" class="k-button" id="guardar2" value="1">Guardar</button>
                         <a href="<?php echo BASE_URL ?>alumno" class="k-button cancel">Cancelar</a></p>
                 </td>
             </tr>
         </table>
-    </CENTER>
+<!--    //</CENTER>-->
 </form>

@@ -19,16 +19,17 @@ class alumnoModelo extends Modelo{
 
 
     public function getInsertar() {
-        $datos = array(0, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno,$this->Email);
-      /* $r = $this->_db->query("INSERT INTO alumno (Nombre,ApellidoPaterno,ApellidoMaterno,Email)
-       VALUES ($this->Nombre,$this->ApellidoPaterno,$this->ApellidoMaterno,$this->Email)");*/
-     $r= $this->get_consulta("pa_insertar_alumno", $datos);
-       $error = $r[1];
-      $r = null;
-      return $error;
+      // $datos = array(0, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno,$this->Email);
+     $r = $this->_db->query("INSERT INTO alumno (Nombre,ApellidoPaterno,ApellidoMaterno,Email)
+      VALUES ('$this->Nombre','$this->ApellidoPaterno','$this->ApellidoMaterno','$this->Email')");
+     //$r= $this->get_consulta("pa_insertar_alumno", $datos);
+       // $r = $this->_db->query("INSERT INTO alumno (Nombre,ApellidoPaterno,ApellidoMaterno,Email) VALUES ('d','d','d','d')");
+        //$error = $r[1];
+        //$r = null;
+        //return $error;
     }
 
-    public function getElimina() {
+    public function getEliminar() {
         $datos = array($this->IdAlumno);
         $r = $this->get_consulta("pa_elimina_alumno", $datos);
         $error = $r[1];

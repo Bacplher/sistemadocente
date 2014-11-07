@@ -2,6 +2,8 @@
 
 abstract class Controlador{
     protected $_vista;
+    protected $_modelo;
+    protected $_modeloalert;
     public function __construct() {
         $this->_vista = new Vista(new Request);
     }    
@@ -43,4 +45,28 @@ protected function getLibrary($libreria){
         }
     }
 
+    protected function filtrarInt($int) {
+        $int = (int) $int;
+        if (is_int($int)) {
+            return $int;
+        } else {
+            return 0;
+        }
+    }
+
+    protected function fecha_en($fecha) {
+        $d = substr($fecha, 0, 2);
+        $m = substr($fecha, 3, 2);
+        $a = substr($fecha, 6, 4);
+        return "$a-$m-$d";
+    }
+    public function get_matriz($datos, $cabeceras) {
+        $nuevo;
+        for ($i = 0; $i < count($datos); $i++) {
+            for ($j = 0; $j < count($cabeceras); $j++) {
+                $nuevo[$i][$cabeceras[$j]] = $datos[$i][$cabeceras[$j]];
+            }
+        }
+        return $nuevo;
+    }
 }
