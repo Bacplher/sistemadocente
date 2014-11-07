@@ -1,0 +1,60 @@
+.slide_likebox { 
+    float:right; 
+    width:288px; 
+    height:345px; 
+    background: url(../img/fb_bg.png) no-repeat !important; 
+    display:block; 
+    right:-250px; 
+    padding:0; 
+    position:fixed; 
+    top: 130px; 
+    z-index:998; 
+    border-radius:10px; 
+    -moz-border-radius:10px; 
+    -webkit-border-radius:10px; 
+} 
+#icn_compartir { 
+    float:left; 
+    display:block; 
+    left:0px; 
+    padding:0; 
+    position:fixed; 
+    top: 130px; 
+    z-index:998; 
+    border-radius:10px; 
+    -moz-border-radius:10px; 
+    -webkit-border-radius:10px; 
+} 
+div.likeboxwrap { 
+    color: #000;
+    margin-top:2px; 
+    margin-left:-5px; 
+    width:238px; 
+    height:325px; 
+    background-color:#fff; 
+    overflow:hidden; 
+    border-radius:10px; 
+    -moz-border-radius:10px; 
+    -webkit-border-radius:10px; 
+} 
+div.likeboxwrap iframe {margin:-1px}
+.green{
+    background: url(../img/mensaje2.png) no-repeat !important; 
+}
+.red{
+    background: url(../img/mensaje.png) no-repeat !important; 
+}
+.msg_pendientes{
+    text-align: left;
+    font-size: 16px;
+    color: #666;
+    font-weight: bold;
+}
+.msg_pendientes a{
+    text-decoration: none;
+    color: #666;
+}
+.msg_pendientes a:hover{
+    text-decoration: underline;
+    color: #999;
+}

@@ -1,0 +1,176 @@
+@charset "utf-8";
+/* CSS Document */
+
+.msg_pendientes{
+        padding: 10px;
+}
+.msgerror{
+	display:block;
+	width:115px;
+	height:24px;
+	position:static;
+}
+.acciones{
+        text-align: center;
+}
+.k-grid > table > tbody > tr:hover,
+.k-grid-content > table > tbody > tr:hover
+{
+        background:#6F9;
+}
+.imgedit{
+	background-image:url(../img/edit.png);
+        width: 20px;
+	height: 20px;
+	display:inline-block;
+        border: none;
+}
+.imgdelete{
+	background-image:url(../img/delete.png);
+        width: 20px;
+	height: 20px;
+	display:inline-block;
+        border: none;
+}
+.imgselect{
+	background-image:url(../img/select.png);
+        width: 20px;
+	height: 20px;
+	display:inline-block;
+        border: none;
+}
+.imgview{
+	background-image:url(../img/view.png);
+        width: 20px;
+	height: 20px;
+	display:inline-block;
+        border: none;
+}
+.imgconfirm{
+	background-image:url(../img/select.png);
+        width: 20px;
+	height: 20px;
+	display:inline-block;
+        border: none;
+}
+.imgcobrar{
+	background-image:url(../img/dolar.png);
+        width: 13px;
+	height: 20px;
+	display:inline-block;
+        border: none;
+}
+.print{
+	background-image:url(../img/print.png);
+        width: 20px;
+	height: 20px;
+	display:inline-block;
+        border: none;
+}
+.imgcronog{
+	background-image:url(../img/calendar.png);
+        width: 22px;
+	height: 22px;
+	display:inline-block;
+        border: none;
+}
+.imgamort{
+	background-image:url(../img/dollar.png);
+        width: 16px;
+	height: 22px;
+	display:inline-block;
+        border: none;
+}
+#cuerpo{
+        padding: 20px 0px 20px 0px;
+        width: 90%;
+        margin: 0 auto;
+}
+#tabla{
+	margin-left:10%;
+}
+.comboX{
+	width:150px;
+        color: #000;
+        margin-bottom: 0px;
+        border:4px #096 solid;
+}
+.comboX option{
+        color: #FFF;
+        background-color:#096;
+}
+.tabForm label{
+        width: 85px;
+        display: block;
+        margin: 10px;
+        text-align: right;
+}
+.tabFormComplejo label{
+        width: 90px;
+        display: block;
+        margin: 5px 10px 30px 10px;
+        text-align: right;
+}
+#tbl_detalle{
+        width: 50%;
+        margin-right: 10%;
+}
+#tbl_detallemax{
+        width: 100%;
+        margin-right: 10%;
+}
+#btn_buscar{
+        height: 25px;
+        width: 28px;
+}
+.btn_icn{
+        height: 25px;
+        width: 28px;
+}
+.k-icon{
+        margin: 1px 0px 2px -2px;
+}
+#buscar{
+        width: 50%;
+}
+.textarea{
+        width: 100%;
+        height: 75px;
+}
+#logo{
+        background-image: url("../img/logo.png");
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width:80%;
+        height: 100%;
+        margin-top: 60px;
+        padding-bottom: 200px;
+        margin-bottom: 60px;
+}
+#fondooscuro{
+	display: none;
+	position: fixed;
+	left: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	background-image: url('../img/negro.png');
+}
+#fondoclaro{
+	display: none;
+	position: fixed;
+	left: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	background-image: url('../img/blanco.png');
+}
+.cancel{
+        background: #FFF;
+        color: #066;
+}
+.cancel:hover{
+        color: #FFF;
+}

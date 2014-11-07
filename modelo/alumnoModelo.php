@@ -30,11 +30,22 @@ class alumnoModelo extends Modelo{
     }
 
     public function getEliminar() {
-        $datos = array($this->IdAlumno);
-        $r = $this->get_consulta("pa_elimina_alumno", $datos);
+        //$datos = array($this->IdAlumno);
+        $r = $this->_db->query("DELETE from alumno where IdAlumno='$this->IdAlumno'");
+        //$r = $this->get_consulta("pa_eliminar_alumno", $datos);
+        //$error = $r[1];
+        //$r = null;
+        //return $error;
+    }
+
+    public function getActualizar() {
+       /* $datos = array($this->idproveedor, $this->razon_social, $this->representante, $this->ruc,
+            $this->telefono, $this->direccion, $this->email, $this->idubigeo);*/
+        /*$r = $this->get_consulta("pa_inserta_act_proveedores", $datos);
         $error = $r[1];
         $r = null;
-        return $error;
+        return $error;*/
+        $r = $this->_db->query("UPDATE  alumno  set IdAlumno='$this->IdAlumno' ,Nombre='$this->Nombre',ApellidoPaterno='$this->ApellidoPaterno',ApellidoMaterno='$this->ApellidoMaterno',Email='$this->Email'  WHERE IdAlumno='$this->IdAlumno'");
     }
 
 }

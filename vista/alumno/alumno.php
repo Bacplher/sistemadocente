@@ -18,8 +18,8 @@
                 <td><?php echo $this->alumnos[$i]['ApellidoMaterno']; ?></td>
                 <td><?php echo $this->alumnos[$i]['Email']; ?></td>
                 <td>
-                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>alumno/editar/<?php echo $this->datos[$i]['IdAlumno'] ?>')" class="imgedit">editar</a>
-                    <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>alumno/eliminar/<?php echo $this->datos[$i]['IdAlumno'] ?>')" class="imgdelete">eliminar</a>
+                    <a href="javascript:void(0)" onclick="editar('<?php echo BASE_URL?>alumno/editar/<?php echo $this->alumnos[$i]['IdAlumno'] ?>')" class="imgedit">editar</a>
+                    <a href="javascript:void(0)" onclick="eliminar('<?php echo BASE_URL?>alumno/eliminar/<?php echo $this->alumnos[$i]['IdAlumno'] ?>')" class="imgdelete">eliminar</a>
                     <a href="javascript:void(0)" class="imgview" onclick="ver('<?php echo $this->datos[$i]['IdAlumno'] ?>')"></a>
                 </td>
             </tr>

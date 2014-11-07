@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+#login{
+        margin-top:-10px;
+}
+/*Estilos de Menu*/
+#menu li{
+	width:24.87%;
+}
+#menu li a{
+	text-align:center;
+}
+#menu li a label{
+	font-size:16px;
+}
+#menu li a:hover, a label:hover{
+	cursor:pointer;
+}
+/*Estilos del contenido*/
+#contenido{
+	width:100%;
+}
