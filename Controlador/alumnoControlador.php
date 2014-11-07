@@ -74,10 +74,7 @@ class alumnoControlador extends Controlador{
 
         $this->_vista->datos = $datos;*/
         $this->_vista->titulo = 'Actualizar Proveedor';
-<<<<<<< HEAD
         $this->_vista->setJs(array('funciones_form'));
-=======
->>>>>>> origin/master
         //$this->_vista->setJs(array('funciones_form'));
         $this->_vista->renderizar('form');
     }
