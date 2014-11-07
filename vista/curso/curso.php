@@ -22,6 +22,6 @@
 
 <?php else: ?>
 
-    <p><strong>No hay posts!</strong></p>
+    <p><strong>NO HAY NADA HARAGAN :O</strong></p>
 
 <?php endif; ?>
