@@ -1,302 +1,231 @@
-CREATE DATABASE  IF NOT EXISTS `sistemadocente` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `sistemadocente`;
--- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1    Database: sistemadocente
--- ------------------------------------------------------
--- Server version	5.5.27
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-11-2014 a las 20:50:33
+-- Versión del servidor: 5.5.27
+-- Versión de PHP: 5.4.7
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `alumno`
+-- Base de datos: `sistemadocente`
 --
 
-DROP TABLE IF EXISTS `alumno`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `alumno` (
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_insertar_alumno`(IN `Nombre` varchar(10), IN `ApellidoPaterno` varchar(10), IN `ApellidoMaterno` varchar(10),IN `Email` varchar(10), IN `op` integer)
+if op=0 THEN
+INSERT INTO alumno (Nombre,ApellidoPaterno,ApellidoMaterno,Email)
+VALUES (Nombre,ApellidoPaterno,ApellidoMaterno,Email);
+end if$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alumno`
+--
+
+CREATE TABLE IF NOT EXISTS `alumno` (
   `IdAlumno` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(145) NOT NULL,
   `ApellidoPaterno` varchar(145) NOT NULL,
   `ApellidoMaterno` varchar(145) NOT NULL,
   `Email` varchar(245) DEFAULT NULL,
   PRIMARY KEY (`IdAlumno`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
--- Dumping data for table `alumno`
+-- Volcado de datos para la tabla `alumno`
 --
 
-LOCK TABLES `alumno` WRITE;
-/*!40000 ALTER TABLE `alumno` DISABLE KEYS */;
-/*!40000 ALTER TABLE `alumno` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `alumno` (`IdAlumno`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Email`) VALUES
+(29, 'Sara', 'huaman', 'medina', 'sara@gmail.com'),
+(30, 'marlon', 'peralta', 'panduro', 'marlo@gmail.com'),
+(31, 'hernan', 'bacalla', 'placencia', 'hernan@gmail.com'),
+(32, 'anthony', 'ramirez', 'quintana', 'anthony@gmail.com'),
+(33, 'PRUEBA1', 'PRUEBA', 'PRUEBA', 'PRUEBA');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `asistencia`
+-- Estructura de tabla para la tabla `asistencia`
 --
 
-DROP TABLE IF EXISTS `asistencia`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `asistencia` (
+CREATE TABLE IF NOT EXISTS `asistencia` (
   `alumno_IdAlumno` int(11) NOT NULL,
   `clase_IdClase` int(11) NOT NULL,
   `Asistio` bit(1) NOT NULL,
   `Observaciones` varchar(145) NOT NULL,
   PRIMARY KEY (`alumno_IdAlumno`,`clase_IdClase`),
   KEY `fk_alumno_has_clase_clase1_idx` (`clase_IdClase`),
-  KEY `fk_alumno_has_clase_alumno1_idx` (`alumno_IdAlumno`),
-  CONSTRAINT `fk_alumno_has_clase_alumno1` FOREIGN KEY (`alumno_IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_alumno_has_clase_clase1` FOREIGN KEY (`clase_IdClase`) REFERENCES `clase` (`IdClase`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_alumno_has_clase_alumno1_idx` (`alumno_IdAlumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `asistencia`
+-- Estructura de tabla para la tabla `centroeducativo`
 --
 
-LOCK TABLES `asistencia` WRITE;
-/*!40000 ALTER TABLE `asistencia` DISABLE KEYS */;
-/*!40000 ALTER TABLE `asistencia` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `centroeducativo`
---
-
-DROP TABLE IF EXISTS `centroeducativo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `centroeducativo` (
+CREATE TABLE IF NOT EXISTS `centroeducativo` (
   `IdCentroEducativo` int(11) NOT NULL,
   `IdDocente` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
   `Ubicacion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdCentroEducativo`),
-  KEY `IdDocente_idx` (`IdDocente`),
-  CONSTRAINT `IdDocente` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `IdDocente_idx` (`IdDocente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `centroeducativo`
+-- Volcado de datos para la tabla `centroeducativo`
 --
 
-LOCK TABLES `centroeducativo` WRITE;
-/*!40000 ALTER TABLE `centroeducativo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `centroeducativo` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `centroeducativo` (`IdCentroEducativo`, `IdDocente`, `Descripcion`, `Ubicacion`) VALUES
+(1, 1, 'Matematica', '--');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `clase`
+-- Estructura de tabla para la tabla `clase`
 --
 
-DROP TABLE IF EXISTS `clase`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `clase` (
+CREATE TABLE IF NOT EXISTS `clase` (
   `IdClase` int(11) NOT NULL AUTO_INCREMENT,
   `IdCurso` int(11) NOT NULL,
   `Fecha` date NOT NULL,
   PRIMARY KEY (`IdClase`),
-  KEY `IdCurso_idx` (`IdCurso`),
-  CONSTRAINT `IdCurso` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `IdCurso_idx` (`IdCurso`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `clase`
+-- Estructura de tabla para la tabla `criterio`
 --
 
-LOCK TABLES `clase` WRITE;
-/*!40000 ALTER TABLE `clase` DISABLE KEYS */;
-/*!40000 ALTER TABLE `clase` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `criterio`
---
-
-DROP TABLE IF EXISTS `criterio`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `criterio` (
+CREATE TABLE IF NOT EXISTS `criterio` (
   `IdCriterio` int(11) NOT NULL AUTO_INCREMENT,
   `IdTipoCriterio` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
   PRIMARY KEY (`IdCriterio`),
-  KEY `IdTipoCriterio_idx` (`IdTipoCriterio`),
-  CONSTRAINT `IdTipoCriterio` FOREIGN KEY (`IdTipoCriterio`) REFERENCES `tipocriterio` (`IdTipoCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `IdTipoCriterio_idx` (`IdTipoCriterio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `criterio`
+-- Estructura de tabla para la tabla `curso`
 --
 
-LOCK TABLES `criterio` WRITE;
-/*!40000 ALTER TABLE `criterio` DISABLE KEYS */;
-/*!40000 ALTER TABLE `criterio` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `curso`
---
-
-DROP TABLE IF EXISTS `curso`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `curso` (
+CREATE TABLE IF NOT EXISTS `curso` (
   `IdCurso` int(11) NOT NULL AUTO_INCREMENT,
   `IdCentroEducativo` int(11) NOT NULL,
-  `Descipcion` varchar(145) NOT NULL,
+  `Descripcion` varchar(145) NOT NULL,
   `Objetivo` varchar(145) NOT NULL,
   PRIMARY KEY (`IdCurso`),
-  KEY `IdCentroEducativo_idx` (`IdCentroEducativo`),
-  CONSTRAINT `IdCentroEducativo` FOREIGN KEY (`IdCentroEducativo`) REFERENCES `centroeducativo` (`IdCentroEducativo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `IdCentroEducativo_idx` (`IdCentroEducativo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `curso`
+-- Volcado de datos para la tabla `curso`
 --
 
-LOCK TABLES `curso` WRITE;
-/*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-/*!40000 ALTER TABLE `curso` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `curso` (`IdCurso`, `IdCentroEducativo`, `Descripcion`, `Objetivo`) VALUES
+(1, 1, 'Matematica', '--');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `docente`
+-- Estructura de tabla para la tabla `docente`
 --
 
-DROP TABLE IF EXISTS `docente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `docente` (
+CREATE TABLE IF NOT EXISTS `docente` (
   `IdDocente` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(145) NOT NULL,
   `ApellidoPaterno` varchar(145) NOT NULL,
   `ApellidoMaterno` varchar(145) NOT NULL,
   `Celular` varchar(10) DEFAULT NULL,
   `Email` varchar(155) DEFAULT NULL,
-  `Edad` varchar(2) NOT NULL,
-  `Sexo` varchar(1) NOT NULL,
-  `Dni` varchar(8) NOT NULL,
-  `Contraseña` varchar(200) NOT NULL,
+  `Edad` varchar(2) DEFAULT NULL,
+  `Sexo` varchar(1) DEFAULT NULL,
+  `Dni` varchar(8) DEFAULT NULL,
+  `Contraseña` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`IdDocente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `docente`
+-- Volcado de datos para la tabla `docente`
 --
 
-LOCK TABLES `docente` WRITE;
-/*!40000 ALTER TABLE `docente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `docente` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `docente` (`IdDocente`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Celular`, `Email`, `Edad`, `Sexo`, `Dni`, `Contraseña`) VALUES
+(1, 'anthony', '', '', NULL, NULL, '', '', '', ''),
+(2, 'Marlon', '', '', NULL, NULL, '', '', '', ''),
+(3, 'sara', 'huaman', 'medina', NULL, NULL, NULL, NULL, '76518229', '76518229'),
+(4, '', '', '', NULL, NULL, NULL, NULL, NULL, '');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `especialidad`
+-- Estructura de tabla para la tabla `especialidad`
 --
 
-DROP TABLE IF EXISTS `especialidad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `especialidad` (
+CREATE TABLE IF NOT EXISTS `especialidad` (
   `IdEspecialidad` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
   `IdDocente` int(11) NOT NULL,
   PRIMARY KEY (`IdEspecialidad`),
-  KEY `fk_especialidad_docente1_idx` (`IdDocente`),
-  CONSTRAINT `fk_especialidad_docente1` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_especialidad_docente1_idx` (`IdDocente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `especialidad`
+-- Estructura de tabla para la tabla `evaluacion`
 --
 
-LOCK TABLES `especialidad` WRITE;
-/*!40000 ALTER TABLE `especialidad` DISABLE KEYS */;
-/*!40000 ALTER TABLE `especialidad` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `evaluacion`
---
-
-DROP TABLE IF EXISTS `evaluacion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `evaluacion` (
+CREATE TABLE IF NOT EXISTS `evaluacion` (
   `IdPeriodo` int(11) NOT NULL,
   `IdCriterio` int(11) NOT NULL,
   `Nota` decimal(2,2) NOT NULL,
   PRIMARY KEY (`IdPeriodo`,`IdCriterio`),
   KEY `fk_periodo_has_criterio_criterio1_idx` (`IdCriterio`),
-  KEY `fk_periodo_has_criterio_periodo1_idx` (`IdPeriodo`),
-  CONSTRAINT `fk_periodo_has_criterio_periodo1` FOREIGN KEY (`IdPeriodo`) REFERENCES `periodo` (`IdPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_periodo_has_criterio_criterio1` FOREIGN KEY (`IdCriterio`) REFERENCES `criterio` (`IdCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_periodo_has_criterio_periodo1_idx` (`IdPeriodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `evaluacion`
+-- Estructura de tabla para la tabla `grado`
 --
 
-LOCK TABLES `evaluacion` WRITE;
-/*!40000 ALTER TABLE `evaluacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `evaluacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `grado`
---
-
-DROP TABLE IF EXISTS `grado`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `grado` (
+CREATE TABLE IF NOT EXISTS `grado` (
   `IdGrado` int(11) NOT NULL,
   `Descripcion` varchar(1) NOT NULL,
   `IdCurso` int(11) NOT NULL,
   PRIMARY KEY (`IdGrado`,`IdCurso`),
-  KEY `fk_grado_curso1_idx` (`IdCurso`),
-  CONSTRAINT `fk_grado_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_grado_curso1_idx` (`IdCurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `grado`
+-- Estructura de tabla para la tabla `periodo`
 --
 
-LOCK TABLES `grado` WRITE;
-/*!40000 ALTER TABLE `grado` DISABLE KEYS */;
-/*!40000 ALTER TABLE `grado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `periodo`
---
-
-DROP TABLE IF EXISTS `periodo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `periodo` (
+CREATE TABLE IF NOT EXISTS `periodo` (
   `IdCurso` int(11) NOT NULL,
   `IdTipoPeriodo` int(11) NOT NULL,
   `IdPeriodo` int(11) NOT NULL,
@@ -304,100 +233,114 @@ CREATE TABLE `periodo` (
   `FechaTermino` date NOT NULL,
   PRIMARY KEY (`IdPeriodo`),
   KEY `fk_curso_has_tipoperiodo_tipoperiodo1_idx` (`IdTipoPeriodo`),
-  KEY `fk_curso_has_tipoperiodo_curso1_idx` (`IdCurso`),
-  CONSTRAINT `fk_curso_has_tipoperiodo_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_curso_has_tipoperiodo_tipoperiodo1` FOREIGN KEY (`IdTipoPeriodo`) REFERENCES `tipoperiodo` (`IdTipoPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_curso_has_tipoperiodo_curso1_idx` (`IdCurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `periodo`
+-- Estructura de tabla para la tabla `seccion`
 --
 
-LOCK TABLES `periodo` WRITE;
-/*!40000 ALTER TABLE `periodo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `periodo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `seccion`
---
-
-DROP TABLE IF EXISTS `seccion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `seccion` (
+CREATE TABLE IF NOT EXISTS `seccion` (
   `IdSeccion` int(11) NOT NULL AUTO_INCREMENT,
   `IdGrado` int(11) NOT NULL,
   `Descripcion` varchar(1) NOT NULL,
   PRIMARY KEY (`IdSeccion`),
-  KEY `IdGrado_idx` (`IdGrado`),
-  CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `IdGrado_idx` (`IdGrado`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `seccion`
+-- Estructura de tabla para la tabla `tipocriterio`
 --
 
-LOCK TABLES `seccion` WRITE;
-/*!40000 ALTER TABLE `seccion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `seccion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipocriterio`
---
-
-DROP TABLE IF EXISTS `tipocriterio`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipocriterio` (
+CREATE TABLE IF NOT EXISTS `tipocriterio` (
   `IdTipoCriterio` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`IdTipoCriterio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `tipocriterio`
+-- Estructura de tabla para la tabla `tipoperiodo`
 --
 
-LOCK TABLES `tipocriterio` WRITE;
-/*!40000 ALTER TABLE `tipocriterio` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipocriterio` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipoperiodo`
---
-
-DROP TABLE IF EXISTS `tipoperiodo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipoperiodo` (
+CREATE TABLE IF NOT EXISTS `tipoperiodo` (
   `IdTipoPeriodo` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(145) NOT NULL,
   PRIMARY KEY (`IdTipoPeriodo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tipoperiodo`
+-- Restricciones para tablas volcadas
 --
 
-LOCK TABLES `tipoperiodo` WRITE;
-/*!40000 ALTER TABLE `tipoperiodo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipoperiodo` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+--
+-- Filtros para la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  ADD CONSTRAINT `fk_alumno_has_clase_alumno1` FOREIGN KEY (`alumno_IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_alumno_has_clase_clase1` FOREIGN KEY (`clase_IdClase`) REFERENCES `clase` (`IdClase`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Filtros para la tabla `centroeducativo`
+--
+ALTER TABLE `centroeducativo`
+  ADD CONSTRAINT `IdDocente` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `clase`
+--
+ALTER TABLE `clase`
+  ADD CONSTRAINT `IdCurso` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `criterio`
+--
+ALTER TABLE `criterio`
+  ADD CONSTRAINT `IdTipoCriterio` FOREIGN KEY (`IdTipoCriterio`) REFERENCES `tipocriterio` (`IdTipoCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `curso`
+--
+ALTER TABLE `curso`
+  ADD CONSTRAINT `IdCentroEducativo` FOREIGN KEY (`IdCentroEducativo`) REFERENCES `centroeducativo` (`IdCentroEducativo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `especialidad`
+--
+ALTER TABLE `especialidad`
+  ADD CONSTRAINT `fk_especialidad_docente1` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `evaluacion`
+--
+ALTER TABLE `evaluacion`
+  ADD CONSTRAINT `fk_periodo_has_criterio_criterio1` FOREIGN KEY (`IdCriterio`) REFERENCES `criterio` (`IdCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_periodo_has_criterio_periodo1` FOREIGN KEY (`IdPeriodo`) REFERENCES `periodo` (`IdPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `grado`
+--
+ALTER TABLE `grado`
+  ADD CONSTRAINT `fk_grado_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `periodo`
+--
+ALTER TABLE `periodo`
+  ADD CONSTRAINT `fk_curso_has_tipoperiodo_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_curso_has_tipoperiodo_tipoperiodo1` FOREIGN KEY (`IdTipoPeriodo`) REFERENCES `tipoperiodo` (`IdTipoPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `seccion`
+--
+ALTER TABLE `seccion`
+  ADD CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2014-10-06 18:50:04

@@ -8,6 +8,7 @@ require_once APP_PATH .'Config.php';
 require_once APP_PATH .'Bootstrap.php';
 require_once APP_PATH .'Controlador.php';
 require_once APP_PATH .'Modelo.php';
+require_once APP_PATH .'Consulta.php';
 require_once APP_PATH .'Registro.php';
 require_once APP_PATH .'Request.php';
 require_once APP_PATH .'Vista.php';
