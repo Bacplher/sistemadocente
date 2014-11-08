@@ -64,7 +64,9 @@ class alumnoControlador extends Controlador
             $this->_alumno->getActualizar();
             $this->redireccionar('alumno');
         }
-        
+        $this->_alumno->IdAlumno = $this->filtrarInt($id);
+        $this->_vista->alumnos = $this->_alumno->getSelecciona();
+        $nuevo = $this->loadModelo('alumno');
         $this->_vista->titulo = "Actualizar Alumno";
         $this->_vista->renderizar('form');
 

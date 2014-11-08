@@ -1,32 +1,37 @@
 <?php
 
-class Modelo {
+class Modelo
+{
     protected $_db;
-    
- public function __construct() {
-     $this->_db = new Conexion();
- }
-    protected static function get_consulta($pa, $datos) {
+
+    public function __construct()
+    {
+        $this->_db = new Conexion();
+    }
+
+    protected static function get_consulta($pa, $datos)
+    {
         $bd = new Conexion();
         $bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
         return self::procedimientoAlmacenado($pa, $datos, $bd);
     }
 
     // procedimiento almacenado para ejecutar consultas
-    static  function procedimientoAlmacenado($pa, $datos, $bd) {
+    static function procedimientoAlmacenado($pa, $datos, $bd)
+    {
         //arreglar archivo
-       // $config = parse_ini_file('config.ini', TRUE);
+        // $config = parse_ini_file('config.ini', TRUE);
         //$driver = $config['database']['driver'];
-       /* switch ($driver) {
-            case 'mssql': $sql = "execute ";
-                break;
-            case 'mysql': $sql = "call ";
-                break;
-            case 'pgsql': $sql = "select * from ";
-                break;
-            case 'oci': $sql = "execute ";
-                break;
-        }*/
+        /* switch ($driver) {
+             case 'mssql': $sql = "execute ";
+                 break;
+             case 'mysql': $sql = "call ";
+                 break;
+             case 'pgsql': $sql = "select * from ";
+                 break;
+             case 'oci': $sql = "execute ";
+                 break;
+         }*/
         $sql = "call" . $pa . " ";
 
         if ($datos != null) {
@@ -35,11 +40,11 @@ class Modelo {
                 if ($i < count($datos)) {
                     $sql = $sql . ",";
                 }
-                }
             }
+        }
 //        die($sql);
         try {
-                $stmt = $bd->prepare($sql, array(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
+            $stmt = $bd->prepare($sql, array(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
 
 
             $j = 0;
@@ -64,7 +69,7 @@ class Modelo {
             $error = $stmt->errorInfo();
 
 
-                return array($stmt, $error[2]);
+            return array($stmt, $error[2]);
 //                if($error[2]!=''){
 //                    return array($stmt, $error[2]);
 //                }else{

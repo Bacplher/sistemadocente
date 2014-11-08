@@ -1,26 +1,28 @@
 <?php
 
 //db connection class using singleton pattern
-class dbConn{
+class dbConn
+{
 
     //variable to hold connection object.
     protected static $db;
 
-    private function __construct() {
+    private function __construct()
+    {
 
         try {
             // assign PDO object to db variable
-            self::$db = new PDO( 'mysql:host=localhost;dbname=sistemadocente', 'root', '' );
-            self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        }
-        catch (PDOException $e) {
+            self::$db = new PDO('mysql:host=localhost;dbname=sistemadocente', 'root', '');
+            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
             echo "Connection Error: " . $e->getMessage();
         }
 
     }
 
     // get connection function.
-    public static function getConnection() {
+    public static function getConnection()
+    {
 
         //if connection doesnt exist already, create one.
         if (!self::$db) {
@@ -32,7 +34,8 @@ class dbConn{
     }
 
 
+}
 
-}//end class
+//end class
 
 ?>
