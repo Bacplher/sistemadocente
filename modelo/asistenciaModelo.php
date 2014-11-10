@@ -1,40 +1,30 @@
 <?php
 
 
-class alumnoModelo extends Consulta
+class asistenciaModelo extends Consulta
 {
 
-    public $table = "alumno";
-    public $IdAlumno;
-    public $Nombre;
-    public $ApellidoPaterno;
-    public $ApellidoMaterno;
-    public $Email;
+    public $table = "asistencia";
+    public $alumno_IdAlumno;
+    public $clase_IdClase;
+    public $Asistio;
+    public $Observaciones;
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function getAlumnos()
+    public function getAsistencia()
     {
         $consultaSQL = $this->Select($this->table);
         return $consultaSQL;
     }
 
-    public function getSelecciona()
-    {
-        $consultaSQL = $this->Selecciona($this->table, $this->IdAlumno);
-        return $consultaSQL;
-    }
-
     public function getInsertar()
     {
-
-        /*$alumno = $this->Insertar($this->table, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno, $this->Email);
-        return $alumno;*/
-        $consultaSQL = $this->_db->query("INSERT INTO alumno (Nombre,ApellidoPaterno,ApellidoMaterno,Email)
-        VALUES ('$this->Nombre','$this->ApellidoPaterno','$this->ApellidoMaterno','$this->Email')");
+        $consultaSQL = $this->_db->query("INSERT INTO asistencia (alumno_IdAlumno,clase_IdClase, Asistio, Observaciones)
+        VALUES ('$this->alumno_IdAlumno','$this->clase_IdClase','$this->Asistio','$this->Observaciones')");
     }
 
     public function getEliminar()

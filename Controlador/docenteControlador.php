@@ -1,47 +1,84 @@
 <?php
-/**
- * Created by PhpStorm.
-<<<<<<< HEAD
- * User: USUARIO
- * Date: 07/11/2014
- * Time: 07:33 PM
- */
 
-class docenteControlador extends Controlador{
-
+class docenteControlador extends Controlador
+{
     private $_docente;
-    private $table='docente';
-    private $campo='Dni';
-    public function __construct(){
-        $this->_docente=$this->loadModelo('docente');
+
+    public function __construct()
+    {
         parent::__construct();
+        $this->_docente = $this->loadModelo('docente');
     }
 
-    public function index(){
-        if(isset($_POST['dni'])){
+    public function index()
+    {
 
-            $datos= $this->_docente->buscar($_POST['dni'],$this->table,$this->campo);
-        } else{
-            $datos= $this->_docente->allDocente();
+        $docente = $this->loadModelo('docente');
+        $this->_vista->docente = $docente->getDocente();
+        $this->_vista->titulo = 'Portada';
+        $this->_vista->setCss(array('estilos_index'));
+        $this->_vista->setJs(array('funcion'));
+        $this->_vista->renderizar('docente');
+
+    }
+
+    public function nuevo()
+    {
+        if (@$_POST["guardar"] == '1') {
+            $this->_docente->Nombre = @$_POST['Nombre'];
+            $this->_docente->ApellidoPaterno = @$_POST['ApellidoPaterno'];
+            $this->_docente->ApellidoMaterno = @$_POST['ApellidoMaterno'];
+            $this->_docente->Celular = @$_POST['Celular'];
+            $this->_docente->Email = @$_POST['Email'];
+            $this->_docente->Edad = @$_POST['Edad'];
+            $this->_docente->Sexo = @$_POST['Sexo'];
+            $this->_docente->Dni = @$_POST['Dni'];
+            $this->_docente->Contraseña = @$_POST['Contraseña'];
+            $this->_docente->getInsertar();
+            $this->redireccionar('docente');
         }
-        $this->_vista->docentes = $datos;
-        $this->_vista->renderizar('docente');
+
+
+        $nuevo = $this->loadModelo('docente');
+        $this->_vista->action = BASE_URL . 'docente/nuevo';
+        $this->_vista->titulo = 'Ingresar Docente';
+        $this->_vista->renderizar('form');
 
     }
 
-    public function seleccionarDocente(){
-        $this->_docente->Nombre = @$_POST['Dni'];
-        $datos= $this->_docente->selectDocente();
-        $this->_vista->docente = $datos;
-        $this->_vista->renderizar('docente');
+    public function eliminar($id)
+    {
+        if (!$this->filtrarInt($id)) {
+            $this->redireccionar('docente');
+        }
+        $this->_docente->IdDocente = $this->filtrarInt($id);
+        $this->_docente->getEliminar();
+        $this->redireccionar('docente');
     }
 
-    public function insertarDocente(){
-        $datos=$this->_docente->insertDocente();
-        $this->_vista->docente=$datos;
-        $this->_vista->renderizar('docente');
+    public function editar($id)
+    {
+        if (!$this->filtrarInt($id)) {
+            $this->redireccionar('docente');
+        }
+        if (@$_POST["guardar"] == '1') {
+            $this->_docente->Nombre = @$_POST['Nombre'];
+            $this->_docente->ApellidoPaterno = @$_POST['ApellidoPaterno'];
+            $this->_docente->ApellidoMaterno = @$_POST['ApellidoMaterno'];
+            $this->_docente->Celular = @$_POST['Celular'];
+            $this->_docente->Email = @$_POST['Email'];
+            $this->_docente->Edad = @$_POST['Edad'];
+            $this->_docente->Sexo = @$_POST['Sexo'];
+            $this->_docente->Dni = @$_POST['Dni'];
+            $this->_docente->Contraseña = @$_POST['Contraseña'];
+            $this->_docente->getActualizar();
+            $this->redireccionar('docente');
+        }
+        $this->_docente->IdDocente = $this->filtrarInt($id);
+        $this->_vista->docente = $this->_docente->getSelecciona();
+        $nuevo = $this->loadModelo('docente');
+        $this->_vista->titulo = "Actualizar Docente";
+        $this->_vista->renderizar('form');
 
     }
-
-
 }
