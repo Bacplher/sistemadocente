@@ -28,7 +28,8 @@ class alumnoModelo  extends  consultas{
     public function getEliminar()
     {
 
-        $r = $this->_db->query("DELETE from alumno where IdAlumno='$this->IdAlumno'");
+        $alumno = $this->Delete($this->table, $this->IdAlumno);
+        return $alumno;
     }
 
     public function getActualizar()

@@ -50,6 +50,7 @@
             $this->_alumno->getEliminar();
             $this->redireccionar('alumno');
         }
+        
 
         public function editar($id)
         {

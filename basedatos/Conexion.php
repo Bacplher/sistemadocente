@@ -2,7 +2,6 @@
 
 class conexion extends PDO
 {
-
     private $instancia = null;
     public static $_servidor = null;
     private $driver = "mysql";
@@ -33,5 +32,6 @@ class conexion extends PDO
     public function cerrar()
     {
         $this->instancia = null;
-    }
+
+}
 }

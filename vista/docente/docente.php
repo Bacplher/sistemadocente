@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
     var $a, $b;
     function eliminar(a) {
@@ -74,4 +75,3 @@
                                                            value="Nuevo">
 
 <?php endif; ?>
-
