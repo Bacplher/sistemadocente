@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2014 a las 20:50:33
+-- Tiempo de generación: 10-11-2014 a las 21:02:36
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -45,18 +45,17 @@ CREATE TABLE IF NOT EXISTS `alumno` (
   `ApellidoMaterno` varchar(145) NOT NULL,
   `Email` varchar(245) DEFAULT NULL,
   PRIMARY KEY (`IdAlumno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Volcado de datos para la tabla `alumno`
 --
 
 INSERT INTO `alumno` (`IdAlumno`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Email`) VALUES
-(29, 'Sara', 'huaman', 'medina', 'sara@gmail.com'),
+(29, 'Sara', 'Huaman', 'Medina', 'sara@gmail.com'),
 (30, 'marlon', 'peralta', 'panduro', 'marlo@gmail.com'),
 (31, 'hernan', 'bacalla', 'placencia', 'hernan@gmail.com'),
-(32, 'anthony', 'ramirez', 'quintana', 'anthony@gmail.com'),
-(33, 'PRUEBA1', 'PRUEBA', 'PRUEBA', 'PRUEBA');
+(32, 'anthony', 'ramirez', 'quintana', 'anthony@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -74,6 +73,16 @@ CREATE TABLE IF NOT EXISTS `asistencia` (
   KEY `fk_alumno_has_clase_alumno1_idx` (`alumno_IdAlumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `asistencia`
+--
+
+INSERT INTO `asistencia` (`alumno_IdAlumno`, `clase_IdClase`, `Asistio`, `Observaciones`) VALUES
+(29, 1, '1', '--'),
+(30, 1, '1', '--'),
+(31, 1, '1', '--'),
+(32, 1, '1', '--');
+
 -- --------------------------------------------------------
 
 --
@@ -81,20 +90,23 @@ CREATE TABLE IF NOT EXISTS `asistencia` (
 --
 
 CREATE TABLE IF NOT EXISTS `centroeducativo` (
-  `IdCentroEducativo` int(11) NOT NULL,
+  `IdCentroEducativo` int(11) NOT NULL AUTO_INCREMENT,
   `IdDocente` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
   `Ubicacion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdCentroEducativo`),
   KEY `IdDocente_idx` (`IdDocente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `centroeducativo`
 --
 
 INSERT INTO `centroeducativo` (`IdCentroEducativo`, `IdDocente`, `Descripcion`, `Ubicacion`) VALUES
-(1, 1, 'Matematica', '--');
+(1, 1, 'Ofelia Velasquez', '--'),
+(2, 2, 'Simon Bolivar', '--'),
+(3, 3, 'Jimenez Pimentel', '--'),
+(4, 4, '0620 Aplicacion', '--');
 
 -- --------------------------------------------------------
 
@@ -108,7 +120,17 @@ CREATE TABLE IF NOT EXISTS `clase` (
   `Fecha` date NOT NULL,
   PRIMARY KEY (`IdClase`),
   KEY `IdCurso_idx` (`IdCurso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `clase`
+--
+
+INSERT INTO `clase` (`IdClase`, `IdCurso`, `Fecha`) VALUES
+(1, 1, '2014-11-20'),
+(2, 2, '2014-11-19'),
+(3, 3, '2014-11-18'),
+(4, 4, '2014-11-17');
 
 -- --------------------------------------------------------
 
@@ -122,7 +144,14 @@ CREATE TABLE IF NOT EXISTS `criterio` (
   `Descripcion` varchar(145) NOT NULL,
   PRIMARY KEY (`IdCriterio`),
   KEY `IdTipoCriterio_idx` (`IdTipoCriterio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `criterio`
+--
+
+INSERT INTO `criterio` (`IdCriterio`, `IdTipoCriterio`, `Descripcion`) VALUES
+(1, 1, 'Resolucion de ejercicios');
 
 -- --------------------------------------------------------
 
@@ -137,14 +166,17 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `Objetivo` varchar(145) NOT NULL,
   PRIMARY KEY (`IdCurso`),
   KEY `IdCentroEducativo_idx` (`IdCentroEducativo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `curso`
 --
 
 INSERT INTO `curso` (`IdCurso`, `IdCentroEducativo`, `Descripcion`, `Objetivo`) VALUES
-(1, 1, 'Matematica', '--');
+(1, 1, 'Matematica', '--'),
+(2, 2, 'Comunicacion', '--'),
+(3, 3, 'Actividad Artistica', '--'),
+(4, 4, 'Ciencia tecnologia y Ambiente', '--');
 
 -- --------------------------------------------------------
 
@@ -171,10 +203,10 @@ CREATE TABLE IF NOT EXISTS `docente` (
 --
 
 INSERT INTO `docente` (`IdDocente`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Celular`, `Email`, `Edad`, `Sexo`, `Dni`, `Contraseña`) VALUES
-(1, 'anthony', '', '', NULL, NULL, '', '', '', ''),
-(2, 'Marlon', '', '', NULL, NULL, '', '', '', ''),
-(3, 'sara', 'huaman', 'medina', NULL, NULL, NULL, NULL, '76518229', '76518229'),
-(4, '', '', '', NULL, NULL, NULL, NULL, NULL, '');
+(1, 'Anthony', 'Ramirez', 'Quintana', '999999999', 'anthony@gmail.com', '20', 'M', '11111111', '11111111'),
+(2, 'Marlon', 'Peralta', 'Panduro', '999999999', 'marlon@gmail.com', '19', 'M', '22222222', '22222222'),
+(3, 'Sara ', 'Huaman', 'Medina', '999999999', 'sara@gmail.com', '19', 'F', '76518229', '76518229'),
+(4, 'Hernan', 'Bacalla', 'Plasencia', '999999999', 'hernan@gmail.com', '19', 'M', '33333333', '33333333');
 
 -- --------------------------------------------------------
 
@@ -183,12 +215,22 @@ INSERT INTO `docente` (`IdDocente`, `Nombre`, `ApellidoPaterno`, `ApellidoMatern
 --
 
 CREATE TABLE IF NOT EXISTS `especialidad` (
-  `IdEspecialidad` int(11) NOT NULL,
+  `IdEspecialidad` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(145) NOT NULL,
   `IdDocente` int(11) NOT NULL,
   PRIMARY KEY (`IdEspecialidad`),
   KEY `fk_especialidad_docente1_idx` (`IdDocente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `especialidad`
+--
+
+INSERT INTO `especialidad` (`IdEspecialidad`, `Descripcion`, `IdDocente`) VALUES
+(1, 'Fisico Matematico', 1),
+(2, 'Quimico', 2),
+(3, 'Comunicacion', 3),
+(4, 'Biologo', 4);
 
 -- --------------------------------------------------------
 
@@ -199,11 +241,18 @@ CREATE TABLE IF NOT EXISTS `especialidad` (
 CREATE TABLE IF NOT EXISTS `evaluacion` (
   `IdPeriodo` int(11) NOT NULL,
   `IdCriterio` int(11) NOT NULL,
-  `Nota` decimal(2,2) NOT NULL,
+  `Nota` double(2,0) NOT NULL,
   PRIMARY KEY (`IdPeriodo`,`IdCriterio`),
   KEY `fk_periodo_has_criterio_criterio1_idx` (`IdCriterio`),
   KEY `fk_periodo_has_criterio_periodo1_idx` (`IdPeriodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `evaluacion`
+--
+
+INSERT INTO `evaluacion` (`IdPeriodo`, `IdCriterio`, `Nota`) VALUES
+(1, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -218,6 +267,15 @@ CREATE TABLE IF NOT EXISTS `grado` (
   PRIMARY KEY (`IdGrado`,`IdCurso`),
   KEY `fk_grado_curso1_idx` (`IdCurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `grado`
+--
+
+INSERT INTO `grado` (`IdGrado`, `Descripcion`, `IdCurso`) VALUES
+(1, '1', 1),
+(2, '2', 1),
+(3, '3', 1);
 
 -- --------------------------------------------------------
 
@@ -236,6 +294,13 @@ CREATE TABLE IF NOT EXISTS `periodo` (
   KEY `fk_curso_has_tipoperiodo_curso1_idx` (`IdCurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `periodo`
+--
+
+INSERT INTO `periodo` (`IdCurso`, `IdTipoPeriodo`, `IdPeriodo`, `FechaInicio`, `FechaTermino`) VALUES
+(1, 1, 1, '2014-11-01', '2015-01-30');
+
 -- --------------------------------------------------------
 
 --
@@ -248,7 +313,15 @@ CREATE TABLE IF NOT EXISTS `seccion` (
   `Descripcion` varchar(1) NOT NULL,
   PRIMARY KEY (`IdSeccion`),
   KEY `IdGrado_idx` (`IdGrado`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `seccion`
+--
+
+INSERT INTO `seccion` (`IdSeccion`, `IdGrado`, `Descripcion`) VALUES
+(1, 1, 'A'),
+(2, 1, 'C');
 
 -- --------------------------------------------------------
 
@@ -260,7 +333,17 @@ CREATE TABLE IF NOT EXISTS `tipocriterio` (
   `IdTipoCriterio` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`IdTipoCriterio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `tipocriterio`
+--
+
+INSERT INTO `tipocriterio` (`IdTipoCriterio`, `Descripcion`) VALUES
+(1, 'Razonamiento y Demostracion'),
+(2, 'Comunicacion '),
+(3, 'Resolucion de Problemas'),
+(4, 'Actitud ante el area');
 
 -- --------------------------------------------------------
 
@@ -272,7 +355,15 @@ CREATE TABLE IF NOT EXISTS `tipoperiodo` (
   `IdTipoPeriodo` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(145) NOT NULL,
   PRIMARY KEY (`IdTipoPeriodo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `tipoperiodo`
+--
+
+INSERT INTO `tipoperiodo` (`IdTipoPeriodo`, `Descripcion`) VALUES
+(1, 'Semestral'),
+(2, 'Trimestral');
 
 --
 -- Restricciones para tablas volcadas
@@ -339,7 +430,7 @@ ALTER TABLE `periodo`
 -- Filtros para la tabla `seccion`
 --
 ALTER TABLE `seccion`
-  ADD CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
