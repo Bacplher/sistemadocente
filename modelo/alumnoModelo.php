@@ -1,37 +1,27 @@
 <?php
 
 
-class alumnoModelo extends Consulta
-{
+class alumnoModelo  extends  consultas{
 
     public $table = "alumno";
-    public $IdAlumno;
     public $Nombre;
     public $ApellidoPaterno;
     public $ApellidoMaterno;
     public $Email;
 
-    public function __construct()
+    public function allAlumno()
     {
-        parent::__construct();
+        $datos = $this->all($this->table);
+        return $datos;
     }
 
-    public function getAlumnos()
-    {
-        $alumno = $this->Select($this->table);
-        return $alumno;
-    }
 
-    public function getSelecciona()
-    {
-        $alumno = $this->Selecciona($this->table, $this->IdAlumno);
-        return $alumno;
-    }
 
-    public function getInsertar()
+    public function insertar()
     {
+        $alumno = $this->insert($this->table, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno, $this->Email);
 
-        $alumno = $this->Insertar($this->table, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno, $this->Email);
+
         return $alumno;
     }
 

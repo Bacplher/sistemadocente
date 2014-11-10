@@ -17,13 +17,22 @@
 <?php if (isset($this->alumnos) && count($this->alumnos)) : ?>
     <center>
         <table border="1" align="center" class='rwd-table'>
+
+            <tr>
+                <br/>
+                <form method="POST" action="<?php echo BASE_URL;?>alumno">
+                    <input type="text" name="nombrealumno" placeholder="Buscar con Nombre"/>
+                    <input type="submit"  value="Buscar"/>
+                </form>&nbsp;&nbsp;
+                <input type="button" onclick="nuevo()" class="imgedit" value="Nuevo">
+            </tr>
             <tr>
                 <td>Codigo</td>
                 <td>Nombre</td>
                 <td>Apellido Paterno</td>
                 <td>Apellido Materno</td>
                 <td>Email</td>
-                <td><input type="button" onclick="nuevo()" class="imgedit" value="Nuevo"></td>
+                <td></td>
                 <td></td>
             </tr>
             <?php for ($i = 0; $i < count($this->alumnos); $i++): ?>
@@ -52,7 +61,15 @@
 <?php else: ?>
 
     <p><strong>No hay Registro de alumno!</strong></p>
-    <p><strong>Inserte un nuevo Alumno </strong></p><input type="button" onclick="nuevo()" class="imgedit"
-                                                           value="Nuevo">
+    <p><strong>Inserte un nuevo Alumno </strong></p>
+    <table>
+        <tr>
+            <form method="POST" action="<?php echo BASE_URL;?>alumno">
+                <input type="text" name="nombrealumno" placeholder="Buscar con Nombre"/>
+                <input type="submit"  value="Buscar"/>
+            </form>&nbsp;&nbsp;
+            <input type="button" onclick="nuevo()" class="imgedit" value="Nuevo">
+        </tr>
+    </table>
 
 <?php endif; ?>

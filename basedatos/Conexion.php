@@ -1,24 +1,37 @@
 <?php
 
+class conexion extends PDO
+{
 
-class Conexion extends PDO{
-    
-    protected static $host='localhost';
-    protected static $user='root';
-    protected static $pass='';
-    protected static $namedatabase='sistemadocente';
-    protected static $char='utf8';
+    private $instancia = null;
+    public static $_servidor = null;
+    private $driver = "mysql";
+    private $database = "sistemadocente";
+    private $host =  "localhost";
+    private $puerto = "3306";
+    private $usuario = "root";
+    private $password = "";
 
-    public function __construct() {
-        parent::__construct(
-                'mysql:host=' . DB_HOST .
-                ';dbname=' . DB_NAME,
-                DB_USER, 
-                DB_PASS, 
-                array(
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . DB_CHAR
-                    ));
-                
+    public function __construct()
+    {
+        if (!is_null($this->instancia)) {
+            return self::$instancia;
+        }
+        $dsn = $this->driver . ':dbname=' . $this->database . '; host=' . $this->host . '; port=' . $this->puerto;
+        $password = trim($this->password);
+        try {
+            $this->instancia = parent::__construct($dsn, $this->usuario, $password,array(
+                PDO::ATTR_PERSISTENT => true
+            ));
+            return $this->instancia;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public function cerrar()
+    {
+        $this->instancia = null;
     }
 }
- 

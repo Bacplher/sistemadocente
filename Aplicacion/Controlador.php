@@ -8,7 +8,7 @@ abstract class Controlador{
         $this->_vista = new Vista(new Request);
     }    
     abstract public function index();
-    
+
     protected function loadModelo ($modelo){
         
         $modelo = $modelo . 'Modelo';
