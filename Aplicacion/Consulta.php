@@ -38,4 +38,13 @@ abstract class Consulta
         $consultaSQL =$this->_db->query( "select * from $table where Dni='$campo1' and Contraseña ='$campo2'");
         return $consultaSQL->fetchall();
     }
+
+    public function buscar($search,$tabla,$campo){
+        $db = new conexion();
+        $consultaselect = "SELECT * FROM $tabla WHERE $campo LIKE '%$search%'";
+        $sql=$db->prepare($consultaselect);
+        $resultado= $sql->execute();
+        $db->cerrar();
+        return $sql->fetchAll();
+    }
 }

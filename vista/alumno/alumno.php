@@ -18,11 +18,13 @@
     <center>
         <table border="0" align="center">
            <tr>
-               <td>Buscar</td>
-               <td><input type="text" class="k-textbox" placeholder="Ingrese Nombre" name="Nombre"
-                          id="Nombre" /></td>
-               <td><a>Ir</a></td>
-               <td><button type="button" onclick="nuevo()" class="btn btn-primary" value="Nuevo">Nuevo</td>
+               <br/>
+               <br/>
+               <form method="POST" action="<?php echo BASE_URL;?>alumno">
+                   <input type="text" name="nombrealumno" placeholder="Buscar con Nombre"/>
+                   <input type="submit"  value="Buscar"/>
+               </form>&nbsp;&nbsp;
+               <button type="button" onclick="nuevo()" class="btn btn-primary" value="Nuevo">Nuevo
            </tr>
         </table>
         <table border="1" align="center" class='table table-bordered table-hover'>

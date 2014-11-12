@@ -3,6 +3,8 @@
 class docenteControlador extends Controlador
 {
     private $_docente;
+    public $table = 'docente';
+    public $campo = 'Nombre';
 
     public function __construct()
     {
@@ -12,12 +14,12 @@ class docenteControlador extends Controlador
 
     public function index()
     {
-
-        $docente = $this->loadModelo('docente');
-        $this->_vista->docente = $docente->getDocente();
-        $this->_vista->titulo = 'Portada';
-        $this->_vista->setCss(array('estilos_index'));
-        $this->_vista->setJs(array('funcion'));
+        if(isset($_POST['nombredocente'])){
+            $datos= $this->_docente->buscar($_POST['nombredocente'],$this->table,$this->campo);
+        }else{
+            $datos= $this->_docente->getDocente();
+        }
+        $this->_vista->docente = $datos;
         $this->_vista->renderizar('docente');
 
     }

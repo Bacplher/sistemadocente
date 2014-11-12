@@ -3,6 +3,8 @@
 class alumnoControlador extends Controlador
 {
     private $_alumno;
+    public $table = 'alumno';
+    public $campo = 'Nombre';
 
     public function __construct()
     {
@@ -12,14 +14,13 @@ class alumnoControlador extends Controlador
 
     public function index()
     {
-
-        $alumno = $this->loadModelo('alumno');
-        $this->_vista->alumnos = $alumno->getAlumnos();
-        $this->_vista->titulo = 'Portada';
-        $this->_vista->setCss(array('estilos_index'));
-        $this->_vista->setJs(array('funcion'));
+        if(isset($_POST['nombrealumno'])){
+            $datos= $this->_alumno->buscar($_POST['nombrealumno'],$this->table,$this->campo);
+        }else{
+            $datos= $this->_alumno->getAlumnos();
+        }
+        $this->_vista->alumnos = $datos;
         $this->_vista->renderizar('alumno');
-
     }
 
     public function nuevo()
@@ -32,7 +33,6 @@ class alumnoControlador extends Controlador
             $this->_alumno->getInsertar();
             $this->redireccionar('alumno');
         }
-
 
         $nuevo = $this->loadModelo('alumno');
         $this->_vista->action = BASE_URL . 'alumno/nuevo';
