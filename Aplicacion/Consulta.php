@@ -23,11 +23,11 @@ abstract class Consulta
     {
         $consultaSQL =$this->_db->query( "UPDATE  $tabla  set IdAlumno='$codigo' ,Nombre='$campo1',ApellidoPaterno='$campo2',ApellidoMaterno='$campo3',Email='$campo4'  WHERE IdAlumno='$codigo'");
     }*/
-    protected function  Selecciona($table,$codigo)
+    /*protected function  Selecciona($table,$codigo)
     {
         $consultaSQL =$this->_db->query( "SELECT * FROM $table where IdAlumno='$codigo'");
         return $consultaSQL->fetchall();
-    }
+    }*/
 
     /*protected function  Delete($table,$codigo)
     {

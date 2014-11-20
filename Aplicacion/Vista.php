@@ -15,20 +15,19 @@ class Vista
     {
         $menu = array(
             array(
-                'id' => 'inicio',
-                'titulo' => 'Inicio',
-                'enlace' => BASE_URL
-            ),
-
-            array(
                 'id' => 'perfil',
                 'titulo' => 'Perfil',
-                'enlace' => BASE_URL
+                'enlace' => BASE_URL.'perfil'
             ),
             array(
                 'id' => 'cursos',
                 'titulo' => 'Cursos',
-                'enlace' => BASE_URL
+                'enlace' => BASE_URL.'curso'
+            ),
+            array(
+                'id' => 'alumnos',
+                'titulo' => 'Alumnos',
+                'enlace' => BASE_URL.'alumno'
             ),
             array(
                 'id' => 'reportes',
