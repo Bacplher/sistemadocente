@@ -12,14 +12,14 @@
     <link href="<?php echo $_layoutParams['ruta_css']; ?>pagina.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo $_layoutParams['ruta_css']; ?>pag.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo $_layoutParams['ruta_css']; ?>primera.css" rel="stylesheet" type="text/css" />
-    <script src="<?php echo $_layoutParams['ruta_js']; ?>prefixfree.min.js"></script>
 
 
-    <link href="<?php echo $_layoutParams['ruta_css']; ?>tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
-    <script type="<?php echo $_layoutParams['ruta_js']; ?>tablecloth.js"></script>
+
+
+
 
     <link href="<?php echo $_layoutParams['ruta_css']; ?>bootstrap.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="<?php echo $_layoutParams['ruta_css']; ?>bootstrap.min.css"rel="stylesheet" type="text/css" media="screen" />
+
     <link href="<?php echo $_layoutParams['ruta_css']; ?>bootstrap-responsive.css"rel="stylesheet" type="text/css" media="screen" />
     <link href="<?php echo $_layoutParams['ruta_css']; ?>bootstrap-responsive.min.css"rel="stylesheet" type="text/css" media="screen" />
     <script src="<?php echo $_layoutParams['ruta_js']; ?>bootstrap.js"></script>

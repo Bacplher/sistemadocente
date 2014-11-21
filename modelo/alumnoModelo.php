@@ -23,7 +23,7 @@ class alumnoModelo extends Consulta
 
     public function getSelecciona()
     {
-        $consultaSQL = $this->Selecciona($this->table, $this->IdAlumno);
+        $consultaSQL = $this->Select($this->table, $this->IdAlumno);
         return $consultaSQL;
     }
 

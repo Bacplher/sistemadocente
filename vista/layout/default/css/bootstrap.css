@@ -1028,30 +1028,14 @@ form {
   margin: 0 0 20px;
 }
 
-fieldset {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
 
-legend {
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 20px;
-  font-size: 21px;
-  line-height: 40px;
-  color: #333333;
-  border: 0;
-  border-bottom: 1px solid #e5e5e5;
-}
 
 legend small {
   font-size: 15px;
   color: #999999;
 }
 
-label,
+
 input,
 button,
 select,
@@ -1068,10 +1052,7 @@ textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+
 
 select,
 textarea,
@@ -5628,7 +5609,6 @@ a.thumbnail:focus {
   list-style: none;
 }
 
-.label,
 .badge {
   display: inline-block;
   padding: 2px 4px;

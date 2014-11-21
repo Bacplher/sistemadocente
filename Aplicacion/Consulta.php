@@ -35,7 +35,14 @@ abstract class Consulta
     }*/
     protected function  Login($table,$campo1,$campo2)
     {
-        $consultaSQL =$this->_db->query( "select * from $table where Dni='$campo1' and Contraseña ='$campo2'");
+        $db = new conexion();
+        $consultaSQL =( "select * from $table where Dni='$campo1' and Contraseña ='$campo2'");
+        $sql=$db->prepare($consultaSQL);
+        $resultado=$sql->execute();
+        var_dump($resultado);
+        exit;
+        $db->cerrar();
+
         return $consultaSQL->fetchall();
     }
 

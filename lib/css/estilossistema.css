@@ -167,6 +167,8 @@
 	z-index: 999;
 	background-image: url('../img/blanco.png');
 }
+
+
 .cancel{
         background: #FFF;
         color: #066;
@@ -174,3 +176,4 @@
 .cancel:hover{
         color: #FFF;
 }
+
