@@ -1,11 +1,18 @@
-
+<link href="vista/perfil/css/estilos_index.css" rel="stylesheet" type="text/css" />
     <?php if (isset($this->perfil) && count($this->perfil)) : ?>
+        <div class="col-md-4">
+          <fieldset id="perfildocente">
+              <legend id="perfildocente2">Bienvenido(a) profesor(a)</legend>
+              <inpu></inpu>
+             <li><a href="">Datos generales</a></li>
+             <li>Centro de trabajo</li>
 
-        <link href="vista/perfil/css/estilos_index.css" rel="stylesheet" type="text/css" />
-        <br/>
-        <div align="center">
+          </fieldset>
+        </div>
+
+        <div align="center" class="col-md-8">
             <fieldset id="perfildocente">
-                <legend id="perfildocente2">Bienvenido(a) profesor(a)</td></legend>
+
                 <label id="datosgenerales" >Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label><label id="datos" >&nbsp;&nbsp;<?php echo $this->perfil[1]['Nombre']; ?></label><br/>
                 <label id="datosgenerales" >Apellido Paterno:  </label> <label id="datos">&nbsp;&nbsp;<?php echo $this->perfil[1]['ApellidoPaterno']; ?></label><br/>
                 <label id="datosgenerales" >Apellido Materno: </label> <label id="datos">&nbsp;&nbsp;<?php echo $this->perfil[1]['ApellidoMaterno']; ?> </label><br/>
@@ -26,7 +33,7 @@
             </fieldset>
 
         </div>
-        <br/>
+
 
 
     <?php else: ?>
