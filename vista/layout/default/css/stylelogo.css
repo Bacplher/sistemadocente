@@ -13,20 +13,21 @@ body {
 
 h1 {
   position: absolute;
-  left: 35%;
+  left: 40%;
   top: 0%;
   font-size: 5em;
   display: inline-block;
   margin: 0 0 0 -1.8em;
   white-space: nowrap;
+    padding: 1.5%;
 }
 
 .atom {
   position: absolute;
   left: -0.9em;
   top: 40%;
-  width: 0.45em;
-  height: 0.45em;
+  width: 0.5em;
+  height: 0.5em;
   background: #ababab;
   border-radius: 50%;
   box-shadow: 0 0 0 0.15em #ededed, 0 0 0 0.225em #000;
@@ -40,8 +41,7 @@ h1 {
   top: 0.1125em;
   width: 0.225em;
   height: 0.225em;
-  content: '';
-  background: #ababab;
+  /*content: url("http://4.bp.blogspot.com/-lOa9Ru36r2s/TebIsUfWuDI/AAAAAAAAzOE/tGpQBLCsrpA/s400/Ni%25C3%25B1o%2Bpara%2Bpintar.png");*/
   border-radius: 50%;
 }
 

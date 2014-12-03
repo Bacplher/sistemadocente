@@ -13,11 +13,6 @@
     <link href="<?php echo $_layoutParams['ruta_css']; ?>pag.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo $_layoutParams['ruta_css']; ?>primera.css" rel="stylesheet" type="text/css" />
 
-
-
-
-
-
     <link href="<?php echo $_layoutParams['ruta_css']; ?>bootstrap.css" rel="stylesheet" type="text/css" media="screen" />
 
     <link href="<?php echo $_layoutParams['ruta_css']; ?>bootstrap-responsive.css"rel="stylesheet" type="text/css" media="screen" />

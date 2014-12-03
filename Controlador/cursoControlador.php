@@ -1,7 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sara Martina
- * Date: 7/11/14
- * Time: 16:38
- */ 
+class cursoControlador extends Controlador{
+
+    private $_curso;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->_curso = $this->loadModelo('curso');
+    }
+    public function index()
+    {
+        $datos= $this->_curso->curso();
+        $this->_vista->curso = $datos;
+        $this->_vista->renderizar('curso');
+    }
+
+
+}

@@ -1983,15 +1983,23 @@ table {
 }
 
 .table {
-  width: 100%;
+  width: 85%;
   margin-bottom: 20px;
+}
+#cabeceratable{
+    color: #5bb75b;
+    font-family:fantasy;
+    text-align: center;
+}
+.cualquiercosa{
+    text-align: center;
 }
 
 .table th,
 .table td {
   padding: 8px;
   line-height: 20px;
-  text-align: left;
+  /*text-align: left;*/
   vertical-align: top;
   border-top: 1px solid #dddddd;
 }
