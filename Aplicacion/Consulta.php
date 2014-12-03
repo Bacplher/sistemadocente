@@ -33,17 +33,15 @@ abstract class Consulta
     {
         $consultaSQL =$this->_db->query( "DELETE from $table where IdAlumno='$codigo'");
     }*/
-    protected function  Login($table,$campo1,$campo2)
-    {
+    public function Login($tabla,$dni,$clave){
         $db = new conexion();
-        $consultaSQL =( "select * from $table where Dni='$campo1' and Contraseña ='$campo2'");
-        $sql=$db->prepare($consultaSQL);
-        $resultado=$sql->execute();
-        var_dump($resultado);
-        exit;
-        $db->cerrar();
+        $consultaselect = "select Dni from $tabla where Dni='".$dni."' and Clave ='".$clave."'";
+        //$consultaselect = "select Dni from $tabla where Dni='".$dni."' ";
+        $sql=$db->prepare($consultaselect);
+        $resultado= $sql->execute();
+        // $db->cerrar();
+        return $sql->fetchAll();
 
-        return $consultaSQL->fetchall();
     }
 
     public function buscar($search,$tabla,$campo){

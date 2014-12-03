@@ -14,7 +14,7 @@ class docenteModelo extends Consulta
     public $Edad;
     public $Sexo;
     public $Dni;
-    public $Contraseña;
+    public $Clave;
     public function __construct()
     {
         parent::__construct();
@@ -37,8 +37,8 @@ class docenteModelo extends Consulta
 
         /*$alumno = $this->Insertar($this->table, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno, $this->Email);
         return $alumno;*/
-        $consultaSQL = $this->_db->query("INSERT INTO docente (Nombre,ApellidoPaterno,ApellidoMaterno,Celular,Email,Edad,Sexo,Dni,Contraseña)
-        VALUES ('$this->Nombre','$this->ApellidoPaterno','$this->ApellidoMaterno','$this->Celular','$this->Email','$this->Edad','$this->Sexo','$this->Dni','$this->Contraseña')");
+        $consultaSQL = $this->_db->query("INSERT INTO docente (Nombre,ApellidoPaterno,ApellidoMaterno,Celular,Email,Edad,Sexo,Dni,Clave)
+        VALUES ('$this->Nombre','$this->ApellidoPaterno','$this->ApellidoMaterno','$this->Celular','$this->Email','$this->Edad','$this->Sexo','$this->Dni','$this->Clave')");
     }
 
     public function getEliminar()
@@ -54,7 +54,7 @@ class docenteModelo extends Consulta
         /*$alumno = $this->Update($this->table, $this->IdAlumno, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno, $this->Email);
         return $alumno;*/
         $consultaSQL =$this->_db->query( "UPDATE  alumno  set Nombre='$this->Nombre',ApellidoPaterno='$this->ApellidoPaterno',ApellidoMaterno='$this->ApellidoMaterno'
-        ,Celular='$this->Celular',Email='$this->Email',Edad='$this->Edad',Sexo='$this->Sexo',Dni='$this->Dni',Contraseña='$this->Contraseña'
+        ,Celular='$this->Celular',Email='$this->Email',Edad='$this->Edad',Sexo='$this->Sexo',Dni='$this->Dni',Clave='$this->Clave'
         WHERE IdDocente='$this->IdDocente'");
     }
 

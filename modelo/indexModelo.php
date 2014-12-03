@@ -13,10 +13,10 @@ class indexModelo extends Consulta
         parent::__construct();
     }
 
-    public function  getLogin()
+    /*public function  getLogin()
     {
         $docente = $this->Login($this->table, $this->Dni, $this->Contraseña);
         return $docente;
-    }
+    }*/
 
 }

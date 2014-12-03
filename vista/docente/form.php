@@ -69,9 +69,9 @@
         </tr>
         <tr valign="top">
             <td><label>Contraseña :</label></td>
-            <td><input type="text" class="k-textbox" placeholder="Ingrese Contraseña" name="Contraseña"
-                       id="Contraseña"
-                       value="<?php if (isset ($this->docente[0]['Contraseña'])) echo $this->docente[0]['Contraseña'] ?>"/>
+            <td><input type="text" class="k-textbox" placeholder="Ingrese Contraseña" name="Clave"
+                       id="Clave"
+                       value="<?php if (isset ($this->docente[0]['Clave'])) echo $this->docente[0]['Clave'] ?>"/>
             </td>
         </tr>
         <tr>

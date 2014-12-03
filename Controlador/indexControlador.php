@@ -4,6 +4,7 @@ class indexControlador extends Controlador
 {
 
     private $_docentes;
+    public $table = 'docente';
 
     public function __construct()
     {
@@ -13,22 +14,31 @@ class indexControlador extends Controlador
 
     public function index()
     {
-        $this->_docentes->Dni = @$_POST['Dni'];
-        $this->_docentes->Contraseña = @$_POST['Contraseña'];
-        $datos = $this->_docentes->getLogin();
         $this->_vista->renderizar('index');
-        if ($datos == null) {
-            $this->_vista->renderizar('index');
-            //echo '<script type="text/javascript">alert("usuario o clave incorrecta")</script>';
+        if ($_POST["guardar"] == '1') {
+            //$this->_docentes->Dni = @$_POST['Dni'];
+            // $this->_docentes->Contrasena = @$_POST['Contraseña'];
+            //$datos=$this->_docentes->Login();
+           // $datos = $this->_docentes->Login($this->table, $_REQUEST['Dni'], $_REQUEST['Contraseña']);
+            $datos = $this->_docentes->Login($this->table, $_POST['Dni'],$_POST['Clave']);
+            //$this->_vista->index = $datos;
+            //$datos1 =$_POST['Numero'];
+            if ($datos == null) {
+                echo '<script>alert("Usuario o Clave Incorrecta")</script>';
+                $this->_vista->action = BASE_URL . 'index';
 
-        } else {
-            echo '<script type="text/javascript">alert("Datos Correctos")</script>';
-            $this->redireccionar('alumno');
+            } else {
+                //$this->_vista->action = BASE_URL . 'alumno';
+                echo '<script>alert("Correcta")</script>';
+                $this->redireccionar('alumno');
+                //session::set('autenticado', true);
+                //session::set('Nombre', $datos[0]['Nombre'] . ' ' . $datos[0]['ApellidoPaterno']);
+                //session::set('IdDocente', $datos[0]['IdDocente']);
+                //session::set('perfil', $datos[0]['PERFIL']);
+                //session::set('idperfil', $datos[0]['IDPERFIL']);
+            }
         }
-
-
     }
-
 }
 
 ?>

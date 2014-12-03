@@ -40,7 +40,7 @@
                 <td>Edad</td>
                 <td>Sexo</td>
                 <td>Dni</td>
-                <td>Contraseña</td>
+                <td>Clave</td>
                 <td>Editar</td>
                 <td>Eliminar</td>
             </tr>
@@ -56,12 +56,13 @@
                     <td><?php echo $this->docente[$i]['Edad']; ?></td>
                     <td><?php echo $this->docente[$i]['Sexo']; ?></td>
                     <td><?php echo $this->docente[$i]['Dni']; ?></td>
-                    <td><?php echo $this->docente[$i]['Contraseña']; ?></td>
+                    <td><?php echo $this->docente[$i]['Clave']; ?></td>
                     <td>
                         <input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>actualizar.png" width="35px"
                                height="35px"
                                onclick="editar('<?php echo BASE_URL ?>docente/editar/<?php echo $this->docente[$i]['IdDocente'] ?>')"
-                               class="imgedit" value="editar"></td>
+                               class="imgedit" value="editar">
+                    </td>
                     <td><input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>eliminar.png" width="35px"
                                height="35px"
                                onclick="eliminar('<?php echo BASE_URL ?>docente/eliminar/<?php echo $this->docente[$i]['IdDocente'] ?>')"
