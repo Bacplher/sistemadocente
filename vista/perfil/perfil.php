@@ -1,4 +1,10 @@
+<SCRIPT  type="text/javascript">
 
+    var $a;
+    function ventana(a) {
+            window.open(a ,"width=500px,height=500px");
+        }
+</SCRIPT>
     <?php if (isset($this->perfil) && count($this->perfil)) : ?>
 
         <link href="vista/perfil/css/estilos_index.css" rel="stylesheet" type="text/css" />
@@ -13,7 +19,7 @@
                 <label id="datosgenerales" >Celular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label> <label id="datos"> &nbsp;&nbsp;<?php echo $this->perfil[1]['Celular']; ?> </label><br/>
                 <label id="datosgenerales" >E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label> <label id="datos"> &nbsp;&nbsp;<?php echo $this->perfil[1]['Email']; ?></label><br/>
                 <label id="datosgenerales" >Sexo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label> <label id="datos">&nbsp;
-                    <?php
+                        <?php
                     if ($this->perfil[1]['Sexo']=='M'){
                         echo 'Masculino';
                     }
@@ -24,7 +30,8 @@
                 <label id="datosgenerales" >DNI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label> <label id="datos">&nbsp; <?php echo $this->perfil[1]['Dni']; ?></label><br/>
 
             </fieldset>
-
+            <br>
+            <input type="button" class="btn btn-success" value="MODIFICAR" onclick ="ventana('<?php echo BASE_URL ?>docente/editar')"
         </div>
         <br/>
 

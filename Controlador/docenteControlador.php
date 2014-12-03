@@ -35,7 +35,7 @@ class docenteControlador extends Controlador
             $this->_docente->Edad = @$_POST['Edad'];
             $this->_docente->Sexo = @$_POST['Sexo'];
             $this->_docente->Dni = @$_POST['Dni'];
-            $this->_docente->Contraseña = @$_POST['Contraseña'];
+            $this->_docente->Clave = @$_POST['Clave'];
             $this->_docente->getInsertar();
             $this->redireccionar('docente');
         }
@@ -72,7 +72,7 @@ class docenteControlador extends Controlador
             $this->_docente->Edad = @$_POST['Edad'];
             $this->_docente->Sexo = @$_POST['Sexo'];
             $this->_docente->Dni = @$_POST['Dni'];
-            $this->_docente->Contraseña = @$_POST['Contraseña'];
+            $this->_docente->Clave = @$_POST['Clave'];
             $this->_docente->getActualizar();
             $this->redireccionar('docente');
         }

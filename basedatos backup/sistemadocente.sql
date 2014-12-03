@@ -1,190 +1,153 @@
--- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2014 a las 21:02:36
--- Versión del servidor: 5.5.27
--- Versión de PHP: 5.4.7
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+Source Server         : local
+Source Server Version : 50527
+Source Host           : localhost:3306
+Source Database       : sistemadocente
 
+Target Server Type    : MYSQL
+Target Server Version : 50527
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+Date: 2014-12-03 13:08:54
+*/
 
---
--- Base de datos: `sistemadocente`
---
+SET FOREIGN_KEY_CHECKS=0;
 
-DELIMITER $$
---
--- Procedimientos
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_insertar_alumno`(IN `Nombre` varchar(10), IN `ApellidoPaterno` varchar(10), IN `ApellidoMaterno` varchar(10),IN `Email` varchar(10), IN `op` integer)
-if op=0 THEN
-INSERT INTO alumno (Nombre,ApellidoPaterno,ApellidoMaterno,Email)
-VALUES (Nombre,ApellidoPaterno,ApellidoMaterno,Email);
-end if$$
-
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `alumno`
---
-
-CREATE TABLE IF NOT EXISTS `alumno` (
+-- ----------------------------
+-- Table structure for `alumno`
+-- ----------------------------
+DROP TABLE IF EXISTS `alumno`;
+CREATE TABLE `alumno` (
   `IdAlumno` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(145) NOT NULL,
   `ApellidoPaterno` varchar(145) NOT NULL,
   `ApellidoMaterno` varchar(145) NOT NULL,
   `Email` varchar(245) DEFAULT NULL,
   PRIMARY KEY (`IdAlumno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `alumno`
---
+-- ----------------------------
+-- Records of alumno
+-- ----------------------------
+INSERT INTO `alumno` VALUES ('29', 'Sara', 'Huaman', 'Medina', 'sara@gmail.com');
+INSERT INTO `alumno` VALUES ('30', 'marlon', 'peralta', 'panduro', 'marlo@gmail.com');
+INSERT INTO `alumno` VALUES ('31', 'hernan', 'bacalla', 'placencia', 'hernan@gmail.com');
+INSERT INTO `alumno` VALUES ('32', 'anthony', 'ramirez', 'quintana', 'anthony@gmail.com');
 
-INSERT INTO `alumno` (`IdAlumno`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Email`) VALUES
-(29, 'Sara', 'Huaman', 'Medina', 'sara@gmail.com'),
-(30, 'marlon', 'peralta', 'panduro', 'marlo@gmail.com'),
-(31, 'hernan', 'bacalla', 'placencia', 'hernan@gmail.com'),
-(32, 'anthony', 'ramirez', 'quintana', 'anthony@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asistencia`
---
-
-CREATE TABLE IF NOT EXISTS `asistencia` (
+-- ----------------------------
+-- Table structure for `asistencia`
+-- ----------------------------
+DROP TABLE IF EXISTS `asistencia`;
+CREATE TABLE `asistencia` (
   `alumno_IdAlumno` int(11) NOT NULL,
   `clase_IdClase` int(11) NOT NULL,
   `Asistio` bit(1) NOT NULL,
   `Observaciones` varchar(145) NOT NULL,
   PRIMARY KEY (`alumno_IdAlumno`,`clase_IdClase`),
   KEY `fk_alumno_has_clase_clase1_idx` (`clase_IdClase`),
-  KEY `fk_alumno_has_clase_alumno1_idx` (`alumno_IdAlumno`)
+  KEY `fk_alumno_has_clase_alumno1_idx` (`alumno_IdAlumno`),
+  CONSTRAINT `fk_alumno_has_clase_alumno1` FOREIGN KEY (`alumno_IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alumno_has_clase_clase1` FOREIGN KEY (`clase_IdClase`) REFERENCES `clase` (`IdClase`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `asistencia`
---
+-- ----------------------------
+-- Records of asistencia
+-- ----------------------------
+INSERT INTO `asistencia` VALUES ('29', '1', '', '--');
+INSERT INTO `asistencia` VALUES ('30', '1', '', '--');
+INSERT INTO `asistencia` VALUES ('31', '1', '', '--');
+INSERT INTO `asistencia` VALUES ('32', '1', '', '--');
 
-INSERT INTO `asistencia` (`alumno_IdAlumno`, `clase_IdClase`, `Asistio`, `Observaciones`) VALUES
-(29, 1, '1', '--'),
-(30, 1, '1', '--'),
-(31, 1, '1', '--'),
-(32, 1, '1', '--');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `centroeducativo`
---
-
-CREATE TABLE IF NOT EXISTS `centroeducativo` (
+-- ----------------------------
+-- Table structure for `centroeducativo`
+-- ----------------------------
+DROP TABLE IF EXISTS `centroeducativo`;
+CREATE TABLE `centroeducativo` (
   `IdCentroEducativo` int(11) NOT NULL AUTO_INCREMENT,
   `IdDocente` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
   `Ubicacion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdCentroEducativo`),
-  KEY `IdDocente_idx` (`IdDocente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  KEY `IdDocente_idx` (`IdDocente`),
+  CONSTRAINT `IdDocente` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `centroeducativo`
---
+-- ----------------------------
+-- Records of centroeducativo
+-- ----------------------------
+INSERT INTO `centroeducativo` VALUES ('1', '1', 'Ofelia Velasquez', '--');
+INSERT INTO `centroeducativo` VALUES ('2', '2', 'Simon Bolivar', '--');
+INSERT INTO `centroeducativo` VALUES ('3', '3', 'Jimenez Pimentel', '--');
+INSERT INTO `centroeducativo` VALUES ('4', '4', '0620 Aplicacion', '--');
 
-INSERT INTO `centroeducativo` (`IdCentroEducativo`, `IdDocente`, `Descripcion`, `Ubicacion`) VALUES
-(1, 1, 'Ofelia Velasquez', '--'),
-(2, 2, 'Simon Bolivar', '--'),
-(3, 3, 'Jimenez Pimentel', '--'),
-(4, 4, '0620 Aplicacion', '--');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `clase`
---
-
-CREATE TABLE IF NOT EXISTS `clase` (
+-- ----------------------------
+-- Table structure for `clase`
+-- ----------------------------
+DROP TABLE IF EXISTS `clase`;
+CREATE TABLE `clase` (
   `IdClase` int(11) NOT NULL AUTO_INCREMENT,
   `IdCurso` int(11) NOT NULL,
   `Fecha` date NOT NULL,
   PRIMARY KEY (`IdClase`),
-  KEY `IdCurso_idx` (`IdCurso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  KEY `IdCurso_idx` (`IdCurso`),
+  CONSTRAINT `IdCurso` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `clase`
---
+-- ----------------------------
+-- Records of clase
+-- ----------------------------
+INSERT INTO `clase` VALUES ('1', '1', '2014-11-20');
+INSERT INTO `clase` VALUES ('2', '2', '2014-11-19');
+INSERT INTO `clase` VALUES ('3', '3', '2014-11-18');
+INSERT INTO `clase` VALUES ('4', '4', '2014-11-17');
 
-INSERT INTO `clase` (`IdClase`, `IdCurso`, `Fecha`) VALUES
-(1, 1, '2014-11-20'),
-(2, 2, '2014-11-19'),
-(3, 3, '2014-11-18'),
-(4, 4, '2014-11-17');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `criterio`
---
-
-CREATE TABLE IF NOT EXISTS `criterio` (
+-- ----------------------------
+-- Table structure for `criterio`
+-- ----------------------------
+DROP TABLE IF EXISTS `criterio`;
+CREATE TABLE `criterio` (
   `IdCriterio` int(11) NOT NULL AUTO_INCREMENT,
   `IdTipoCriterio` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
   PRIMARY KEY (`IdCriterio`),
-  KEY `IdTipoCriterio_idx` (`IdTipoCriterio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  KEY `IdTipoCriterio_idx` (`IdTipoCriterio`),
+  CONSTRAINT `IdTipoCriterio` FOREIGN KEY (`IdTipoCriterio`) REFERENCES `tipocriterio` (`IdTipoCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `criterio`
---
+-- ----------------------------
+-- Records of criterio
+-- ----------------------------
+INSERT INTO `criterio` VALUES ('1', '1', 'Resolucion de ejercicios');
 
-INSERT INTO `criterio` (`IdCriterio`, `IdTipoCriterio`, `Descripcion`) VALUES
-(1, 1, 'Resolucion de ejercicios');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `curso`
---
-
-CREATE TABLE IF NOT EXISTS `curso` (
+-- ----------------------------
+-- Table structure for `curso`
+-- ----------------------------
+DROP TABLE IF EXISTS `curso`;
+CREATE TABLE `curso` (
   `IdCurso` int(11) NOT NULL AUTO_INCREMENT,
   `IdCentroEducativo` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
   `Objetivo` varchar(145) NOT NULL,
   PRIMARY KEY (`IdCurso`),
-  KEY `IdCentroEducativo_idx` (`IdCentroEducativo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  KEY `IdCentroEducativo_idx` (`IdCentroEducativo`),
+  CONSTRAINT `IdCentroEducativo` FOREIGN KEY (`IdCentroEducativo`) REFERENCES `centroeducativo` (`IdCentroEducativo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `curso`
---
+-- ----------------------------
+-- Records of curso
+-- ----------------------------
+INSERT INTO `curso` VALUES ('1', '1', 'Matematica', '--');
+INSERT INTO `curso` VALUES ('2', '2', 'Comunicacion', '--');
+INSERT INTO `curso` VALUES ('3', '3', 'Actividad Artistica', '--');
+INSERT INTO `curso` VALUES ('4', '4', 'Ciencia tecnologia y Ambiente', '--');
 
-INSERT INTO `curso` (`IdCurso`, `IdCentroEducativo`, `Descripcion`, `Objetivo`) VALUES
-(1, 1, 'Matematica', '--'),
-(2, 2, 'Comunicacion', '--'),
-(3, 3, 'Actividad Artistica', '--'),
-(4, 4, 'Ciencia tecnologia y Ambiente', '--');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `docente`
---
-
-CREATE TABLE IF NOT EXISTS `docente` (
+-- ----------------------------
+-- Table structure for `docente`
+-- ----------------------------
+DROP TABLE IF EXISTS `docente`;
+CREATE TABLE `docente` (
   `IdDocente` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(145) NOT NULL,
   `ApellidoPaterno` varchar(145) NOT NULL,
@@ -194,96 +157,84 @@ CREATE TABLE IF NOT EXISTS `docente` (
   `Edad` varchar(2) DEFAULT NULL,
   `Sexo` varchar(1) DEFAULT NULL,
   `Dni` varchar(8) DEFAULT NULL,
-  `Contraseña` varchar(200) DEFAULT NULL,
+  `Clave` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`IdDocente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `docente`
---
+-- ----------------------------
+-- Records of docente
+-- ----------------------------
+INSERT INTO `docente` VALUES ('1', 'Anthony', 'Ramirez', 'Quintana', '999999999', 'anthony@gmail.com', '20', 'M', '11111111', '11111111');
+INSERT INTO `docente` VALUES ('2', 'Marlon', 'Peralta', 'Panduro', '999999999', 'marlon@gmail.com', '19', 'M', '22222222', '22222222');
+INSERT INTO `docente` VALUES ('3', 'Sara ', 'Huaman', 'Medina', '999999999', 'sara@gmail.com', '19', 'F', '76518229', '76518229');
+INSERT INTO `docente` VALUES ('4', 'Hernan', 'Bacalla', 'Plasencia', '999999999', 'hernan@gmail.com', '19', 'M', '33333333', '33333333');
 
-INSERT INTO `docente` (`IdDocente`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Celular`, `Email`, `Edad`, `Sexo`, `Dni`, `Contraseña`) VALUES
-(1, 'Anthony', 'Ramirez', 'Quintana', '999999999', 'anthony@gmail.com', '20', 'M', '11111111', '11111111'),
-(2, 'Marlon', 'Peralta', 'Panduro', '999999999', 'marlon@gmail.com', '19', 'M', '22222222', '22222222'),
-(3, 'Sara ', 'Huaman', 'Medina', '999999999', 'sara@gmail.com', '19', 'F', '76518229', '76518229'),
-(4, 'Hernan', 'Bacalla', 'Plasencia', '999999999', 'hernan@gmail.com', '19', 'M', '33333333', '33333333');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `especialidad`
---
-
-CREATE TABLE IF NOT EXISTS `especialidad` (
+-- ----------------------------
+-- Table structure for `especialidad`
+-- ----------------------------
+DROP TABLE IF EXISTS `especialidad`;
+CREATE TABLE `especialidad` (
   `IdEspecialidad` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(145) NOT NULL,
   `IdDocente` int(11) NOT NULL,
   PRIMARY KEY (`IdEspecialidad`),
-  KEY `fk_especialidad_docente1_idx` (`IdDocente`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  KEY `fk_especialidad_docente1_idx` (`IdDocente`),
+  CONSTRAINT `fk_especialidad_docente1` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `especialidad`
---
+-- ----------------------------
+-- Records of especialidad
+-- ----------------------------
+INSERT INTO `especialidad` VALUES ('1', 'Fisico Matematico', '1');
+INSERT INTO `especialidad` VALUES ('2', 'Quimico', '2');
+INSERT INTO `especialidad` VALUES ('3', 'Comunicacion', '3');
+INSERT INTO `especialidad` VALUES ('4', 'Biologo', '4');
 
-INSERT INTO `especialidad` (`IdEspecialidad`, `Descripcion`, `IdDocente`) VALUES
-(1, 'Fisico Matematico', 1),
-(2, 'Quimico', 2),
-(3, 'Comunicacion', 3),
-(4, 'Biologo', 4);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `evaluacion`
---
-
-CREATE TABLE IF NOT EXISTS `evaluacion` (
+-- ----------------------------
+-- Table structure for `evaluacion`
+-- ----------------------------
+DROP TABLE IF EXISTS `evaluacion`;
+CREATE TABLE `evaluacion` (
   `IdPeriodo` int(11) NOT NULL,
   `IdCriterio` int(11) NOT NULL,
   `Nota` double(2,0) NOT NULL,
   PRIMARY KEY (`IdPeriodo`,`IdCriterio`),
   KEY `fk_periodo_has_criterio_criterio1_idx` (`IdCriterio`),
-  KEY `fk_periodo_has_criterio_periodo1_idx` (`IdPeriodo`)
+  KEY `fk_periodo_has_criterio_periodo1_idx` (`IdPeriodo`),
+  CONSTRAINT `fk_periodo_has_criterio_criterio1` FOREIGN KEY (`IdCriterio`) REFERENCES `criterio` (`IdCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_periodo_has_criterio_periodo1` FOREIGN KEY (`IdPeriodo`) REFERENCES `periodo` (`IdPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `evaluacion`
---
+-- ----------------------------
+-- Records of evaluacion
+-- ----------------------------
+INSERT INTO `evaluacion` VALUES ('1', '1', '20');
 
-INSERT INTO `evaluacion` (`IdPeriodo`, `IdCriterio`, `Nota`) VALUES
-(1, 1, 20);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `grado`
---
-
-CREATE TABLE IF NOT EXISTS `grado` (
+-- ----------------------------
+-- Table structure for `grado`
+-- ----------------------------
+DROP TABLE IF EXISTS `grado`;
+CREATE TABLE `grado` (
   `IdGrado` int(11) NOT NULL,
   `Descripcion` varchar(1) NOT NULL,
   `IdCurso` int(11) NOT NULL,
   PRIMARY KEY (`IdGrado`,`IdCurso`),
-  KEY `fk_grado_curso1_idx` (`IdCurso`)
+  KEY `fk_grado_curso1_idx` (`IdCurso`),
+  CONSTRAINT `fk_grado_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `grado`
---
+-- ----------------------------
+-- Records of grado
+-- ----------------------------
+INSERT INTO `grado` VALUES ('1', '1', '1');
+INSERT INTO `grado` VALUES ('2', '2', '1');
+INSERT INTO `grado` VALUES ('3', '3', '1');
 
-INSERT INTO `grado` (`IdGrado`, `Descripcion`, `IdCurso`) VALUES
-(1, '1', 1),
-(2, '2', 1),
-(3, '3', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `periodo`
---
-
-CREATE TABLE IF NOT EXISTS `periodo` (
+-- ----------------------------
+-- Table structure for `periodo`
+-- ----------------------------
+DROP TABLE IF EXISTS `periodo`;
+CREATE TABLE `periodo` (
   `IdCurso` int(11) NOT NULL,
   `IdTipoPeriodo` int(11) NOT NULL,
   `IdPeriodo` int(11) NOT NULL,
@@ -291,147 +242,78 @@ CREATE TABLE IF NOT EXISTS `periodo` (
   `FechaTermino` date NOT NULL,
   PRIMARY KEY (`IdPeriodo`),
   KEY `fk_curso_has_tipoperiodo_tipoperiodo1_idx` (`IdTipoPeriodo`),
-  KEY `fk_curso_has_tipoperiodo_curso1_idx` (`IdCurso`)
+  KEY `fk_curso_has_tipoperiodo_curso1_idx` (`IdCurso`),
+  CONSTRAINT `fk_curso_has_tipoperiodo_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_curso_has_tipoperiodo_tipoperiodo1` FOREIGN KEY (`IdTipoPeriodo`) REFERENCES `tipoperiodo` (`IdTipoPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `periodo`
---
+-- ----------------------------
+-- Records of periodo
+-- ----------------------------
+INSERT INTO `periodo` VALUES ('1', '1', '1', '2014-11-01', '2015-01-30');
 
-INSERT INTO `periodo` (`IdCurso`, `IdTipoPeriodo`, `IdPeriodo`, `FechaInicio`, `FechaTermino`) VALUES
-(1, 1, 1, '2014-11-01', '2015-01-30');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccion`
---
-
-CREATE TABLE IF NOT EXISTS `seccion` (
+-- ----------------------------
+-- Table structure for `seccion`
+-- ----------------------------
+DROP TABLE IF EXISTS `seccion`;
+CREATE TABLE `seccion` (
   `IdSeccion` int(11) NOT NULL AUTO_INCREMENT,
   `IdGrado` int(11) NOT NULL,
   `Descripcion` varchar(1) NOT NULL,
   PRIMARY KEY (`IdSeccion`),
-  KEY `IdGrado_idx` (`IdGrado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  KEY `IdGrado_idx` (`IdGrado`),
+  CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `seccion`
---
+-- ----------------------------
+-- Records of seccion
+-- ----------------------------
+INSERT INTO `seccion` VALUES ('1', '1', 'A');
+INSERT INTO `seccion` VALUES ('2', '1', 'C');
 
-INSERT INTO `seccion` (`IdSeccion`, `IdGrado`, `Descripcion`) VALUES
-(1, 1, 'A'),
-(2, 1, 'C');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipocriterio`
---
-
-CREATE TABLE IF NOT EXISTS `tipocriterio` (
+-- ----------------------------
+-- Table structure for `tipocriterio`
+-- ----------------------------
+DROP TABLE IF EXISTS `tipocriterio`;
+CREATE TABLE `tipocriterio` (
   `IdTipoCriterio` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`IdTipoCriterio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `tipocriterio`
---
+-- ----------------------------
+-- Records of tipocriterio
+-- ----------------------------
+INSERT INTO `tipocriterio` VALUES ('1', 'Razonamiento y Demostracion');
+INSERT INTO `tipocriterio` VALUES ('2', 'Comunicacion ');
+INSERT INTO `tipocriterio` VALUES ('3', 'Resolucion de Problemas');
+INSERT INTO `tipocriterio` VALUES ('4', 'Actitud ante el area');
 
-INSERT INTO `tipocriterio` (`IdTipoCriterio`, `Descripcion`) VALUES
-(1, 'Razonamiento y Demostracion'),
-(2, 'Comunicacion '),
-(3, 'Resolucion de Problemas'),
-(4, 'Actitud ante el area');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipoperiodo`
---
-
-CREATE TABLE IF NOT EXISTS `tipoperiodo` (
+-- ----------------------------
+-- Table structure for `tipoperiodo`
+-- ----------------------------
+DROP TABLE IF EXISTS `tipoperiodo`;
+CREATE TABLE `tipoperiodo` (
   `IdTipoPeriodo` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(145) NOT NULL,
   PRIMARY KEY (`IdTipoPeriodo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `tipoperiodo`
---
+-- ----------------------------
+-- Records of tipoperiodo
+-- ----------------------------
+INSERT INTO `tipoperiodo` VALUES ('1', 'Semestral');
+INSERT INTO `tipoperiodo` VALUES ('2', 'Trimestral');
 
-INSERT INTO `tipoperiodo` (`IdTipoPeriodo`, `Descripcion`) VALUES
-(1, 'Semestral'),
-(2, 'Trimestral');
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `asistencia`
---
-ALTER TABLE `asistencia`
-  ADD CONSTRAINT `fk_alumno_has_clase_alumno1` FOREIGN KEY (`alumno_IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_alumno_has_clase_clase1` FOREIGN KEY (`clase_IdClase`) REFERENCES `clase` (`IdClase`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `centroeducativo`
---
-ALTER TABLE `centroeducativo`
-  ADD CONSTRAINT `IdDocente` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `clase`
---
-ALTER TABLE `clase`
-  ADD CONSTRAINT `IdCurso` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `criterio`
---
-ALTER TABLE `criterio`
-  ADD CONSTRAINT `IdTipoCriterio` FOREIGN KEY (`IdTipoCriterio`) REFERENCES `tipocriterio` (`IdTipoCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `curso`
---
-ALTER TABLE `curso`
-  ADD CONSTRAINT `IdCentroEducativo` FOREIGN KEY (`IdCentroEducativo`) REFERENCES `centroeducativo` (`IdCentroEducativo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `especialidad`
---
-ALTER TABLE `especialidad`
-  ADD CONSTRAINT `fk_especialidad_docente1` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `evaluacion`
---
-ALTER TABLE `evaluacion`
-  ADD CONSTRAINT `fk_periodo_has_criterio_criterio1` FOREIGN KEY (`IdCriterio`) REFERENCES `criterio` (`IdCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_periodo_has_criterio_periodo1` FOREIGN KEY (`IdPeriodo`) REFERENCES `periodo` (`IdPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `grado`
---
-ALTER TABLE `grado`
-  ADD CONSTRAINT `fk_grado_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `periodo`
---
-ALTER TABLE `periodo`
-  ADD CONSTRAINT `fk_curso_has_tipoperiodo_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_curso_has_tipoperiodo_tipoperiodo1` FOREIGN KEY (`IdTipoPeriodo`) REFERENCES `tipoperiodo` (`IdTipoPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `seccion`
---
-ALTER TABLE `seccion`
-  ADD CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Procedure structure for `pa_insertar_alumno`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `pa_insertar_alumno`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_insertar_alumno`(IN `Nombre` varchar(10), IN `ApellidoPaterno` varchar(10), IN `ApellidoMaterno` varchar(10),IN `Email` varchar(10), IN `op` integer)
+if op=0 THEN
+INSERT INTO alumno (Nombre,ApellidoPaterno,ApellidoMaterno,Email)
+VALUES (Nombre,ApellidoPaterno,ApellidoMaterno,Email);
+end if
+;;
+DELIMITER ;

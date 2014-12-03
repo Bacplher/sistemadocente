@@ -12,6 +12,7 @@ require_once APP_PATH .'Consulta.php';
 require_once APP_PATH .'Registro.php';
 require_once APP_PATH .'Request.php';
 require_once APP_PATH .'Vista.php';
+require_once APP_PATH .'Sesion.php';
 require_once ROOT.'basedatos'.DS . 'Conexion.php';
 
 try {
