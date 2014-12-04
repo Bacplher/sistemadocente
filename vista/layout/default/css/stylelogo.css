@@ -28,9 +28,9 @@ h1 {
   top: 40%;
   width: 0.5em;
   height: 0.5em;
-  background: #1090c7;
+  background: #ababab;
   border-radius: 50%;
-  box-shadow: 0 0 0 0.15em #cad0d2, 0 0 0 0.225em #1090c7;
+  box-shadow: 0 0 0 0.15em #ededed, 0 0 0 0.225em #000;
   -moz-animation: atom linear 7s infinite forwards;
   -webkit-animation: atom linear 7s infinite forwards;
   animation: atom linear 7s infinite forwards;

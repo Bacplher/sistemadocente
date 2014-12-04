@@ -67,6 +67,7 @@
 .gn-menu-main, .gn-menu-main ul {
     margin: 0;
     padding: 0;
+    background-color: #7f8c8d;
     color: #5f6f81;
     list-style: none;
     text-transform: none;

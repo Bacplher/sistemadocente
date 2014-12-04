@@ -39,8 +39,6 @@
             } ?>
         </ul>
     </div>
-    </div>
-    </div>
 <script src="<?php echo $_layoutParams['ruta_js']; ?>primera.js"></script>
 <script src="<?php echo $_layoutParams['ruta_js']; ?>index.js"></script>
 

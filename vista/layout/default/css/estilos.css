@@ -15,9 +15,8 @@ body{
 
 #header {
     padding: 40px;
-    color: #1090c7;
-    background-image: url('../img/banner_po1.png');
-    background-size: cover;
+    color: whitesmoke;
+    background: cadetblue;
     margin: 0;
     text-align: right;
 }
@@ -25,7 +24,7 @@ body{
 #top_menu {
     padding: 0px;
     color: red;
-    background: #1090c7;
+    background: #3BAEB4;
     margin: 0
 }
 
@@ -52,7 +51,7 @@ body{
 }
 
 #top_menu a:hover {
-    background: skyblue;
+    background: #fff;
     color: #444;
 }
 
@@ -65,7 +64,7 @@ body{
     font-weight: bold;
 }
 #footer {
-    background: #35b1e5;
+    background: cadetblue;
     color: white;
     padding: 10px;
 }
