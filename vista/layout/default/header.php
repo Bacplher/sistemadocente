@@ -21,7 +21,7 @@
     <script src="<?php echo $_layoutParams['ruta_js']; ?>bootstrap.min.js"></script>
 
 </head>
-<body>
+<body style="background:#A0F7FE">
 <link href="<?php echo $_layoutParams['ruta_css']; ?>cuerpo.css" rel="stylesheet" type="text/css" />
 
 <div id="main">

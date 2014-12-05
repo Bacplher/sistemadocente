@@ -1,8 +1,14 @@
 
-
+#contenedorperfil{
+    background: #ffffff;
+    height: 600px;
+    width: 100%
+}
+img{
+    width: 100%;
+}
 #perfildocente{ font-family: sans-serif;
-    border: 3px solid mediumseagreen;
-    background: #ddd;
+    border: 3px solid deepskyblue;
     border-radius: 10px;
     padding: 15px;
     width: 100%;
@@ -11,7 +17,7 @@
 }
 
 #perfildocente2 {
-    background: mediumseagreen;
+    background: deepskyblue;
     color: #fff;
     padding: 5px 10px ;
     font-size: 24px;
@@ -30,13 +36,15 @@
 }
 #datos{
     color: #00CC66;
-    font-size: 20px;
+    height: 1%;
+    width: 30%;
+    font-size: 16px;
     font-family: Comic Sans MS, Helvetica, sans-serif;
 
 }
 #datos:hover{
     color: #000000;
-    font-size: 22px;
+    font-size: 17px;
     font-family: fantasy;
 
 }
