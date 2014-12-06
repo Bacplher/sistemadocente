@@ -10,7 +10,6 @@ class perfilControlador extends Controlador {
 
     private $_perfil;
 
-
     public function __construct()
     {
         parent::__construct();
@@ -18,11 +17,11 @@ class perfilControlador extends Controlador {
     }
     public function index()
     {
-        $datos= $this->_perfil->perfilDocente();
+        $datos= $this->_perfil->perfilDocente_dp();
         $this->_vista->perfil = $datos;
+        $this->_vista->datos_academicos =$this->_perfil->perfildocente_ia();
         $this->_vista->renderizar('perfil');
     }
 
-
-
-} 
+    
+}

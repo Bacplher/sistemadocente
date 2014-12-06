@@ -57,7 +57,7 @@
             <label id="datosgenerales" >DNI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
             <input type="text" id="datos" value="<?php echo $this->perfil[0]['Dni']; ?>" OnFocus="this.blur()"><br/>
             <label id="datosgenerales" >Especialidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-            <input type="text" id="datos" value="<?php echo $this->perfil[0]['Especialidad']; ?>" OnFocus="this.blur()"><br/>
+            <input type="text" id="datos" value="<?php echo $this->datos_academicos[0]['Especialidad'];?>" OnFocus="this.blur()"><br/>
             <div class="text-center">
                 <button class="demo btn btn-primary btn-large" data-toggle="modal" href="#responsive">Actualizar Datos</button>
             </div>
@@ -71,15 +71,15 @@
                     <th>Grado</th>
                     <th>Curso</th>
                     <th>Sección</th>
-                    <th>Agregar</th>
+                    <th><button class="demo btn btn-primary btn-large" data-toggle="modal" href="#responsive1">Agregar</button></th>
                 </tr>
-                <?php for ($i = 0; $i < count($this->perfil); $i++): ?>
+                <?php for ($i = 0; $i < count($this->datos_academicos); $i++): ?>
                     <tr>
-                        <th> <?php echo $this->perfil[$i]['Centro_Educativo']; ?></th>
-                        <th> <?php echo $this->perfil[$i]['Grado']; ?> </th>
-                        <th> <?php echo $this->perfil[$i]['Curso']; ?></th>
-                        <th> <?php echo $this->perfil[$i]['Seccion']; ?></th>
-                        <th>  </th>
+                        <th> <?php echo $this->datos_academicos[0]['Centro_Educativo']; ?> </th>
+                        <th> <?php echo $this->datos_academicos[0]['Grado']; ?>  </th>
+                        <th> <?php echo $this->datos_academicos[0]['Curso']; ?> </th>
+                        <th> <?php echo $this->datos_academicos[0]['Seccion']; ?></th>
+
                     </tr>
                 <?php endfor; ?>
             </table>
@@ -87,6 +87,22 @@
         </fieldset>
 
     </div>
+</div>
+
+<div id="responsive1" class="modal hide fade" tabindex="-1" data-width="760" align="center">
+    <p>Datos Académicos</p>
+    <table align="center" id="tabla-infoacademica" class='table table-bordered table-hover'>
+        <tr id="cabeceratable-info" class="cualquiercosa">
+            <th>Centro Educativo</th>
+            <th>Grado</th>
+            <th>Curso</th>
+            <th>Sección</th>
+            <th>Agregar</th>
+        </tr>
+        <tr >
+             <th > <input type="text" width="100%" height="100%" /></th>
+        </tr>
+    </table>
 </div>
 <div id="responsive" class="modal hide fade" tabindex="-1" data-width="760" align="center">
     <br/>
@@ -116,7 +132,8 @@
         <label id="datosgenerales" >DNI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
         <input type="text" id="datos" value="<?php echo $this->perfil[0]['Dni']; ?>" ><br/>
         <label id="datosgenerales" >Especialidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['Especialidad']; ?>" ><br/>
+        <input type="text" id="datos" value="<?php echo $this->datos_academicos[0]['Especialidad'];
+             ?>" ><br/>
 
     </fieldset>
 

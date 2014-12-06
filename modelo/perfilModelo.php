@@ -9,12 +9,18 @@
 
 class perfilModelo  extends Consulta{
 
+    public $table = 'docente';
+    public $dato = 22222222;
+    public $campo= 'Dni';
 
-    public $dato = 11111111;
+    public function perfilDocente_dp(){
+        $consultaSQL = $this->selectperfildocente_dp($this->campo,$this->dato);
+        return $consultaSQL;
+    }
 
-    public function perfilDocente()
+    public function perfilDocente_ia()
     {
-        $consultaSQL = $this->selectperfildocente($this->dato);
+        $consultaSQL = $this->selectperfildocente_ia($this->dato);
         return $consultaSQL;
     }
 
