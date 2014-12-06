@@ -35,7 +35,7 @@ abstract class Consulta
     }*/
     public function Login($tabla,$dni,$clave){
         $db = new conexion();
-        $consultaselect = "select Dni from $tabla where Dni='".$dni."' and Clave ='".$clave."'";
+        $consultaselect = "select * from $tabla where Dni='".$dni."' and Clave ='".$clave."'";
         //$consultaselect = "select Dni from $tabla where Dni='".$dni."' ";
         $sql=$db->prepare($consultaselect);
         $resultado= $sql->execute();
