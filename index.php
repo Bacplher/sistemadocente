@@ -14,7 +14,7 @@ require_once APP_PATH .'Request.php';
 require_once APP_PATH .'Vista.php';
 require_once APP_PATH .'Sesion.php';
 require_once ROOT.'basedatos'.DS . 'Conexion.php';
-
+Session::init();
 try {
 Bootstrap::run(new Request());    
 } catch (Exception $e) {

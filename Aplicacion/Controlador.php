@@ -6,6 +6,10 @@ abstract class Controlador{
     protected $_modeloalert;
     public function __construct() {
         $this->_vista = new Vista(new Request);
+        if(session::get('autenticado')){
+            //$this->_modelo->idperfil = Session::get('idperfil');
+            //$this->_modeloalert->idperfil = Session::get('idperfil');
+        }
     }    
     abstract public function index();
     
@@ -68,5 +72,21 @@ protected function getLibrary($libreria){
             }
         }
         return $nuevo;
+    }
+    public function acceso($idmodulo) {
+        if (!Session::get('autenticado')) {
+            header('location:'.BASE_URL.'error/access/5050');
+            exit;
+        }
+        //$permisos = $this->loadModelo('permisos');
+       // $permisos->idperfil= Session::get('idperfil');
+        //$permisos->idmodulo= $idmodulo;
+        // $permiso = $permisos->selecciona();
+//        print_r($permiso);exit;
+        //if ($permiso[0]['IDPERFIL']!=session::get('idperfil') || $permiso[0]['ESTADO'] ==0) {
+            //return false;
+       // } else {
+            //return true;
+      //  }
     }
 }
