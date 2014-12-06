@@ -6,13 +6,15 @@
  * Time: 12:36 AM
  */
 
+
 class perfilModelo  extends Consulta{
 
-    public $table = 'docente';
+
+    public $dato = 11111111;
 
     public function perfilDocente()
     {
-        $consultaSQL = $this->Select($this->table);
+        $consultaSQL = $this->selectperfildocente($this->dato);
         return $consultaSQL;
     }
 

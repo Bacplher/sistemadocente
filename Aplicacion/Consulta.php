@@ -49,6 +49,26 @@ abstract class Consulta
         $consultaselect = "SELECT * FROM $tabla WHERE $campo LIKE '%$search%'";
         $sql=$db->prepare($consultaselect);
         $resultado= $sql->execute();
+
+        $db->cerrar();
+        return $sql->fetchAll();
+    }
+
+    public function selectperfildocente($dato){
+        $db = new conexion();
+        $consultaperfildocente = "SELECT Nombre, ApellidoPaterno, ApellidoMaterno, Edad, Celular,
+                                  Email, Sexo, Dni, especialidad.Descripcion AS Especialidad,
+                                  centroeducativo.Descripcion as Centro_Educativo,
+                                  curso.Descripcion AS Curso, grado.Descripcion AS Grado, seccion.Descripcion AS Seccion
+                                  FROM docente
+                                  INNER JOIN especialidad ON docente.IdDocente=especialidad.IdDocente
+                                  INNER JOIN centroeducativo ON docente.IdDocente=centroeducativo.IdDocente
+                                  INNER JOIN curso ON centroeducativo.IdCentroEducativo=curso.IdCentroEducativo
+                                  INNER JOIN grado ON curso.IdCurso=grado.IdCurso
+                                  INNER JOIN seccion ON grado.IdGrado=seccion.IdGrado
+                                  WHERE Dni=$dato";
+        $sql=$db->prepare($consultaperfildocente);
+        $resultado=$sql->execute();
         $db->cerrar();
         return $sql->fetchAll();
     }
