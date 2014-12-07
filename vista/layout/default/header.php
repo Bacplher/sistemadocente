@@ -34,7 +34,7 @@
         <table border="0">
             <tr>
                 <td width=968px>
-                    <h3 class="a">BIENVENIDO:
+                    <h3 class="a">  BIENVENIDO:
                         <?php if (Session::get('autenticado')){ ?>
                         <label><?php echo Session::get('Nombre'); ?></label>
                 </td>

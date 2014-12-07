@@ -1,12 +1,14 @@
 .top_menu {
     padding: 0px;
-    background: #1A191A;
+    background: #1090c7;
+    border-style: ridge;
+    border-width: 2px;
     margin: 0;
 }
 .letra{
     font-family: sans-serif;
     font-size: 200%;
-    font-style: normal;
+    font-style: italic;
     color: white;
     text-shadow: -2px 0px 8px rgba(150, 150, 150, 1);
 }
