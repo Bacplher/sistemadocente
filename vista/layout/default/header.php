@@ -40,8 +40,8 @@
                 </td>
                 <td>
                     <input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>cerrarsesion.png" width="50px"
-                           height="50px" onclick="salir('<?php echo BASE_URL ?>index')" class="imgedit"
-                           value="salir"></h3>
+                           height="50px" onclick="salir('<?php echo BASE_URL?>index')" class="imgedit"
+                           value='<?php echo Session::destroy(); ?>'></h3>
 
                 </td>
 
@@ -50,7 +50,7 @@
         </table>
     </div>
     <?php } else { ?>
-        <?php echo "No sale"; ?>
+        <?php echo "Usuario Desconocido"; ?>
     <?php } ?>
     <div id="top_menu" class="container">
         <ul class="gn-menu-main">

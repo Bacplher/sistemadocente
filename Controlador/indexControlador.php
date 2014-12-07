@@ -28,7 +28,7 @@ class indexControlador extends Controlador
                 $this->_vista->action = BASE_URL . 'index';
 
             } else {
-                //$this->_vista->action = BASE_URL . 'alumno';
+                $this->_vista->action = BASE_URL . 'alumno';
                 Session::set('autenticado', true);
                 Session::set('IdDocente', $datos[0]['IdDocente']);
                 Session::set('Nombre', $datos[0]['Nombre'] . ' ' . $datos[0]['ApellidoPaterno']. ' ' . $datos[0]['ApellidoMaterno']);

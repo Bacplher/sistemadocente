@@ -32,6 +32,12 @@ class Session {
         if (isset($_SESSION[$clave]))
             return $_SESSION[$clave];
     }
+    public static  function acceso(){
+        if(!Session::get('autenticado')){
+            header('location:'.BASE_URL.'error/access/5050');
+            exit;
+        }
+    }
 /*    public static  function acceso($level){
         if(!Session::get('autenticado')){
             header('location:'.BASE_URL.'error/access/5050');

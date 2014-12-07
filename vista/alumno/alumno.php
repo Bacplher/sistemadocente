@@ -1,3 +1,4 @@
+<?php if (Session::get('autenticado')){ ?>
 <link href="vista/alumno/css/estilos_alumno.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript">
             var $a, $b;
@@ -90,3 +91,7 @@
                                                                    value="Nuevo">
 
         <?php endif; ?>
+<?php } else{ ?>
+    <?php echo "ACCESO RESTRINGIDO"; ?>
+    <a href="<?php echo BASE_URL ?>index">CLICK AQUI </a>
+<?php  }  ?>

@@ -23,8 +23,8 @@ class alumnoModelo extends Consulta
 
     public function getSelecciona()
     {
-        $consultaSQL = $this->Select($this->table, $this->IdAlumno);
-        return $consultaSQL;
+        $consultaSQL =$this->_db->query( "SELECT * FROM alumno where IdAlumno='$this->IdAlumno'");
+        return $consultaSQL->fetchall();
     }
 
     public function getInsertar()
