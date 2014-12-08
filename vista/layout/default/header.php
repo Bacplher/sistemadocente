@@ -40,7 +40,7 @@
                 </td>
                 <td>
                     <input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>salir.jpg" width="50px"
-                           height="50px" onclick="salir('<?php echo BASE_URL?>index')" class="imgedit"
+                           height="50px" onclick="salir('<?php echo BASE_URL?>index/cerrar')" class="imgedit"
                           ></h3>
 
                 </td>

@@ -1,9 +1,9 @@
 <script type="text/javascript">
     var $a, $b;
     function salir(a) {
-        if (confirm("Realmente deseas salir")) {
+
             window.location = a;
-        }
+
     }
 </script>
 <div id="footer">
