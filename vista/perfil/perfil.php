@@ -90,7 +90,8 @@
 </div>
 
 <div id="responsive1" class="modal hide fade" tabindex="-1" data-width="760" align="center">
-    <p>Datos Académicos</p>
+    <fieldset id="perfildocente">
+        <legend id="perfildocente2">Datos Académicos</legend>
     <table align="center" id="tabla-infoacademica" class='table table-bordered table-hover'>
         <tr id="cabeceratable-info" class="cualquiercosa">
             <th>Centro Educativo</th>
@@ -103,6 +104,7 @@
              <th > <input type="text" width="100%" height="100%" /></th>
         </tr>
     </table>
+        </fieldset>
 </div>
 <div id="responsive" class="modal hide fade" tabindex="-1" data-width="760" align="center">
     <br/>
