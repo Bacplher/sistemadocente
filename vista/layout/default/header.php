@@ -34,12 +34,12 @@
         <table border="0">
             <tr>
                 <td width=968px>
-                    <h3 class="a">  BIENVENIDO:
+                    <h3 class="a">&nbsp;&nbsp;  BIENVENIDO:
                         <?php if (Session::get('autenticado')){ ?>
                         <label><?php echo Session::get('Nombre'); ?></label>
                 </td>
                 <td>
-                    <input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>cerrarsesion.png" width="50px"
+                    <input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>salir.jpg" width="50px"
                            height="50px" onclick="salir('<?php echo BASE_URL?>index')" class="imgedit"
                           ></h3>
 

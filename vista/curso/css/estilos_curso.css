@@ -3,3 +3,13 @@
     height: 300px;
     width: 100%;
 }
+#cabeceratable-info{
+    background: #35B1E5;
+    color: #ffffff;
+    font-family:"Comic Sans MS";
+    text-align: center;
+}
+#cabeceratable-info:hover{
+    background: #ffffff;
+    color: #35B1E5;
+}
