@@ -41,7 +41,7 @@
                 <td>
                     <input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>cerrarsesion.png" width="50px"
                            height="50px" onclick="salir('<?php echo BASE_URL?>index')" class="imgedit"
-                           value='<?php echo Session::destroy(); ?>'></h3>
+                          ></h3>
 
                 </td>
 
