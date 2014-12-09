@@ -32,7 +32,7 @@ class indexControlador extends Controlador
                 Session::set('autenticado', true);
                 Session::set('IdDocente', $datos[0]['IdDocente']);
                 Session::set('Nombre', $datos[0]['Nombre'] . ' ' . $datos[0]['ApellidoPaterno']. ' ' . $datos[0]['ApellidoMaterno']);
-                $this->redireccionar('docente');
+                $this->redireccionar('perfil');
                 //session::set('perfil', $datos[0]['PERFIL']);
                 //session::set('idperfil', $datos[0]['IDPERFIL']);
             }
