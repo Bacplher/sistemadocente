@@ -24,11 +24,7 @@ class Vista
                 'titulo' => 'Cursos',
                 'enlace' => BASE_URL.'curso'
             ),
-            array(
-                'id' => 'alumnos',
-                'titulo' => 'Alumnos',
-                'enlace' => BASE_URL.'alumno'
-            ),
+
             array(
                 'id' => 'reportes',
                 'titulo' => 'Reportes',

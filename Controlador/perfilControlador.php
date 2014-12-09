@@ -17,9 +17,9 @@ class perfilControlador extends Controlador {
     }
     public function index()
     {
-        $datos= $this->_perfil->perfilDocente_dp();
+        $datos= $this->_perfil->perfilDocente_dp(Session::get('IdDocente'));
         $this->_vista->perfil = $datos;
-        $this->_vista->datos_academicos =$this->_perfil->perfildocente_ia();
+        $this->_vista->datos_academicos =$this->_perfil->perfildocente_ia(Session::get('IdDocente'));
         $this->_vista->renderizar('perfil');
     }
 
