@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2014 a las 07:30:47
+-- Tiempo de generación: 09-12-2014 a las 07:54:11
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -178,6 +178,19 @@ INSERT INTO `curso` (`IdCurso`, `IdSeccion`, `Descripcion`, `Objetivo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detallealumnocurso`
+--
+
+CREATE TABLE IF NOT EXISTS `detallealumnocurso` (
+  `IdAlumno` int(11) NOT NULL,
+  `IdCurso` int(11) NOT NULL,
+  KEY `IdAlumno` (`IdAlumno`),
+  KEY `IdCurso` (`IdCurso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `detalledocentecentroeducativo`
 --
 
@@ -325,6 +338,13 @@ ALTER TABLE `clase`
 --
 ALTER TABLE `curso`
   ADD CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`IdSeccion`) REFERENCES `seccion` (`IdSeccion`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detallealumnocurso`
+--
+ALTER TABLE `detallealumnocurso`
+  ADD CONSTRAINT `detallealumnocurso_ibfk_2` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detallealumnocurso_ibfk_1` FOREIGN KEY (`IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalledocentecentroeducativo`
