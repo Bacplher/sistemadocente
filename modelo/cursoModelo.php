@@ -6,39 +6,39 @@ class cursoModelo extends Consulta{
     }
 
     public $table = 'curso';
-    public $dato=22222222;
+
 
     public function curso()
     {
         $consultaSQL = $this->Select($this->table);
         return $consultaSQL;
     }
-public function centro(){
+public function centro($dato){
         $centroeducativo = $this->_db->query("SELECT centroeducativo.IdCentroEducativo as IdCentroEducativo,
                                         centroeducativo.Descripcion as centroeducativo
                                         FROM centroeducativo
                                         INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
-                                        WHERE docente.dni=$this->dato");
+                                        WHERE docente.IdDocente=$dato");
         return $centroeducativo->fetchAll();
     }
 
-    public function grado($centroeduc){
+    public function grado($centroeduc,$dato){
         $grado = $this->_db->query("SELECT grado.IdGrado as codgrado, grado.Descripcion as dgrado
                               FROM grado
                               INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
                               INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
-                              WHERE docente.dni=$this->dato and centroeducativo.IdCentroEducativo=$centroeduc");
+                              WHERE docente.IdDocente=$dato and centroeducativo.IdCentroEducativo=$centroeduc");
         $grado->setFetchMode(PDO::FETCH_ASSOC);
         return $grado->fetchAll();
     }
 
-    public function seccion($grad){
+    public function seccion($grad,$dato){
         $seccion = $this->_db->query("SELECT seccion.IdSeccion as codseccion, seccion.Descripcion as dseccion
                                 FROM seccion 
                                 INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
                                 INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
                                 INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
-                                WHERE docente.dni=$this->dato
+                                WHERE docente.IdDocente=$dato
                                 and grado.IdGrado=$grad");
         $seccion->setFetchMode(PDO::FETCH_ASSOC);
         return $seccion->fetchAll();

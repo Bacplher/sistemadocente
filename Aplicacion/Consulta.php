@@ -88,7 +88,7 @@ abstract class Consulta
                                         centroeducativo.Descripcion as centroeducativo
                                         FROM centroeducativo
                                         INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
-                                        WHERE docente.dni=$dato";
+                                        WHERE docente.IdDocente=$dato";
       $sql=$db->prepare($consultarcursocentrodetrabajo);
         $resultado=$sql->execute();
         $db->cerrar();
