@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2014 a las 01:09:06
+-- Tiempo de generación: 09-12-2014 a las 06:10:49
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -183,40 +183,19 @@ CREATE TABLE IF NOT EXISTS `docente` (
   `Edad` varchar(2) DEFAULT NULL,
   `Sexo` varchar(1) DEFAULT NULL,
   `Dni` varchar(8) DEFAULT NULL,
-  `Clave` varchar(200) DEFAULT NULL
+  `Clave` varchar(200) DEFAULT NULL,
+  `Especialidad` varchar(20) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `docente`
 --
 
-INSERT INTO `docente` (`IdDocente`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Celular`, `Email`, `Edad`, `Sexo`, `Dni`, `Clave`) VALUES
-(1, 'Anthony', 'Ramirez', 'Quintana', '999999999', 'anthony@gmail.com', '20', 'M', '11111111', '11111111'),
-(2, 'Marlon', 'Peralta', 'Panduro', '999999999', 'marlon@gmail.com', '19', 'M', '22222222', '22222222'),
-(3, 'Sara ', 'Huaman', 'Medina', '999999999', 'sara@gmail.com', '19', 'F', '76518229', '76518229'),
-(4, 'Hernan', 'Bacalla', 'Plasencia', '999999999', 'hernan@gmail.com', '19', 'M', '33333333', '33333333');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `especialidad`
---
-
-CREATE TABLE IF NOT EXISTS `especialidad` (
-`IdEspecialidad` int(11) NOT NULL,
-  `Descripcion` varchar(145) NOT NULL,
-  `IdDocente` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Volcado de datos para la tabla `especialidad`
---
-
-INSERT INTO `especialidad` (`IdEspecialidad`, `Descripcion`, `IdDocente`) VALUES
-(1, 'Fisico Matematico', 1),
-(2, 'Quimico', 2),
-(3, 'Comunicacion', 3),
-(4, 'Biologo', 4);
+INSERT INTO `docente` (`IdDocente`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Celular`, `Email`, `Edad`, `Sexo`, `Dni`, `Clave`, `Especialidad`) VALUES
+(1, 'Anthony', 'Ramirez', 'Quintana', '999999999', 'anthony@gmail.com', '20', 'M', '11111111', '11111111', 'Fisico Matematico'),
+(2, 'Marlon', 'Peralta', 'Panduro', '999999999', 'marlon@gmail.com', '19', 'M', '22222222', '22222222', 'Quimica'),
+(3, 'Sara ', 'Huaman', 'Medina', '999999999', 'sara@gmail.com', '19', 'F', '76518229', '76518229', 'Comunicacion'),
+(4, 'Hernan', 'Bacalla', 'Plasencia', '999999999', 'hernan@gmail.com', '19', 'M', '33333333', '33333333', 'Biologo');
 
 -- --------------------------------------------------------
 
@@ -388,12 +367,6 @@ ALTER TABLE `docente`
  ADD PRIMARY KEY (`IdDocente`);
 
 --
--- Indices de la tabla `especialidad`
---
-ALTER TABLE `especialidad`
- ADD PRIMARY KEY (`IdEspecialidad`), ADD KEY `fk_especialidad_docente1_idx` (`IdDocente`);
-
---
 -- Indices de la tabla `evaluacion`
 --
 ALTER TABLE `evaluacion`
@@ -464,11 +437,6 @@ MODIFY `IdCurso` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 ALTER TABLE `docente`
 MODIFY `IdDocente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de la tabla `especialidad`
---
-ALTER TABLE `especialidad`
-MODIFY `IdEspecialidad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
 -- AUTO_INCREMENT de la tabla `seccion`
 --
 ALTER TABLE `seccion`
@@ -517,12 +485,6 @@ ADD CONSTRAINT `IdTipoCriterio` FOREIGN KEY (`IdTipoCriterio`) REFERENCES `tipoc
 --
 ALTER TABLE `curso`
 ADD CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`IdSeccion`) REFERENCES `seccion` (`IdSeccion`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `especialidad`
---
-ALTER TABLE `especialidad`
-ADD CONSTRAINT `fk_especialidad_docente1` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `evaluacion`
