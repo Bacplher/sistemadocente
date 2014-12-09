@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2014 a las 06:10:49
--- Versión del servidor: 5.6.20
--- Versión de PHP: 5.5.15
+-- Tiempo de generación: 09-12-2014 a las 07:30:47
+-- Versión del servidor: 5.5.27
+-- Versión de PHP: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -39,11 +39,12 @@ DELIMITER ;
 --
 
 CREATE TABLE IF NOT EXISTS `alumno` (
-`IdAlumno` int(11) NOT NULL,
+  `IdAlumno` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(145) NOT NULL,
   `ApellidoPaterno` varchar(145) NOT NULL,
   `ApellidoMaterno` varchar(145) NOT NULL,
-  `Email` varchar(245) DEFAULT NULL
+  `Email` varchar(245) DEFAULT NULL,
+  PRIMARY KEY (`IdAlumno`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
@@ -66,7 +67,9 @@ CREATE TABLE IF NOT EXISTS `asistencia` (
   `alumno_IdAlumno` int(11) NOT NULL,
   `clase_IdClase` int(11) NOT NULL,
   `Asistio` bit(1) NOT NULL,
-  `Observaciones` varchar(145) NOT NULL
+  `Observaciones` varchar(145) NOT NULL,
+  KEY `fk_alumno_has_clase_clase1_idx` (`clase_IdClase`),
+  KEY `fk_alumno_has_clase_alumno1_idx` (`alumno_IdAlumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -74,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `asistencia` (
 --
 
 INSERT INTO `asistencia` (`alumno_IdAlumno`, `clase_IdClase`, `Asistio`, `Observaciones`) VALUES
-(29, 1, b'1', '--'),
-(30, 1, b'1', '--'),
-(31, 1, b'1', '--'),
-(32, 1, b'1', '--');
+(29, 1, '1', '--'),
+(30, 1, '1', '--'),
+(31, 1, '1', '--'),
+(32, 1, '1', '--');
 
 -- --------------------------------------------------------
 
@@ -86,22 +89,22 @@ INSERT INTO `asistencia` (`alumno_IdAlumno`, `clase_IdClase`, `Asistio`, `Observ
 --
 
 CREATE TABLE IF NOT EXISTS `centroeducativo` (
-`IdCentroEducativo` int(11) NOT NULL,
-  `IdDocente` int(11) NOT NULL,
+  `IdCentroEducativo` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(145) NOT NULL,
-  `Ubicacion` varchar(45) DEFAULT NULL
+  `Ubicacion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IdCentroEducativo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `centroeducativo`
 --
 
-INSERT INTO `centroeducativo` (`IdCentroEducativo`, `IdDocente`, `Descripcion`, `Ubicacion`) VALUES
-(1, 1, 'Ofelia Velasquez', '--'),
-(2, 2, 'Simon Bolivar', '--'),
-(3, 3, 'Jimenez Pimentel', '--'),
-(4, 4, '0620 Aplicacion', '--'),
-(5, 2, 'Virgen Dolorosa', NULL);
+INSERT INTO `centroeducativo` (`IdCentroEducativo`, `Descripcion`, `Ubicacion`) VALUES
+(1, 'Ofelia Velasquez', '--'),
+(2, 'Simon Bolivar', '--'),
+(3, 'Jimenez Pimentel', '--'),
+(4, '0620 Aplicacion', '--'),
+(5, 'Virgen Dolorosa', NULL);
 
 -- --------------------------------------------------------
 
@@ -110,9 +113,11 @@ INSERT INTO `centroeducativo` (`IdCentroEducativo`, `IdDocente`, `Descripcion`, 
 --
 
 CREATE TABLE IF NOT EXISTS `clase` (
-`IdClase` int(11) NOT NULL,
+  `IdClase` int(11) NOT NULL AUTO_INCREMENT,
   `IdCurso` int(11) NOT NULL,
-  `Fecha` date NOT NULL
+  `Fecha` date NOT NULL,
+  PRIMARY KEY (`IdClase`),
+  KEY `IdCurso_idx` (`IdCurso`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -132,17 +137,17 @@ INSERT INTO `clase` (`IdClase`, `IdCurso`, `Fecha`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `criterio` (
-`IdCriterio` int(11) NOT NULL,
-  `IdTipoCriterio` int(11) NOT NULL,
-  `Descripcion` varchar(145) NOT NULL
+  `IdCriterio` int(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(145) NOT NULL,
+  PRIMARY KEY (`IdCriterio`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `criterio`
 --
 
-INSERT INTO `criterio` (`IdCriterio`, `IdTipoCriterio`, `Descripcion`) VALUES
-(1, 1, 'Resolucion de ejercicios');
+INSERT INTO `criterio` (`IdCriterio`, `Descripcion`) VALUES
+(1, 'Resolucion de ejercicios');
 
 -- --------------------------------------------------------
 
@@ -151,10 +156,13 @@ INSERT INTO `criterio` (`IdCriterio`, `IdTipoCriterio`, `Descripcion`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `curso` (
-`IdCurso` int(11) NOT NULL,
+  `IdCurso` int(11) NOT NULL AUTO_INCREMENT,
   `IdSeccion` int(11) NOT NULL,
   `Descripcion` varchar(145) NOT NULL,
-  `Objetivo` varchar(145) NOT NULL
+  `Objetivo` varchar(145) NOT NULL,
+  PRIMARY KEY (`IdCurso`),
+  KEY `IdCentroEducativo_idx` (`IdSeccion`),
+  KEY `IdSeccion` (`IdSeccion`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -170,11 +178,37 @@ INSERT INTO `curso` (`IdCurso`, `IdSeccion`, `Descripcion`, `Objetivo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalledocentecentroeducativo`
+--
+
+CREATE TABLE IF NOT EXISTS `detalledocentecentroeducativo` (
+  `IdDocente` int(11) NOT NULL,
+  `IdCentroEducativo` int(11) NOT NULL,
+  KEY `IdDocente` (`IdDocente`,`IdCentroEducativo`),
+  KEY `IdCentroEducativo` (`IdCentroEducativo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalledocentecurso`
+--
+
+CREATE TABLE IF NOT EXISTS `detalledocentecurso` (
+  `IdDocente` int(11) NOT NULL,
+  `IdCurso` int(11) NOT NULL,
+  KEY `IdDocente` (`IdDocente`,`IdCurso`),
+  KEY `IdCurso` (`IdCurso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `docente`
 --
 
 CREATE TABLE IF NOT EXISTS `docente` (
-`IdDocente` int(11) NOT NULL,
+  `IdDocente` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(145) NOT NULL,
   `ApellidoPaterno` varchar(145) NOT NULL,
   `ApellidoMaterno` varchar(145) NOT NULL,
@@ -184,7 +218,8 @@ CREATE TABLE IF NOT EXISTS `docente` (
   `Sexo` varchar(1) DEFAULT NULL,
   `Dni` varchar(8) DEFAULT NULL,
   `Clave` varchar(200) DEFAULT NULL,
-  `Especialidad` varchar(20) NOT NULL
+  `Especialidad` varchar(20) NOT NULL,
+  PRIMARY KEY (`IdDocente`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -204,17 +239,22 @@ INSERT INTO `docente` (`IdDocente`, `Nombre`, `ApellidoPaterno`, `ApellidoMatern
 --
 
 CREATE TABLE IF NOT EXISTS `evaluacion` (
-  `IdPeriodo` int(11) NOT NULL,
+  `IdCurso` int(11) NOT NULL,
   `IdCriterio` int(11) NOT NULL,
-  `Nota` double(2,0) NOT NULL
+  `IdAlumno` int(11) NOT NULL,
+  `Nota` double(2,0) NOT NULL,
+  KEY `fk_periodo_has_criterio_criterio1_idx` (`IdCriterio`),
+  KEY `fk_periodo_has_criterio_periodo1_idx` (`IdCurso`),
+  KEY `IdCurso` (`IdCurso`),
+  KEY `IdAlumno` (`IdAlumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `evaluacion`
 --
 
-INSERT INTO `evaluacion` (`IdPeriodo`, `IdCriterio`, `Nota`) VALUES
-(1, 1, 20);
+INSERT INTO `evaluacion` (`IdCurso`, `IdCriterio`, `IdAlumno`, `Nota`) VALUES
+(1, 1, 29, 20);
 
 -- --------------------------------------------------------
 
@@ -223,10 +263,12 @@ INSERT INTO `evaluacion` (`IdPeriodo`, `IdCriterio`, `Nota`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `grado` (
-  `IdGrado` int(11) NOT NULL,
+  `IdGrado` int(11) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(10) NOT NULL,
-  `IdCentroEducativo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `IdCentroEducativo` int(11) NOT NULL,
+  PRIMARY KEY (`IdGrado`),
+  KEY `IdCentroEducativo` (`IdCentroEducativo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `grado`
@@ -242,34 +284,15 @@ INSERT INTO `grado` (`IdGrado`, `Descripcion`, `IdCentroEducativo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `periodo`
---
-
-CREATE TABLE IF NOT EXISTS `periodo` (
-  `IdCurso` int(11) NOT NULL,
-  `IdTipoPeriodo` int(11) NOT NULL,
-  `IdPeriodo` int(11) NOT NULL,
-  `FechaInicio` date NOT NULL,
-  `FechaTermino` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `periodo`
---
-
-INSERT INTO `periodo` (`IdCurso`, `IdTipoPeriodo`, `IdPeriodo`, `FechaInicio`, `FechaTermino`) VALUES
-(1, 1, 1, '2014-11-01', '2015-01-30');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `seccion`
 --
 
 CREATE TABLE IF NOT EXISTS `seccion` (
-`IdSeccion` int(11) NOT NULL,
+  `IdSeccion` int(11) NOT NULL AUTO_INCREMENT,
   `IdGrado` int(11) NOT NULL,
-  `Descripcion` varchar(1) NOT NULL
+  `Descripcion` varchar(1) NOT NULL,
+  PRIMARY KEY (`IdSeccion`),
+  KEY `IdGrado_idx` (`IdGrado`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -280,177 +303,6 @@ INSERT INTO `seccion` (`IdSeccion`, `IdGrado`, `Descripcion`) VALUES
 (1, 2, 'A'),
 (2, 2, 'C');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipocriterio`
---
-
-CREATE TABLE IF NOT EXISTS `tipocriterio` (
-`IdTipoCriterio` int(11) NOT NULL,
-  `Descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Volcado de datos para la tabla `tipocriterio`
---
-
-INSERT INTO `tipocriterio` (`IdTipoCriterio`, `Descripcion`) VALUES
-(1, 'Razonamiento y Demostracion'),
-(2, 'Comunicacion '),
-(3, 'Resolucion de Problemas'),
-(4, 'Actitud ante el area');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipoperiodo`
---
-
-CREATE TABLE IF NOT EXISTS `tipoperiodo` (
-`IdTipoPeriodo` int(11) NOT NULL,
-  `Descripcion` varchar(145) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `tipoperiodo`
---
-
-INSERT INTO `tipoperiodo` (`IdTipoPeriodo`, `Descripcion`) VALUES
-(1, 'Semestral'),
-(2, 'Trimestral');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `alumno`
---
-ALTER TABLE `alumno`
- ADD PRIMARY KEY (`IdAlumno`);
-
---
--- Indices de la tabla `asistencia`
---
-ALTER TABLE `asistencia`
- ADD PRIMARY KEY (`alumno_IdAlumno`,`clase_IdClase`), ADD KEY `fk_alumno_has_clase_clase1_idx` (`clase_IdClase`), ADD KEY `fk_alumno_has_clase_alumno1_idx` (`alumno_IdAlumno`);
-
---
--- Indices de la tabla `centroeducativo`
---
-ALTER TABLE `centroeducativo`
- ADD PRIMARY KEY (`IdCentroEducativo`), ADD KEY `IdDocente_idx` (`IdDocente`);
-
---
--- Indices de la tabla `clase`
---
-ALTER TABLE `clase`
- ADD PRIMARY KEY (`IdClase`), ADD KEY `IdCurso_idx` (`IdCurso`);
-
---
--- Indices de la tabla `criterio`
---
-ALTER TABLE `criterio`
- ADD PRIMARY KEY (`IdCriterio`), ADD KEY `IdTipoCriterio_idx` (`IdTipoCriterio`);
-
---
--- Indices de la tabla `curso`
---
-ALTER TABLE `curso`
- ADD PRIMARY KEY (`IdCurso`), ADD KEY `IdCentroEducativo_idx` (`IdSeccion`), ADD KEY `IdSeccion` (`IdSeccion`);
-
---
--- Indices de la tabla `docente`
---
-ALTER TABLE `docente`
- ADD PRIMARY KEY (`IdDocente`);
-
---
--- Indices de la tabla `evaluacion`
---
-ALTER TABLE `evaluacion`
- ADD PRIMARY KEY (`IdPeriodo`,`IdCriterio`), ADD KEY `fk_periodo_has_criterio_criterio1_idx` (`IdCriterio`), ADD KEY `fk_periodo_has_criterio_periodo1_idx` (`IdPeriodo`);
-
---
--- Indices de la tabla `grado`
---
-ALTER TABLE `grado`
- ADD PRIMARY KEY (`IdGrado`), ADD KEY `IdCentroEducativo` (`IdCentroEducativo`);
-
---
--- Indices de la tabla `periodo`
---
-ALTER TABLE `periodo`
- ADD PRIMARY KEY (`IdPeriodo`), ADD KEY `fk_curso_has_tipoperiodo_tipoperiodo1_idx` (`IdTipoPeriodo`), ADD KEY `fk_curso_has_tipoperiodo_curso1_idx` (`IdCurso`);
-
---
--- Indices de la tabla `seccion`
---
-ALTER TABLE `seccion`
- ADD PRIMARY KEY (`IdSeccion`), ADD KEY `IdGrado_idx` (`IdGrado`);
-
---
--- Indices de la tabla `tipocriterio`
---
-ALTER TABLE `tipocriterio`
- ADD PRIMARY KEY (`IdTipoCriterio`);
-
---
--- Indices de la tabla `tipoperiodo`
---
-ALTER TABLE `tipoperiodo`
- ADD PRIMARY KEY (`IdTipoPeriodo`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `alumno`
---
-ALTER TABLE `alumno`
-MODIFY `IdAlumno` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
---
--- AUTO_INCREMENT de la tabla `centroeducativo`
---
-ALTER TABLE `centroeducativo`
-MODIFY `IdCentroEducativo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT de la tabla `clase`
---
-ALTER TABLE `clase`
-MODIFY `IdClase` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `criterio`
---
-ALTER TABLE `criterio`
-MODIFY `IdCriterio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT de la tabla `curso`
---
-ALTER TABLE `curso`
-MODIFY `IdCurso` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `docente`
---
-ALTER TABLE `docente`
-MODIFY `IdDocente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `seccion`
---
-ALTER TABLE `seccion`
-MODIFY `IdSeccion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `tipocriterio`
---
-ALTER TABLE `tipocriterio`
-MODIFY `IdTipoCriterio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `tipoperiodo`
---
-ALTER TABLE `tipoperiodo`
-MODIFY `IdTipoPeriodo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
@@ -459,58 +311,54 @@ MODIFY `IdTipoPeriodo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- Filtros para la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
-ADD CONSTRAINT `fk_alumno_has_clase_alumno1` FOREIGN KEY (`alumno_IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_alumno_has_clase_clase1` FOREIGN KEY (`clase_IdClase`) REFERENCES `clase` (`IdClase`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `centroeducativo`
---
-ALTER TABLE `centroeducativo`
-ADD CONSTRAINT `IdDocente` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_alumno_has_clase_alumno1` FOREIGN KEY (`alumno_IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_alumno_has_clase_clase1` FOREIGN KEY (`clase_IdClase`) REFERENCES `clase` (`IdClase`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `clase`
 --
 ALTER TABLE `clase`
-ADD CONSTRAINT `IdCurso` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `criterio`
---
-ALTER TABLE `criterio`
-ADD CONSTRAINT `IdTipoCriterio` FOREIGN KEY (`IdTipoCriterio`) REFERENCES `tipocriterio` (`IdTipoCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `IdCurso` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `curso`
 --
 ALTER TABLE `curso`
-ADD CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`IdSeccion`) REFERENCES `seccion` (`IdSeccion`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`IdSeccion`) REFERENCES `seccion` (`IdSeccion`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detalledocentecentroeducativo`
+--
+ALTER TABLE `detalledocentecentroeducativo`
+  ADD CONSTRAINT `detalledocentecentroeducativo_ibfk_2` FOREIGN KEY (`IdCentroEducativo`) REFERENCES `centroeducativo` (`IdCentroEducativo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalledocentecentroeducativo_ibfk_1` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detalledocentecurso`
+--
+ALTER TABLE `detalledocentecurso`
+  ADD CONSTRAINT `detalledocentecurso_ibfk_2` FOREIGN KEY (`IdCurso`) REFERENCES `clase` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalledocentecurso_ibfk_1` FOREIGN KEY (`IdDocente`) REFERENCES `docente` (`IdDocente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `evaluacion`
 --
 ALTER TABLE `evaluacion`
-ADD CONSTRAINT `fk_periodo_has_criterio_criterio1` FOREIGN KEY (`IdCriterio`) REFERENCES `criterio` (`IdCriterio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_periodo_has_criterio_periodo1` FOREIGN KEY (`IdPeriodo`) REFERENCES `periodo` (`IdPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `evaluacion_ibfk_1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `evaluacion_ibfk_2` FOREIGN KEY (`IdCriterio`) REFERENCES `criterio` (`IdCriterio`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `evaluacion_ibfk_3` FOREIGN KEY (`IdAlumno`) REFERENCES `alumno` (`IdAlumno`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `grado`
 --
 ALTER TABLE `grado`
-ADD CONSTRAINT `grado_ibfk_1` FOREIGN KEY (`IdCentroEducativo`) REFERENCES `centroeducativo` (`IdCentroEducativo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `periodo`
---
-ALTER TABLE `periodo`
-ADD CONSTRAINT `fk_curso_has_tipoperiodo_curso1` FOREIGN KEY (`IdCurso`) REFERENCES `curso` (`IdCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_curso_has_tipoperiodo_tipoperiodo1` FOREIGN KEY (`IdTipoPeriodo`) REFERENCES `tipoperiodo` (`IdTipoPeriodo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `grado_ibfk_1` FOREIGN KEY (`IdCentroEducativo`) REFERENCES `centroeducativo` (`IdCentroEducativo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `seccion`
 --
 ALTER TABLE `seccion`
-ADD CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE;
+  ADD CONSTRAINT `IdGrado` FOREIGN KEY (`IdGrado`) REFERENCES `grado` (`IdGrado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
