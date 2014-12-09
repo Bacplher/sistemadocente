@@ -145,7 +145,7 @@
     </div>
 </div>
 <div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
-<script src="lib/js/jquery.min.js"></script>
+<!--<script src="lib/js/jquery.min.js"></script>-->
 
 <script src="vista/layout/default/js/bootstrap.js"></script>
 <script src="vista/perfil/js/bootstrap-modalmanager.js"></script>

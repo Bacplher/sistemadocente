@@ -68,17 +68,72 @@ abstract class Consulta
     }
     public function selectperfildocente_ia($dato){
         $db = new conexion();
-        $consultaperfildocente = "SELECT especialidad.Descripcion AS Especialidad,
-                                  centroeducativo.Descripcion as Centro_Educativo,
-                                  curso.Descripcion AS Curso, grado.Descripcion AS Grado, seccion.Descripcion AS Seccion
-                                  FROM docente
-                                  LEFT JOIN especialidad ON docente.IdDocente=especialidad.IdDocente
-                                  LEFT JOIN centroeducativo ON docente.IdDocente=centroeducativo.IdDocente
-                                  LEFT JOIN curso ON centroeducativo.IdCentroEducativo=curso.IdCentroEducativo
-                                  LEFT JOIN grado ON curso.IdCurso=grado.IdCurso
-                                  LEFT JOIN seccion ON grado.IdGrado=seccion.IdGrado
-                                  WHERE Dni=$dato";
+        $consultaperfildocente = "SELECT especialidad.Descripcion AS Especialidad, centroeducativo.Descripcion as Centro_Educativo,
+                                   curso.Descripcion AS Curso, grado.Descripcion AS Grado, seccion.Descripcion AS Seccion 
+                                   FROM docente 
+                                   INNER JOIN especialidad ON docente.IdDocente=especialidad.IdDocente 
+                                   INNER JOIN centroeducativo ON docente.IdDocente=centroeducativo.IdDocente 
+                                   INNER JOIN grado ON centroeducativo.IdCentroEducativo=grado.IdCentroEducativo 
+                                   INNER JOIN seccion ON grado.IdGrado=seccion.IdGrado 
+                                   INNER JOIN curso ON curso.IdSeccion = curso.IdSeccion WHERE Dni=$dato";
         $sql=$db->prepare($consultaperfildocente);
+        $resultado=$sql->execute();
+        $db->cerrar();
+        return $sql->fetchAll();
+    }
+    
+    public function selectct($dato){
+      $db = new conexion();
+      $consultarcursocentrodetrabajo = "SELECT centroeducativo.IdCentroEducativo as IdCentroEducativo,
+                                        centroeducativo.Descripcion as centroeducativo
+                                        FROM centroeducativo
+                                        INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
+                                        WHERE docente.dni=$dato";
+      $sql=$db->prepare($consultarcursocentrodetrabajo);
+        $resultado=$sql->execute();
+        $db->cerrar();
+        return $sql->fetchAll();
+    }
+    
+    public function selectgrado($dato,$centroedu){
+      $db = new conexion();
+      $consultarcursogrado = "SELECT grado.IdGrado as codgrado, grado.Descripcion as dgrado
+                              FROM grado
+                              INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                              INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
+                              WHERE docente.dni=$dato and centroeducativo.IdCentroEducativo=$centroedu";
+      $sql=$db->prepare($consultarcursogrado);
+        $resultado=$sql->execute();
+        $db->cerrar();
+        return $sql->fetchAll();
+    }
+
+    public function selectseccion($dato,$centroedu,$grad){
+      $db = new conexion();
+      $consultarseccion = "SELECT seccion.IdSeccion as codseccion, seccion.Descripcion as dseccion
+                                FROM seccion 
+                                INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
+                                INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
+                                WHERE docente.dni=$dato and centroeducativo.IdCentroEducativo=$centroedu 
+                                and grado.IdGrado=$grad";
+      $sql=$db->prepare($consultarseccion);
+        $resultado=$sql->execute();
+        $db->cerrar();
+        return $sql->fetchAll();
+    }
+
+    public function selectcurso($dato,$centroedu,$grad,$secc){
+      $db = new conexion();
+      $consultarcurs = "SELECT curso.IdCurso as codcurso, curso.Descripcion as dcurso
+                                FROM curso
+                                INNER JOIN seccion ON  seccion.IdSeccion = curso.IdSeccion
+                                INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
+                                INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
+                                WHERE docente.dni=$dato and centroeducativo.IdCentroEducativo=$centroedu 
+                                and grado.IdGrado=$grad and seccion.IdSeccion=$secc";
+      $sql=$db->prepare($consultarcurs);
         $resultado=$sql->execute();
         $db->cerrar();
         return $sql->fetchAll();
