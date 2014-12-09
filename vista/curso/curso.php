@@ -40,16 +40,13 @@ $(document).ready(function(){
         $.post('/sistemadocente/curso/getseccion','codgrado=' + $("#grado").val(),function(datoss){
             $('#seccion').html('');
                 var html = "";
-                html = html+"<option selected='selected' disabled='disabled'>Seleccionar</option>";
+                html = html + "<option selected='selected' disabled='disabled'>Seleccionar</option>";
             for(var i = 0; i < datoss.length; i++){
                 html = html+'<option value="' + datoss[i].codseccion + '">' + datoss[i].dseccion + '</option>';
-                
             }
-
             $("#seccion").append(html);
         },'json');
     }
-
     $("#grado").change(function(){
         if(!$("#grado").val()){
             $("#seccion").html('');
@@ -58,6 +55,45 @@ $(document).ready(function(){
             seccion();
         }
     });
+    var curso = function(){
+        $.post('/sistemadocente/curso/getcurso','codseccion=' + $("#seccion").val(),function(da){
+            $('#curso').html('');
+            var e = "";
+            e = e + "<option selected='selected' disabled='disabled'>Seleccionar</option>";
+            for(var i = 0; i < da.length; i++){
+                e = e + '<option value="' + da[i].codcurso + '">' + da[i].dcurso + '</option>';
+            }
+            $("#curso").append(e);
+        },'json');
+    }
+    $("#seccion").change(function(){
+        if(!$("#seccion").val()){
+            $("#curso").html('');
+        }
+        else{
+            curso();
+        }
+    });/*
+    var curso = function(){
+        $.post('/sistemadocente/curso/getcurso','codseccion=' + $("#seccion").val(),function(datosss){
+            $('#seccion').html('');
+                var a = "";
+                a = a +"<option selected='selected' disabled='disabled'>Seleccionar</option>";
+            for(var i = 0; i < datosss.length; i++){
+                a = a +'<option value="' + datosss[i].codcurso + '">' + datosss[i].dcurso + '</option>';   
+            }
+            $("#curso").append(a);
+        },'json');
+    }
+    $("#seccion").change(function(){
+        if(!$("#seccion")za <d.val()){
+            $("#curso").html('');
+        }
+        else{
+            curso();
+        }
+    });
+*/
     
 /*
     var grado = function(){
@@ -106,7 +142,7 @@ $(document).ready(function(){
         <br>
         Seccion :<br>
         <select id="seccion">
-            
+
         </select>
         <br>
         Curso :<br>
