@@ -1,6 +1,7 @@
 <link href="vista/curso/css/estilos_curso.css" rel="stylesheet" type="text/css" />
 <SCRIPT TYPE="text/javascript">
 $(document).ready(function(){
+    $("#divmenuopciones").hide("slow");
     /*
     var grado = function(){
         $.post('/sistemadocente/curso/getgrado','IdCentroEducativo=' + $("#centroeducativo").val(),function(datos){
@@ -73,6 +74,13 @@ $(document).ready(function(){
         else{
             curso();
         }
+
+    $("#curso").change(function(){
+        if($("#curso").val()){
+            $("#divmenuopciones").show("slow");
+        }
+    })
+
     });/*
     var curso = function(){
         $.post('/sistemadocente/curso/getcurso','codseccion=' + $("#seccion").val(),function(datosss){
@@ -149,6 +157,13 @@ $(document).ready(function(){
         <select id="curso">
 
         </select>
+          
+            <br>
+            <div id="divmenuopciones">
+            <a href="#">[Alumnos]</a><br>
+            <a href="#">[Asistencia]</a><br>
+            <a href="#">[Evaluacion]</a>
+            </div>
         </form>
     </div>
 </div>
