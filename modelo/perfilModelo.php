@@ -11,6 +11,7 @@ class perfilModelo  extends Consulta{
 
     public $table = 'docente';
     public $campo= 'IdDocente';
+    public $IdDocente;
     public $Nombre;
     public $ApellidoPaterno;
     public $ApellidoMaterno;
@@ -18,8 +19,9 @@ class perfilModelo  extends Consulta{
     public $Celular;
     public $Email;
     public $Sexo;
+    public $Clave;
     public $Dni;
-    public $Especialidad;
+
 
 
     public function perfilDocente_dp($dato){
@@ -33,9 +35,8 @@ class perfilModelo  extends Consulta{
         return $consultaSQL;
     }
 
-    public function acualizarPerfil(){
-        $consultaSQL =$this->_db->query( "UPDATE  docente  set Dni='$this->Dni' ,Nombre='$this->Nombre',ApellidoPaterno='$this->ApellidoPaterno',ApellidoMaterno='$this->ApellidoMaterno',Edad='$this->Edad', Celular='$this->Celular', Email='$this->Email',Sexo='$this->Sexo',Dni='$this->Dni',Clave='$this->Clave',Especialidad='$this->Especialidad'  WHERE Dni='$this->Dni'");
-        var_dump($consultaSQL);
-        exit;
+    public function acualizarPerfil($dato){
+        $consultaSQL =$this->_db->query( "UPDATE  docente  set Nombre='$this->Nombre',ApellidoPaterno='$this->ApellidoPaterno',ApellidoMaterno='$this->ApellidoMaterno',Edad='$this->Edad', Celular='$this->Celular', Email='$this->Email',Sexo='$this->Sexo',Dni='$this->Dni',Clave='$this->Clave',Especialidad='$this->Especialidad'  WHERE IdDocente=$dato");
+
     }
 } 

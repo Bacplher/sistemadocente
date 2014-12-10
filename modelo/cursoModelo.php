@@ -8,7 +8,7 @@ class cursoModelo extends Consulta{
     public $table = 'curso';
 
 
-    public function curso()
+    public function curso1()
     {
         $consultaSQL = $this->Select($this->table);
         return $consultaSQL;
@@ -17,7 +17,8 @@ public function centro($dato){
         $centroeducativo = $this->_db->query("SELECT centroeducativo.IdCentroEducativo as IdCentroEducativo,
                                         centroeducativo.Descripcion as centroeducativo
                                         FROM centroeducativo
-                                        INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
+                                        INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                        INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
                                         WHERE docente.IdDocente=$dato");
         return $centroeducativo->fetchAll();
     }
@@ -26,7 +27,8 @@ public function centro($dato){
         $grado = $this->_db->query("SELECT grado.IdGrado as codgrado, grado.Descripcion as dgrado
                               FROM grado
                               INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
-                              INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
+                              INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                              INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
                               WHERE docente.IdDocente=$dato and centroeducativo.IdCentroEducativo=$centroeduc");
         $grado->setFetchMode(PDO::FETCH_ASSOC);
         return $grado->fetchAll();
@@ -37,23 +39,25 @@ public function centro($dato){
                                 FROM seccion 
                                 INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
                                 INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
-                                INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
+                                INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
                                 WHERE docente.IdDocente=$dato
                                 and grado.IdGrado=$grad");
         $seccion->setFetchMode(PDO::FETCH_ASSOC);
         return $seccion->fetchAll();
     }
 
-    public function curso1($secc){
+    public function curso($secc,$dato){
         $curso = $this->_db->query("SELECT curso.IdCurso as codcurso, curso.Descripcion as dcurso
-                                FROM curso
+                                    FROM curso
                                 INNER JOIN seccion ON  seccion.IdSeccion = curso.IdSeccion
                                 INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
                                 INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
-                                INNER JOIN docente ON docente.IdDocente = centroeducativo.IdDocente
-                                WHERE docente.dni=$this->dato and seccion.IdSeccion=$secc");
+                                INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+                                WHERE docente.IdDocente=$dato and seccion.IdSeccion=$secc");
         $curso->setFetchMode(PDO::FETCH_ASSOC);
-        return $curso->fetchAll;
+        return $curso->fetchAll();
     }
     /*
     public function centroeducativo(){

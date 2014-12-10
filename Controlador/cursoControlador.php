@@ -11,7 +11,7 @@ class cursoControlador extends Controlador{
     }
     public function index()
     {
-        $datos= $this->_curso->curso();
+        $datos= $this->_curso->curso1();
         $this->_vista->curso = $datos;
         $this->_vista->ct = $this->_curso->centro(Session::get('IdDocente'));
         $this->_vista->renderizar('curso');
@@ -38,4 +38,14 @@ class cursoControlador extends Controlador{
         echo json_encode($datoss);
     }
 
+    public function curso(){
+        if($this->getInt('codseccion'))
+        echo json_encode($this->_curso->curso($this->getInt('codseccion'),Session::get('IdDocente')));
+    }
+
+    public function getcurso(){
+        $seccion = $_POST["codseccion"];
+        $da = $this->_curso->curso($seccion,Session::get('IdDocente'));
+        echo json_encode($da);
+    }
 }

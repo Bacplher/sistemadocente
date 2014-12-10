@@ -24,17 +24,27 @@ class perfilControlador extends Controlador {
     }
 
     public function actualizar(){
-        $this->_perfil->Nombre = @$_POST['Nombre'];
-        $this->_perfil->ApellidoPaterno = @$_POST['ApellidoPaterno'];
-        $this->_perfil->ApellidoMaterno = @$_POST['ApellidoMaterno'];
-        $this->_perfil->Edad = @$_POST['Edad'];
-        $this->_perfil->Celular = @$_POST['Celular'];
-        $this->_perfil->Email = @$_POST['Email'];
-        $this->_perfil->Sexo = @$_POST['Sexo'];
-        $this->_perfil->Clave = @$_POST['Clave'];
-        $this->_perfil->Especialidad = @$_POST['Especialidad'];
-        $this->_perfil->acualizarPerfil();
-        $this->redireccionar('perfil');
+        //$info =  array();
+        $this->_perfil->Nombre=$_POST['Nombre'];
+        $this->_perfil->ApellidoPaterno=$_POST['ApellidoPaterno'];
+        $this->_perfil->ApellidoMaterno=$_POST['ApellidoMaterno'];
+        $this->_perfil->Edad=$_POST['Edad'];
+        $this->_perfil->Celular=$_POST['Celular'];
+        $this->_perfil->Email=$_POST['Email'];
+        $this->_perfil->Sexo=$_POST['Sexo'];
+        $this->_perfil->Dni=$_POST['Dni'];
+        $this->_perfil->Clave=$_POST['Clave'];
+        $this->_perfil->Especialidad=$_POST['Especialidad'];
+        $this->_perfil->acualizarPerfil(Session::get('IdDocente'));
+
+        //foreach($data as $key => $item){
+         //   $info[$key] = $item;
+        //}
+         //echo json_encode($this->_perfil->Nombre=$_POST['Nombre']);
+         //echo json_encode($this->_perfil->Clave=$_POST['Clave']);
+
+
+
     }
 
 }
