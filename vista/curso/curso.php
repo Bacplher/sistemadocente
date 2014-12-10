@@ -132,7 +132,7 @@ $(document).ready(function(){
     <br/>
     <div class="col-md-4">
         <form>
-            Centro educativo: 
+            Centro Educativo:
         <select id="centroeducativo">
 
             <?php
@@ -158,7 +158,7 @@ $(document).ready(function(){
 
         </select>
           
-            <br>
+            <br/>
             <div id="divmenuopciones">
             <a href="#">[Alumnos]</a><br>
             <a href="#">[Asistencia]</a><br>

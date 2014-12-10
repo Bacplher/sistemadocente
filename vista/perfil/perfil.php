@@ -91,7 +91,8 @@
 
 <div id="responsive1" class="modal hide fade" tabindex="-1" data-width="760" align="center">
     <fieldset id="perfildocente">
-        <legend id="perfildocente2">Datos Académicos</legend>
+
+        <legend id="perfildocente2-modificar">Datos Académicos</legend>
     <table align="center" id="tabla-infoacademica" class='table table-bordered table-hover'>
         <tr id="cabeceratable-info" class="cualquiercosa">
             <th>Centro Educativo</th>
@@ -105,6 +106,9 @@
         </tr>
     </table>
         </fieldset>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn">Cerrar</button>
+    </div>
 </div>
 <div id="responsive" class="modal hide fade" tabindex="-1" data-width="760" align="center">
     <br/>
