@@ -1,7 +1,7 @@
 <link href="vista/curso/css/estilos_curso.css" rel="stylesheet" type="text/css" />
 <SCRIPT TYPE="text/javascript">
 $(document).ready(function(){
-    $("#divmenuopciones").hide("slow");
+    $("#divmenuopciones").hide();
     /*
     var grado = function(){
         $.post('/sistemadocente/curso/getgrado','IdCentroEducativo=' + $("#centroeducativo").val(),function(datos){
@@ -67,6 +67,7 @@ $(document).ready(function(){
             $("#curso").append(e);
         },'json');
     }
+
     $("#seccion").change(function(){
         if(!$("#seccion").val()){
             $("#curso").html('');
@@ -79,6 +80,7 @@ $(document).ready(function(){
         if($("#curso").val()){
             $("#divmenuopciones").show("slow");
         }
+
     })
 
     });/*
@@ -127,12 +129,35 @@ $(document).ready(function(){
     });
   */    
 });
+    function alumnos(){
+        var idcurso = $("#curso").val();
+        $.post('/sistemadocente/curso/getalumnos',{codcurso:idcurso}, function(data){
+            var t = "<table><tr>";
+            t+="<th>CodAlumno</th>";
+            t+="<th>Nombre</th>";
+            t+="<th>Apellido Paterno</th>";
+            t+="<th>Apellido Materno</th>";
+            t+="<th>Email</th></tr>";
+
+            for(var i = 0; i < data.length; i++){
+                t+="<tr><td>"+data[i].codalumno+"</td>";
+                t+="<td>"+data[i].nombre+"</td>";
+                t+="<td>"+data[i].ApPaterno+"</td>";
+                t+="<td>"+data[i].ApMaterno+"</td>";
+                t+="<td>"+data[i].Email+"</td></tr>";
+            }
+            t+="</table>";
+            $("#alumnomenu").html(t);
+        },'json');
+    }
+
 </SCRIPT>
 <div id="contenedorcurso">
     <br/>
     <div class="col-md-4">
-        <form>
-            Centro Educativo:
+        <!--<form>-->
+        <!--<div style="display: inline-block">-->
+            Centro educativo: 
         <select id="centroeducativo">
 
             <?php
@@ -157,13 +182,20 @@ $(document).ready(function(){
         <select id="curso">
 
         </select>
-          
-            <br/>
+
+            <br>
+        <br>
             <div id="divmenuopciones">
-            <a href="#">[Alumnos]</a><br>
-            <a href="#">[Asistencia]</a><br>
-            <a href="#">[Evaluacion]</a>
+            <a href="javascript:void(0)" id="divalumno" onclick="alumnos()">[Alumnos]</a><br>
+            <a href="javascript:void(0)" id="divasistencia" onclick="asistencia()">[Asistencia]</a><br>
+            <a href="javascript:void(0)" id="divevalucion" onclick="evaluacion()" >[Evaluacion]</a>
             </div>
-        </form>
+        <!--</div>-->
+        <!--</form>-->
+    </div>
+    <div class="col-md-8">
+        <div id="alumnomenu"> <!--style="display: inline-block"-->
+
+        </div>
     </div>
 </div>

@@ -59,6 +59,20 @@ public function centro($dato){
         $curso->setFetchMode(PDO::FETCH_ASSOC);
         return $curso->fetchAll();
     }
+
+    public function alumnos($dato){
+        $alumno = $this->_db->query("SELECT alumno.IdAlumno as codalumno ,alumno.Nombre as nombre, alumno.ApellidoPaterno as ApPaterno, alumno.ApellidoMaterno as ApMaterno, alumno.Email as Email
+                                    FROM alumno
+                                INNER JOIN curso ON curso.IdCurso = alumno.IdCurso
+                                INNER JOIN seccion ON  seccion.IdSeccion = curso.IdSeccion
+                                INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
+                                INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                                INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+                                WHERE curso.IdCurso=$dato");
+        $alumno->setFetchMode(PDO::FETCH_ASSOC);
+        return $alumno->fetchAll();
+    }
     /*
     public function centroeducativo(){
     	$consultaSQL = 	$this->selectct($this->dato);

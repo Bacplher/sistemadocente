@@ -48,4 +48,9 @@ class cursoControlador extends Controlador{
         $da = $this->_curso->curso($seccion,Session::get('IdDocente'));
         echo json_encode($da);
     }
+    public function getalumnos(){
+        $curso = $_POST["codcurso"];
+        $alumnos1 = $this->_curso->alumnos($curso);
+        echo json_encode($alumnos1);
+    }
 }
