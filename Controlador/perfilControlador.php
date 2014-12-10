@@ -23,5 +23,18 @@ class perfilControlador extends Controlador {
         $this->_vista->renderizar('perfil');
     }
 
-    
+    public function actualizar(){
+        $this->_perfil->Nombre = @$_POST['Nombre'];
+        $this->_perfil->ApellidoPaterno = @$_POST['ApellidoPaterno'];
+        $this->_perfil->ApellidoMaterno = @$_POST['ApellidoMaterno'];
+        $this->_perfil->Edad = @$_POST['Edad'];
+        $this->_perfil->Celular = @$_POST['Celular'];
+        $this->_perfil->Email = @$_POST['Email'];
+        $this->_perfil->Sexo = @$_POST['Sexo'];
+        $this->_perfil->Clave = @$_POST['Clave'];
+        $this->_perfil->Especialidad = @$_POST['Especialidad'];
+        $this->_perfil->acualizarPerfil();
+        $this->redireccionar('perfil');
+    }
+
 }

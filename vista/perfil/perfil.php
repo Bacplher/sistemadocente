@@ -1,5 +1,6 @@
 
 <link href="vista/layout/default/css/bootstrap.css" rel="stylesheet" />
+<script src="vista/perfil/js/ajax.js" > </script>
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
     var $a;
@@ -7,6 +8,7 @@
         window.open(a ,"width=500px,height=500px");
     }
 </script>
+
 
 <link href="vista/perfil/css/estilos_index.css" rel="stylesheet" type="text/css" />
 <link href="vista/perfil/css/bootstrap-modal.css" rel="stylesheet" />
@@ -28,7 +30,10 @@
             <?php
             } ?>
 
+
         </fieldset>
+
+
     </div>
 
     <div align="center" class="col-md-8">
@@ -57,7 +62,7 @@
             <label id="datosgenerales" >DNI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
             <input type="text" id="datos" value="<?php echo $this->perfil[0]['Dni']; ?>" OnFocus="this.blur()"><br/>
             <label id="datosgenerales" >Especialidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-            <input type="text" id="datos" value="<?php echo $this->datos_academicos[0]['Especialidad'];?>" OnFocus="this.blur()"><br/>
+            <input type="text" id="datos" value="<?php echo $this->perfil[0]['Especialidad'];?>" OnFocus="this.blur()"><br/>
             <div class="text-center">
                 <button class="demo btn btn-primary btn-large" data-toggle="modal" href="#responsive">Actualizar Datos</button>
             </div>
@@ -75,10 +80,10 @@
                 </tr>
                 <?php for ($i = 0; $i < count($this->datos_academicos); $i++): ?>
                     <tr>
-                        <th> <?php echo $this->datos_academicos[0]['Centro_Educativo']; ?> </th>
-                        <th> <?php echo $this->datos_academicos[0]['Grado']; ?>  </th>
-                        <th> <?php echo $this->datos_academicos[0]['Curso']; ?> </th>
-                        <th> <?php echo $this->datos_academicos[0]['Seccion']; ?></th>
+                        <th> <?php echo $this->datos_academicos[$i]['Centro_Educativo']; ?> </th>
+                        <th> <?php echo $this->datos_academicos[$i]['Grado']; ?>  </th>
+                        <th> <?php echo $this->datos_academicos[$i]['Curso']; ?> </th>
+                        <th> <?php echo $this->datos_academicos[$i]['Seccion']; ?></th>
 
                     </tr>
                 <?php endfor; ?>
@@ -104,45 +109,47 @@
              <th > <input type="text" width="100%" height="100%" /></th>
         </tr>
     </table>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
         </fieldset>
 </div>
 <div id="responsive" class="modal hide fade" tabindex="-1" data-width="760" align="center">
     <br/>
+
+    <form name="actualizar_perfil" action="" onsubmit="actualizarperfil(); return false">
     <fieldset id="perfildocente">
 
         <legend id="perfildocente2-modificar">Información Personal</legend>
         <label id="datosgenerales" >Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['Nombre']; ?>" ><br/>
+        <input type="text" id="datos" name="Nombre" value="<?php echo $this->perfil[0]['Nombre']; ?>" ><br/>
         <label id="datosgenerales" >Apellido Paterno&nbsp;:  </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['ApellidoPaterno']; ?>" ><br/>
+        <input type="text" id="datos" name="ApellidoPaterno" value="<?php echo $this->perfil[0]['ApellidoPaterno']; ?>" ><br/>
         <label id="datosgenerales" >Apellido Materno: </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['ApellidoMaterno']; ?>" > <br/>
+        <input type="text" id="datos" name="ApellidoMaterno" value="<?php echo $this->perfil[0]['ApellidoMaterno']; ?>" > <br/>
         <label id="datosgenerales" >Edad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['Edad']; ?>"> <br/>
+        <input type="text" id="datos" name="Edad" value="<?php echo $this->perfil[0]['Edad']; ?>"> <br/>
         <label id="datosgenerales" >Celular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['Celular']; ?>" ><br/>
+        <input type="text" id="datos" name="Celular" value="<?php echo $this->perfil[0]['Celular']; ?>" ><br/>
         <label id="datosgenerales" >E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['Email']; ?>" > <br/>
+        <input type="text" id="datos" name="Email" value="<?php echo $this->perfil[0]['Email']; ?>" > <br/>
         <label id="datosgenerales" >Sexo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value=" <?php
-        if ($this->perfil[0]['Sexo']=='M'){
-            echo 'Masculino';
-        }
-        else{
-            echo 'Femenino';
-        } ?>"><br/>
+        <input type="text" id="datos" name="Sexo" value="<?php echo $this->perfil[0]['Sexo']; ?>"><br/>
         <label id="datosgenerales" >DNI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value="<?php echo $this->perfil[0]['Dni']; ?>" ><br/>
-        <label id="datosgenerales" >Especialidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
-        <input type="text" id="datos" value="<?php echo $this->datos_academicos[0]['Especialidad'];
-             ?>" ><br/>
+        <input type="text" id="datos" name="Dni" value="<?php echo $this->perfil[0]['Dni']; ?>" ><br/>
+        <label id="datosgenerales" >Clave&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+        <input type="text" id="datos" name="Clave" value="<?php echo $this->perfil[0]['Clave']; ?>" ><br/>
+        <label id="datosgenerales" >Espcialidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+        <input type="text" id="datos" value="<?php echo $this->perfil[0]['Especialidad']; ?>"/>
 
     </fieldset>
 
     <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <input type="submit" class="btn btn-primary" value="Actualizar"/>
     </div>
+    </form>
 </div>
 <div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
 <!--<script src="lib/js/jquery.min.js"></script>-->
@@ -229,6 +236,7 @@
     });
 
 </script>
+
 
 <?php else:   ?>
 

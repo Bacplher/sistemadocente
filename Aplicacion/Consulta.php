@@ -56,10 +56,7 @@ abstract class Consulta
 
     public function selectperfildocente_dp($campo,$dato){
         $db = new conexion();
-        $consulta = "SELECT Nombre, ApellidoPaterno, ApellidoMaterno, Edad, Celular,
-                                  Email, Sexo, Dni
-                                  FROM docente
-                                  WHERE $campo= $dato";
+        $consulta = "SELECT * FROM docente WHERE $campo= $dato";
         $sql = $db->prepare($consulta);
         $resultado=$sql->execute();
         $db->cerrar();
@@ -68,14 +65,14 @@ abstract class Consulta
     }
     public function selectperfildocente_ia($dato){
         $db = new conexion();
-        $consultaperfildocente = "SELECT especialidad.Descripcion AS Especialidad, centroeducativo.Descripcion as Centro_Educativo,
-                                   curso.Descripcion AS Curso, grado.Descripcion AS Grado, seccion.Descripcion AS Seccion 
-                                   FROM docente 
-                                   INNER JOIN especialidad ON docente.IdDocente=especialidad.IdDocente 
-                                   INNER JOIN centroeducativo ON docente.IdDocente=centroeducativo.IdDocente 
-                                   INNER JOIN grado ON centroeducativo.IdCentroEducativo=grado.IdCentroEducativo 
-                                   INNER JOIN seccion ON grado.IdGrado=seccion.IdGrado 
-                                   INNER JOIN curso ON curso.IdSeccion = curso.IdSeccion WHERE IdDocente=$dato";
+        $consultaperfildocente = "SELECT  centroeducativo.Descripcion as Centro_Educativo,
+                                   curso.Descripcion AS Curso, grado.Descripcion AS Grado, seccion.Descripcion AS Seccion
+                                   FROM docente
+																	 INNER JOIN detalledocentecentroeducativo ON docente.IdDocente=detalledocentecentroeducativo.IdDocente
+                                   INNER JOIN centroeducativo ON detalledocentecentroeducativo.IdCentroEducativo=centroeducativo.IdCentroEducativo
+                                   INNER JOIN grado ON centroeducativo.IdCentroEducativo=grado.IdCentroEducativo
+                                   INNER JOIN seccion ON grado.IdGrado=seccion.IdGrado
+                                   INNER JOIN curso ON curso.IdSeccion = curso.IdSeccion WHERE docente.IdDocente=$dato";
         $sql=$db->prepare($consultaperfildocente);
         $resultado=$sql->execute();
         $db->cerrar();

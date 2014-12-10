@@ -8,6 +8,7 @@
     color: #ffffff;
     font-family:"Comic Sans MS";
     text-align: center;
+    width: 100%;
 }
 #cabeceratable-info:hover{
     background: #ffffff;

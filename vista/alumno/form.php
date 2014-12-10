@@ -1,6 +1,4 @@
-<script type="text/javascript">
 
-</script>
 <form method="post" action="<?php if (isset ($this->action)) echo $this->action ?>" id="frm"
       onsubmit="return validarAlumno()";>
 <h3><?php echo $this->titulo ?></h3>
