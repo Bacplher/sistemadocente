@@ -19,6 +19,10 @@
 
 
 <div id="contenedoralumno">
+    <button class="btn btn-info" data-toggle="modal" data-target="#miventana">
+        Abrir
+    </button><div id="miventana" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">jhgihbihbibibi</div>
+
     <br/>
     <div class="col-md-4">
         <?php if (isset($this->alumnos) && count($this->alumnos)) : ?>

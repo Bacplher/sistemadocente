@@ -2,6 +2,7 @@
 <SCRIPT TYPE="text/javascript">
 $(document).ready(function(){
     $("#divmenuopciones").hide();
+    $("#botoninsertar").hide();
     /*
     var grado = function(){
         $.post('/sistemadocente/curso/getgrado','IdCentroEducativo=' + $("#centroeducativo").val(),function(datos){
@@ -127,33 +128,70 @@ $(document).ready(function(){
            grado(); 
         }
     });
-  */    
-});
+  */
+
+});/*
+$(function(){
+    $("#mod").click(function(){
+        $('#myModal').modal('show')
+    }) ;
+})*/
+$(function(){
+
+    $("#prueba").click(function(){
+        $('#miventana').modal('show')
+    });
+    $("#as").click(function(){
+        $('#miventana').modal('show')
+    });
+    $("#insertaralumno").click(function(){
+        $('#miventana').modal('show')
+    });
+
+    $("#save").click(function(){
+        var param = $("#form_insertaralumno").serialize();
+        $.post("perfil/actualizar",param)
+    });
+})
+    function edit($dato){
+        alert($dato);
+    }
+    function eliminar($dato){
+        if (confirm("Realmente deseas eliminar este registro")){
+            $.post('/sistemadocente/curso/eliminaralumno','codalumno='+$dato,'json');}
+    }
+
     function alumnos(){
+        $("#botoninsertar").show("slow");
         var idcurso = $("#curso").val();
         $.post('/sistemadocente/curso/getalumnos',{codcurso:idcurso}, function(data){
             var t = "<table><tr>";
-            t+="<th>CodAlumno</th>";
-            t+="<th>Nombre</th>";
-            t+="<th>Apellido Paterno</th>";
-            t+="<th>Apellido Materno</th>";
-            t+="<th>Email</th></tr>";
-
+            t = t + "<th>CodAlumno</th>";
+            t= t +"<th>Nombre</th>";
+            t=t+"<th>Apellido Paterno</th>";
+            t=t+"<th>Apellido Materno</th>";
+            t=t+"<th>Email</th></tr>";
+            t=t+"<th></th></tr>";
+            t=t+"<th></th></tr>";
             for(var i = 0; i < data.length; i++){
-                t+="<tr><td>"+data[i].codalumno+"</td>";
-                t+="<td>"+data[i].nombre+"</td>";
-                t+="<td>"+data[i].ApPaterno+"</td>";
-                t+="<td>"+data[i].ApMaterno+"</td>";
-                t+="<td>"+data[i].Email+"</td></tr>";
+                t=t+"<tr><td>"+data[i].codalumno+"</td>";
+                t=t+"<td>"+data[i].nombre+"</td>";
+                t=t+"<td>"+data[i].ApPaterno+"</td>";
+                t=t+"<td>"+data[i].ApMaterno+"</td>";
+                t=t+"<td>"+data[i].Email+"</td>";
+                t=t+"<td><input id='"+data[i].codalumno+"' data-toggle='modal' type='image' src='<?php echo $_layoutParams['ruta_img']; ?>actualizar.png' width='20px' height='20px' value='editar'></td>";
+                t= t+"<td><input type='image' src='<?php echo $_layoutParams['ruta_img']; ?>eliminar.png' width='20px' height='20px' onclick='eliminar("+data[i].codalumno+")' value='editar'></td></tr>";
             }
             t+="</table>";
             $("#alumnomenu").html(t);
         },'json');
     }
 
+
 </SCRIPT>
 <div id="contenedorcurso">
-    <br/>
+
+        <br/>
     <div class="col-md-4">
         <!--<form>-->
         <!--<div style="display: inline-block">-->
@@ -194,8 +232,33 @@ $(document).ready(function(){
         <!--</form>-->
     </div>
     <div class="col-md-8">
+        <div id="botoninsertar">
+            <button id="insertaralumno" class="btn btn-info" data-toggle="modal">Insertar Alumno</button>
+        </div>
         <div id="alumnomenu"> <!--style="display: inline-block"-->
 
         </div>
     </div>
+</div>
+<div id="miventana" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <br>
+    <form id="form_insertaralumno" name="insertar_alumno">
+        <fieldset id="cursoalumno">
+            <legend id="perfildocente2-modificar">Insertar Alumno al Curso</legend>
+            <label id="datosgenerales" >Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="text" id="nombre" class="datos" name="Nombre"  ><br/>
+            <label id="datosgenerales" >Apellido Paterno&nbsp;:  </label>
+            <input type="text" id="apellidopaterno" class="datos" name="ApellidoPaterno" ><br/>
+            <label id="datosgenerales" >Apellido Materno: </label>
+            <input type="text" id="apellidomaterno" class="datos" name="ApellidoMaterno"  > <br/>
+            <label id="datosgenerales" >E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="text" id="email" class="datos" name="Email" > <br/>
+        </fieldset>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-primary">Cancelar</button>
+            <input type="button" id="save" class="btn btn-primary"  value="Insertar" onClick="document.location.reload(true)"  ></button>
+
+
+        </div>
+    </form>
 </div>
