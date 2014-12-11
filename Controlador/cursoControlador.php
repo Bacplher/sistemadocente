@@ -53,4 +53,14 @@ class cursoControlador extends Controlador{
         $alumnos1 = $this->_curso->alumnos($curso);
         echo json_encode($alumnos1);
     }
+    public function eliminaralumno(){
+        $codalumno = $_POST["codalumno"];
+        $dalumno = $this->_curso->deletealumno($codalumno);
+        echo json_encode($dalumno);
+    }
+
+    public function insertaralumno(){
+        $parametro = $_POST["param"];
+        return $parametro;
+    }
 }

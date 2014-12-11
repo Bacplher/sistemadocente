@@ -73,6 +73,11 @@ public function centro($dato){
         $alumno->setFetchMode(PDO::FETCH_ASSOC);
         return $alumno->fetchAll();
     }
+
+    public function deletealumno($dato){
+        $da = $this->_db->query("DELETE FROM alumno
+                                WHERE alumno.IdAlumno=$dato");
+    }
     /*
     public function centroeducativo(){
     	$consultaSQL = 	$this->selectct($this->dato);
