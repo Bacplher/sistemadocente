@@ -47,4 +47,13 @@ class perfilControlador extends Controlador {
 
     }
 
+    public function agregar(){
+        $this->_perfil->Centro_Educativo=$_POST['Centro_Educativo'];
+        $this->_perfil->Grado=$_POST['Grado'];
+        $this->_perfil->Curso=$_POST['Curso'];
+        $this->_perfil->Seccion=$_POST['Seccion'];
+        $this->_perfil->agregar_da(Session::get('IdDocente'));
+
+    }
+
 }

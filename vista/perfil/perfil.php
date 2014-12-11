@@ -3,6 +3,18 @@
 
 <link href="vista/perfil/css/estilos_index.css" rel="stylesheet" type="text/css" />
 
+<script>
+    function formulario(f) {
+
+        if (f.centro_educativo.value   == '') { alert ('El nombre esta vacío');
+
+            f.nombre.focus(); return false; }
+
+        if (f.grado.value  == '') { alert ('El email esta vacío');
+
+            f.grado.focus(); return false; } return true; }
+
+</script>
 <div id="contenedorperfil"  >
     <br/>
 
@@ -64,16 +76,16 @@
                 <tr id="cabeceratable-info" class="cualquiercosa">
                     <th>Centro Educativo</th>
                     <th>Grado</th>
-                    <th>Curso</th>
                     <th>Sección</th>
+                    <th>Curso</th>
                     <th><button class="btn btn-primary btn-large" id="btnaddcentro" data-toggle="modal">Agregar</button></th>
                 </tr>
                 <?php for ($i = 0; $i < count($this->datos_academicos); $i++): ?>
                     <tr>
                         <th> <?php echo $this->datos_academicos[$i]['Centro_Educativo']; ?> </th>
                         <th> <?php echo $this->datos_academicos[$i]['Grado']; ?>  </th>
-                        <th> <?php echo $this->datos_academicos[$i]['Curso']; ?> </th>
-                        <th> <?php echo $this->datos_academicos[$i]['Seccion']; ?></th>
+                        <th> <?php echo $this->datos_academicos[$i]['Seccion']; ?> </th>
+                        <th> <?php echo $this->datos_academicos[$i]['Curso']; ?></th>
 
                     </tr>
                 <?php endfor; ?>
@@ -85,28 +97,26 @@
 </div>
 
 <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <form name="formulario" id="form_add" onsubmit="return formulario(this)">
     <fieldset id="perfildocente">
 
-        <legend id="perfildocente2-modificar">Datos Académicos</legend>
-    <table align="center" id="tabla-infoacademica" class='table table-bordered table-hover'>
-        <tr id="cabeceratable-info" class="cualquiercosa">
-            <th>Centro Educativo</th>
-            <th>Grado</th>
-            <th>Curso</th>
-            <th>Sección</th>
-            <th>Agregar</th>
-        </tr>
-        <tr >
-
-             <th width="100%"> <input type="text" width="100%" height="100%" /></th>
-             <th width="5px" > <input type="text" width="100%" height="100%" /></th>
-        </tr>
-    </table>
+        <legend  id="perfildocente2-modificar">Datos Académicos</legend>
+        <label id="datosgenerales"> Centro Educativo&nbsp;:</label>
+             <input class="datos"  id="centroeducativo" type="text"  name="Centro_Educativo" /> <br/>
+        <label id="datosgenerales"> Grado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+              <input class="datos"  id="grado" type="text" name="Grado" /> <br/>
+        <label id="datosgenerales"> Sección&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+        <input class="datos" id="seccion" type="text" name="Seccion" maxlength="1" onkeypress="return stringCheck(event, this);" /> <br/>
+        <label id="datosgenerales"> Curso&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+             <input  class="datos"  id="curso" type="text" name="Curso"  />
+        </fieldset>
         <div class="modal-footer">
             <button type="button" data-dismiss="modal" class="btn">Cerrar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
+            <input type="button" id="btn-add" class="btn btn-primary" value="Agregar" >
+
+
         </div>
-        </fieldset>
+    </form>
 
 </div>
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -115,7 +125,6 @@
     <form id="form_actperfil"  name="actualizar_perfil"  >
     <fieldset id="perfildocente">
         <legend id="perfildocente2-modificar">Información Personal</legend>
-        <?php  $this->perfil[0]['IdDocente']; ?>
         <label id="datosgenerales" >Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
         <input type="text" id="nombre" class="datos" name="Nombre" value="<?php echo $this->perfil[0]['Nombre']; ?>" ><br/>
         <label id="datosgenerales" >Apellido Paterno&nbsp;:  </label>
@@ -141,7 +150,7 @@
 
     <div class="modal-footer">
         <button type="button" data-dismiss="modal" class="btn">Cerrar</button>
-        <input type="button" id="save" class="btn btn-primary"  value="Actualizar" onClick="document.location.reload(true)"  ></button>
+        <input type="button" id="save" class="btn btn-primary"  value="Actualizar"  onClick="document.location.reload(true)" >
 
 
     </div>

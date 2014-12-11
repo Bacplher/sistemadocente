@@ -68,11 +68,11 @@ abstract class Consulta
         $consultaperfildocente = "SELECT  centroeducativo.Descripcion as Centro_Educativo,
                                    curso.Descripcion AS Curso, grado.Descripcion AS Grado, seccion.Descripcion AS Seccion
                                    FROM docente
-																	 INNER JOIN detalledocentecentroeducativo ON docente.IdDocente=detalledocentecentroeducativo.IdDocente
+                                    INNER JOIN detalledocentecentroeducativo ON docente.IdDocente=detalledocentecentroeducativo.IdDocente
                                    INNER JOIN centroeducativo ON detalledocentecentroeducativo.IdCentroEducativo=centroeducativo.IdCentroEducativo
                                    INNER JOIN grado ON centroeducativo.IdCentroEducativo=grado.IdCentroEducativo
                                    INNER JOIN seccion ON grado.IdGrado=seccion.IdGrado
-                                   INNER JOIN curso ON curso.IdSeccion = curso.IdSeccion WHERE docente.IdDocente=$dato";
+                                   INNER JOIN curso ON seccion.IdSeccion = curso.IdSeccion WHERE docente.IdDocente=$dato ";
         $sql=$db->prepare($consultaperfildocente);
         $resultado=$sql->execute();
         $db->cerrar();
