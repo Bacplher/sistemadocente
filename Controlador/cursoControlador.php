@@ -60,7 +60,16 @@ class cursoControlador extends Controlador{
     }
 
     public function insertaralumno(){
-        $parametro = $_POST["param"];
-        return $parametro;
+        //print($_POST['Nombre']); exit();
+            //print($_POST['codcurso']);
+        $nombre = $_POST['Nombre'];
+        $apellidopaterno = $_POST['ApellidoPaterno'];
+        $apellidomaterno = $_POST['ApellidoMaterno'];
+        $email = $_POST['Email'];
+        $codcurso = $_POST['codcurso'];
+        $cadena = "'$nombre','$apellidopaterno','$apellidomaterno','$email','$codcurso'";
+        print($cadena);
+        $insertar = $this->_curso->insertar($cadena);
+        echo json_encode($insertar);
     }
 }

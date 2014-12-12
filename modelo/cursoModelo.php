@@ -78,6 +78,12 @@ public function centro($dato){
         $da = $this->_db->query("DELETE FROM alumno
                                 WHERE alumno.IdAlumno=$dato");
     }
+
+    public function insertar($cadena){$da1 = $this->_db->query("INSERT INTO `alumno`(`Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Email`, `IdCurso`)
+                                  VALUES ($cadena)");
+                                  }
+
+
     /*
     public function centroeducativo(){
     	$consultaSQL = 	$this->selectct($this->dato);

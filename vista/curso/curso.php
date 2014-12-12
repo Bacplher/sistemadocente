@@ -2,7 +2,7 @@
 <SCRIPT TYPE="text/javascript">
 $(document).ready(function(){
     $("#divmenuopciones").hide();
-    $("#botoninsertar").hide();
+   $("#botoninsertar").hide();
     /*
     var grado = function(){
         $.post('/sistemadocente/curso/getgrado','IdCentroEducativo=' + $("#centroeducativo").val(),function(datos){
@@ -149,8 +149,10 @@ $(function(){
     });
 
     $("#save").click(function(){
+        var idcurso = $("#curso").val();
         var param = $("#form_insertaralumno").serialize();
-        $.post("perfil/actualizar",param)
+        var p = param+"&codcurso="+idcurso;
+        $.post("/sistemadocente/curso/insertaralumno",p);
     });
 })
     function edit($dato){
@@ -253,12 +255,13 @@ $(function(){
             <input type="text" id="apellidomaterno" class="datos" name="ApellidoMaterno"  > <br/>
             <label id="datosgenerales" >E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
             <input type="text" id="email" class="datos" name="Email" > <br/>
+            <!--<label id="datosgenerales" >IdCurso&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </label>
+            <input type="text" id="codurso" class="datos" name="Codcurso" > <br/>-->
+            <!--<input type="hidden" id="codcurso" class="datos" name="Codcurso">-->
         </fieldset>
         <div class="modal-footer">
             <button type="button" data-dismiss="modal" class="btn btn-primary">Cancelar</button>
-            <input type="button" id="save" class="btn btn-primary"  value="Insertar" onClick="document.location.reload(true)"  ></button>
-
-
+            <button type="button" id="save" class="btn btn-primary"  data-dismiss="modal" >Insertar</button>
         </div>
     </form>
 </div>
