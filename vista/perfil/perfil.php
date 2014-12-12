@@ -19,6 +19,8 @@
     <br/>
 
     <?php if (isset($this->perfil) && count($this->perfil)) : ?>
+    <br>
+    <br>
     <div class="col-md-4">
         <fieldset id="perfildocente">
 

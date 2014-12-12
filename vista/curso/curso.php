@@ -192,7 +192,8 @@ $(function(){
 
 </SCRIPT>
 <div id="contenedorcurso">
-
+    <br>
+    <br>
         <br/>
     <div class="col-md-4">
         <!--<form>-->

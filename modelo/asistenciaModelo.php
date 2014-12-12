@@ -1,45 +1,93 @@
 <?php
+class asistenciaModelo extends Consulta{
 
-
-class asistenciaModelo extends Consulta
-{
-
-    public $table = "asistencia";
-    public $alumno_IdAlumno;
-    public $clase_IdClase;
-    public $Asistio;
-    public $Observaciones;
-
-    public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
     }
 
-    public function getAsistencia()
+    public $table = 'curso';
+
+
+    public function curso1()
     {
         $consultaSQL = $this->Select($this->table);
         return $consultaSQL;
     }
-
-    public function getInsertar()
-    {
-        $consultaSQL = $this->_db->query("INSERT INTO asistencia (alumno_IdAlumno,clase_IdClase, Asistio, Observaciones)
-        VALUES ('$this->alumno_IdAlumno','$this->clase_IdClase','$this->Asistio','$this->Observaciones')");
+    public function centro($dato){
+        $centroeducativo = $this->_db->query("SELECT centroeducativo.IdCentroEducativo as IdCentroEducativo,
+                                        centroeducativo.Descripcion as centroeducativo
+                                        FROM centroeducativo
+                                        INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                        INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+                                        WHERE docente.IdDocente=$dato");
+        return $centroeducativo->fetchAll();
     }
 
-    public function getEliminar()
-    {
-
-        /*$alumno = $this->Delete($this->table, $this->IdAlumno);
-        return $alumno;*/
-        $consultaSQL =$this->_db->query( "DELETE from alumno where IdAlumno='$this->IdAlumno'");
+    public function grado($centroeduc,$dato){
+        $grado = $this->_db->query("SELECT grado.IdGrado as codgrado, grado.Descripcion as dgrado
+                              FROM grado
+                              INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                              INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                              INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+                              WHERE docente.IdDocente=$dato and centroeducativo.IdCentroEducativo=$centroeduc");
+        $grado->setFetchMode(PDO::FETCH_ASSOC);
+        return $grado->fetchAll();
     }
 
-    public function getActualizar()
-    {
-        /*$alumno = $this->Update($this->table, $this->IdAlumno, $this->Nombre, $this->ApellidoPaterno, $this->ApellidoMaterno, $this->Email);
-        return $alumno;*/
-        $consultaSQL =$this->_db->query( "UPDATE  alumno  set IdAlumno='$this->IdAlumno' ,Nombre='$this->Nombre',ApellidoPaterno='$this->ApellidoPaterno',ApellidoMaterno='$this->ApellidoMaterno',Email='$this->Email'  WHERE IdAlumno='$this->IdAlumno'");
+    public function seccion($grad,$dato){
+        $seccion = $this->_db->query("SELECT seccion.IdSeccion as codseccion, seccion.Descripcion as dseccion
+                                FROM seccion
+                                INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
+                                INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                                INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+                                WHERE docente.IdDocente=$dato
+                                and grado.IdGrado=$grad");
+        $seccion->setFetchMode(PDO::FETCH_ASSOC);
+        return $seccion->fetchAll();
     }
 
+    public function curso($secc,$dato){
+        $curso = $this->_db->query("SELECT curso.IdCurso as codcurso, curso.Descripcion as dcurso
+                                    FROM curso
+                                INNER JOIN seccion ON  seccion.IdSeccion = curso.IdSeccion
+                                INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
+                                INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                                INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+                                WHERE docente.IdDocente=$dato and seccion.IdSeccion=$secc");
+        $curso->setFetchMode(PDO::FETCH_ASSOC);
+        return $curso->fetchAll();
+    }
+
+    public function alumnos($dato){
+        $alumno = $this->_db->query("SELECT alumno.IdAlumno as codalumno ,alumno.Nombre as nombre, alumno.ApellidoPaterno as ApPaterno, alumno.ApellidoMaterno as ApMaterno, alumno.Email as Email
+                                    FROM alumno
+                                INNER JOIN curso ON curso.IdCurso = alumno.IdCurso
+                                INNER JOIN seccion ON  seccion.IdSeccion = curso.IdSeccion
+                                INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
+                                INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                                INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+                                WHERE curso.IdCurso=$dato");
+        $alumno->setFetchMode(PDO::FETCH_ASSOC);
+        return $alumno->fetchAll();
+    }
+
+    public function deletealumno($dato){
+        $da = $this->_db->query("DELETE FROM alumno
+                                WHERE alumno.IdAlumno=$dato");
+    }
+    public function clase($curso,$dato){        $curso = $this->_db->query("SELECT clase.IdClase as clase, clase.Fecha as dclase
+                                    FROM curso
+                                INNER JOIN seccion ON  seccion.IdSeccion = curso.IdSeccion
+                                INNER JOIN grado ON grado.IdGrado = seccion.IdGrado
+                                INNER JOIN centroeducativo ON centroeducativo.IdCentroEducativo = grado.IdCentroEducativo
+                                INNER JOIN detalledocentecentroeducativo ON detalledocentecentroeducativo.IdCentroEducativo = centroeducativo.IdCentroEducativo
+                                INNER JOIN docente ON docente.IdDocente = detalledocentecentroeducativo.IdDocente
+																INNER JOIN clase ON clase.IdCurso = curso.IdCurso
+                                WHERE docente.IdDocente=$dato and curso.IdCurso=$curso");
+        $curso->setFetchMode(PDO::FETCH_ASSOC);
+        return $curso->fetchAll();
+    }
 }

@@ -12,13 +12,15 @@
 
     <link href="<?php echo $_layoutParams['ruta_css']; ?>stylossesion.css" rel="stylesheet" type="text/css"
           media="screen"/>
-<!--    <link rel="stylesheet prefetch" href="<?php /*echo $_layoutParams['ruta_css']; */?>agdehlogo.css">
+    <!--    <link rel="stylesheet prefetch" href="<?php /*echo $_layoutParams['ruta_css']; */?>agdehlogo.css">
 -->    <link rel="stylesheet" href="<?php echo $_layoutParams['ruta_css']; ?>stylelogo.css" media="screen"
-          type="text/css"/>
+             type="text/css"/>
     <link href="<?php echo $_layoutParams['ruta_css']; ?>pagina.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo $_layoutParams['ruta_css']; ?>pag.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo $_layoutParams['ruta_css']; ?>primera.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo $_layoutParams['ruta_css']; ?>estilos.css" rel="stylesheet" type="text/css"/>
+
+    <link href="<?php echo $_layoutParams['ruta_css']; ?>barra.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body style="background:#A0F7FE">
@@ -36,7 +38,7 @@
                 <td>
                     <input type="image" src="<?php echo $_layoutParams['ruta_img']; ?>salir.jpg" width="50px"
                            height="50px" onclick="salir('<?php echo BASE_URL?>index/cerrar')" class="imgedit"
-                          ></h3>
+                        ></h3>
 
                 </td>
 
@@ -48,17 +50,28 @@
         <?php echo "Usuario Desconocido"; ?>
     <?php } ?>
     <div id="top_menu" class="container">
-        <ul class="gn-menu-main">
+        <ul class="nav">
             <?php if (isset($_layoutParams['menu'])) {
                 ; ?>
                 <?php for ($i = 0; $i < count($_layoutParams['menu']); $i++) { ?>
                     <li>
-                        <a class="codrops-icon codrops-icon-prev"
-                           href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><span><?php echo $_layoutParams['menu'][$i]['titulo']; ?></span></a>
+                        <a
+                            href="<?php echo $_layoutParams['menu'][$i]['enlace']; ?>"><span><?php echo $_layoutParams['menu'][$i]['titulo']; ?></span></a>
+
+                        <ul>  <?php
+                            if($_layoutParams['menu'][$i]['id']=='reportes'){
+                                if (isset($_layoutParams['menu'])) {
+                                    for ($i = 0; $i < count($_layoutParams['submenu']); $i++){?>
+                                        <li> <a  href="<?php echo $_layoutParams['submenu'][$i]['enlace']; ?>"><span><?php echo $_layoutParams['submenu'][$i]['titulo']; ?></span></a>
+                                        </li>
+                                    <?php }}}
+
+                            ?>
+                        </ul>
                     </li>
-                <?php
-                }
-            } ?>
+                <?php }
+            }
+            ?>
         </ul>
     </div>
 </div>
@@ -70,8 +83,5 @@
 <script src="<?php echo $_layoutParams['ruta_js']; ?>bootstrap.min.js"></script>
 
 
-        
-        
-        
-        
-        
+
+

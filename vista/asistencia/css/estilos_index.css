@@ -1,25 +1,36 @@
-/* 
-    Document   : estilos_index
-    Created on : 12/11/2012, 12:55:32 PM
-    Author     : Ja1R
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-#vtna_ver_proveedor{
-        display: none;
-	padding:20px;
-	color: black;
-	position: fixed;
-	left: 37.5%;
-	top: 20%;
-	z-index: 1000;
-	text-align: left;
-	background-color: white;
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -o-border-radius: 10px;
-        border:10px solid grey;
+#contenedorcurso{
+    background: #ffffff;
+    height: 400px;
+    width: 100%;
 }
 
+table{
+
+}
+
+table th{
+    background: #35B1E5;
+    color: #ffffff;
+    font-family:"Comic Sans MS";
+    font-size: 20;
+    text-align: center;
+}
+
+table td{
+    background: #7ab5d3;
+    color: #ffffff;
+    font-size: 10;
+    font-family:"Comic Sans MS";
+    text-align: left ;
+}
+
+#cabeceratable-info{
+    background: #35B1E5;
+    color: #ffffff;
+    font-family:"Comic Sans MS";
+    text-align: center;
+}
+#cabeceratable-info:hover{
+    background: #ffffff;
+    color: #35B1E5;
+}

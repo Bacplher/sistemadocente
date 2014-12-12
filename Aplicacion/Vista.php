@@ -28,7 +28,20 @@ class Vista
             array(
                 'id' => 'reportes',
                 'titulo' => 'Reportes',
-                'enlace_titulo' => BASE_URL
+                'enlace' => BASE_URL.'',
+
+            )
+        );
+        $submenu= array(
+            array(
+                'id' => 'notas',
+                'titulo' => 'Notas',
+                'enlace' => BASE_URL.'notas',
+            ),
+            array(
+                'id' => 'asistencia',
+                'titulo' => 'Asistencia',
+                'enlace' => BASE_URL.'asistencia',
             )
         );
 
@@ -37,7 +50,8 @@ class Vista
             'ruta_css' => BASE_URL . 'vista/layout/' . DEFAULT_LAYOUT . '/css/',
             'ruta_img' => BASE_URL . 'vista/layout/' . DEFAULT_LAYOUT . '/img/',
             'ruta_js' => BASE_URL . 'vista/layout/' . DEFAULT_LAYOUT . '/js/',
-            'menu' => $menu
+            'menu' => $menu,
+            'submenu'=>$submenu
         );
 
         $rutaVista = ROOT . 'vista' . DS . $this->_controlador . DS . $vista . '.php';
